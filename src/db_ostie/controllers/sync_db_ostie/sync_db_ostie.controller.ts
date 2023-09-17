@@ -6,8 +6,17 @@ export class SyncDbOstieController {
     constructor(
         private readonly syncronisationservice:SyncDbOstieService,
     ){}
-        @Post()
-  async syncData(): Promise<string> {
+    @Post('/adherent/sql-to-mongo')
+  async syncAdherentSQLtoMongo(): Promise<string> {
     return this.syncronisationservice.syncToMongoose();
   }
+  @Post('/adherent/mongo-to-sql')
+  async syncAdherentMongotoSQL(): Promise<string> {
+    return this.syncronisationservice.syncToSequelize();
+  }
+  @Post('update/adherent/sql-to-mongo')
+  async updatesyncAdherentMongotoSQL(): Promise<void> {
+    return this.syncronisationservice.updateAdherentinMongodb();
+  }
+
 }

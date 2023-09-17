@@ -71,9 +71,9 @@ export class SyncroService {
                     mongooseModel
                 )(record);
 
-                // Check if the record already exists in Mongoose
+                
                 const existingRecord = mongooseData.find((mongooseRecord) => {
-                    // Customize the comparison logic based on your requirements
+                    
                     return mongooseRecord.someUniqueIdentifier === mappedData.someUniqueIdentifier;
                 });
 
@@ -92,13 +92,13 @@ export class SyncroService {
                     mongooseModel
                 )(record);
 
-                // Check if the record already exists in Sequelize
+             
                 const existingRecord = await (sequelizeModel as any).findOne({
-                    where: { someUniqueIdentifier: mappedData.someUniqueIdentifier }, // Customize the identifier and comparison logic
+                    where: { someUniqueIdentifier: mappedData.someUniqueIdentifier },
                 });
 
                 if (!existingRecord) {
-                    // Create a new Sequelize record with the mapped data and save it
+                    
                     await (sequelizeModel as any).create(mappedData);
                 }
             }

@@ -5,16 +5,17 @@ import { Adherent as AdherentSql} from './schema/mysql/adherent.schema';
 import { Adherent, AdherentSchema } from './schema/mongodb/adherent.schema';
 import SyncDbOstieService from './service/sync_db_ostie/sync_db_ostie.service';
 import sequelize from 'sequelize';
-import { AppModule } from 'src/app.module';
+
 import { SyncroService } from 'src/syncro.service';
 import { MappingService } from 'src/mapping.service';
 import { SyncDbOstieController } from './controllers/sync_db_ostie/sync_db_ostie.controller';
 
 @Module({
     imports:[
+        
         MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ostie'),
         SequelizeModule.forRoot({
-        dialect: 'mysql', // Remplacez par le dialecte de votre base de données
+        dialect: 'mysql', 
         host: 'localhost',
         port: 3306,
         username: 'root',
@@ -37,4 +38,6 @@ import { SyncDbOstieController } from './controllers/sync_db_ostie/sync_db_ostie
         useValue: AdherentSql // Your Sequelize model
       }],
 })
-export class DbOstieModule {}
+export class DbOstieModule {
+    
+}

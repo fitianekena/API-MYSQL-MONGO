@@ -6,10 +6,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SequelizeModule } from '@nestjs/sequelize';
 
 import { DbOstieModule } from './db_ostie/db_ostie.module';
+import { OstieModule } from './ostie/ostie.module';
 
 @Module({
   imports:[
-     DbOstieModule],
+     DbOstieModule,
+     OstieModule],
   
   controllers: [AppController],
   providers: [AppService],
