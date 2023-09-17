@@ -148,3 +148,4 @@ export class Adherent extends Model {
   @Column({ type: DataType.INTEGER })
   adh_affValidation: number;
 }
+

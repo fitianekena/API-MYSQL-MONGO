@@ -18,5 +18,9 @@ export class SyncDbOstieController {
   async updatesyncAdherentMongotoSQL(): Promise<void> {
     return this.syncronisationservice.updateAdherentinMongodb();
   }
+  @Post('update/adherent/mongo-to-sql')
+  async updatesyncAdherentSQLtoMongo(): Promise<void> {
+    return this.syncronisationservice.updateAdherentinSequelize();
+  }
 
 }

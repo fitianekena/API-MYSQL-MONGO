@@ -38,4 +38,11 @@ export default class SyncDbOstieService {
         'sequelize'
     );
   }
+  async updateAdherentinSequelize(){
+    return await this.syncservicebase.update(
+        this.mysqlAdherent as any,
+        this.mongooseAdherent,
+        'mongoose'
+    );
+  }
 }
