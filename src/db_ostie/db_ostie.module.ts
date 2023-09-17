@@ -5,11 +5,11 @@ import { Adherent as AdherentSql} from './schema/mysql/adherent.schema';
 import { Adherent, AdherentSchema } from './schema/mongodb/adherent.schema';
 import SyncDbOstieService from './service/sync_db_ostie/sync_db_ostie.service';
 import sequelize from 'sequelize';
-
+import { Affilie as AffilieSql } from './schema/mysql/affilie.schema';
 import { SyncroService } from 'src/syncro.service';
 import { MappingService } from 'src/mapping.service';
 import { SyncDbOstieController } from './controllers/sync_db_ostie/sync_db_ostie.controller';
-
+import { Affilie as AffilieMongo, AffilieSchema } from './schema/mongodb/affilie.schema';
 @Module({
     imports:[
         
@@ -21,9 +21,9 @@ import { SyncDbOstieController } from './controllers/sync_db_ostie/sync_db_ostie
         username: 'root',
         password: '',
         database: 'db_ostie',
-        models: [AdherentSql], // Vous pouvez ajuster cette option en fonction de vos besoins
+        models: [AdherentSql,AffilieSql], // Vous pouvez ajuster cette option en fonction de vos besoins
          }),
-        MongooseModule.forFeature([{name:Adherent.name,schema:AdherentSchema}])],
+        MongooseModule.forFeature([{name:Adherent.name,schema:AdherentSchema},{name:AffilieMongo.name,schema:AffilieSchema}])],
       
       controllers: [SyncDbOstieController],
       providers: [
@@ -36,6 +36,10 @@ import { SyncDbOstieController } from './controllers/sync_db_ostie/sync_db_ostie
         },{
         provide: 'AdherentSql',
         useValue: AdherentSql // Your Sequelize model
+      },
+      {
+        provide: 'AffilieSql',
+        useValue: AffilieSql // Your Sequelize model
       }],
 })
 export class DbOstieModule {

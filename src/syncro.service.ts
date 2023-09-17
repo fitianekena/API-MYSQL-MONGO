@@ -57,52 +57,68 @@ export class SyncroService {
 
     async update(
         sequelizeModel: SequelizeModel,
-        mongooseModel: MongooseModel<any>,
+        mongooseModel: MongooseModel<any>, 
         priority: 'sequelize' | 'mongoose'
     ) {
+        let migratedCount = 0;
+    
         if (priority === 'sequelize') {
             // Migrate missing data from Sequelize to Mongoose
             const sequelizeData = await (sequelizeModel as any).findAll();
             const mongooseData = await mongooseModel.find();
-
+            const primaryKeyField = Object.keys((sequelizeModel as any).rawAttributes).find(
+                (key) => (sequelizeModel as any).rawAttributes[key].primaryKey
+            );
             for (const record of sequelizeData) {
-                const mappedData = this.mappingService.mapSequelizeToMongoose(
-                    sequelizeModel,
-                    mongooseModel
-                )(record);
-
+                const primaryKeyValue = record.get(primaryKeyField);
                 
-                const existingRecord = mongooseData.find((mongooseRecord) => {
-                    
-                    return mongooseRecord.someUniqueIdentifier === mappedData.someUniqueIdentifier;
+                const matchingData = mongooseData.find((mongooseRecord) => {
+                    // Compare les valeurs des champs clés primaires pour faire correspondre les enregistrements
+                    return primaryKeyValue === mongooseRecord[primaryKeyField];
                 });
-
-                if (!existingRecord) {
+    
+                if (!matchingData) {
+                    const mappedData = this.mappingService.mapSequelizeToMongoose(
+                        sequelizeModel,
+                        mongooseModel
+                    )(record);
                     const mongooseRecord = new mongooseModel(mappedData);
                     await mongooseRecord.save();
+                    migratedCount++;
                 }
             }
+    
+            console.log(`Nombre d'éléments migrés de Sequelize vers Mongoose : ${migratedCount}`);
         } else if (priority === 'mongoose') {
+            // Réinitialiser le compteur pour la direction de migration inverse
+            migratedCount = 0;
+    
             const sequelizeData = await (sequelizeModel as any).findAll();
             const mongooseData = await mongooseModel.find();
-
+            const primaryKeyField = Object.keys((sequelizeModel as any).rawAttributes).find(
+                (key) => (sequelizeModel as any).rawAttributes[key].primaryKey
+            );
             for (const record of mongooseData) {
-                const mappedData = this.mappingService.mapMongooseToSequelize(
-                    sequelizeModel,
-                    mongooseModel
-                )(record);
-
-             
-                const existingRecord = await (sequelizeModel as any).findOne({
-                    where: { someUniqueIdentifier: mappedData.someUniqueIdentifier },
+                const primaryKeyValue = record[primaryKeyField];
+    
+                const matchingData = await (sequelizeModel as any).findOne({
+                    where: { [primaryKeyField]: primaryKeyValue }, // Utilisez le champ clé primaire
                 });
-
-                if (!existingRecord) {
-                    
+    
+                if (!matchingData) {
+                    const mappedData = this.mappingService.mapMongooseToSequelize(
+                        sequelizeModel,
+                        mongooseModel
+                    )(record);
                     await (sequelizeModel as any).create(mappedData);
+                    migratedCount++;
                 }
             }
+    
+            console.log(`Nombre d'éléments migrés de Mongoose vers Sequelize : ${migratedCount}`);
         }
     }
+    
+    
 }
 
