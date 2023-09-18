@@ -7,6 +7,8 @@ import { Centre as MongoDBCentre} from 'src/db_ampasamadinika/schema/mongodb/cen
 import { Centre as MySQLCentre} from 'src/db_ampasamadinika/schema/mysql/centre.schema';
 import { Personnel as PersonnelMongo, PersonnelSchema} from 'src/db_ampasamadinika/schema/mongodb/personnel.schema';
 import { Personnel as PersonnelSql} from 'src/db_ampasamadinika/schema/mysql/personnel.schema';
+import { Fonction as FonctionMongo, FonctionSchema} from 'src/db_ampasamadinika/schema/mongodb/fonction.schema';
+import { Fonction as FonctionSql} from 'src/db_ampasamadinika/schema/mysql/fonction.schema';
 
 
 import { SyncroService } from 'src/syncro.service';
@@ -16,9 +18,11 @@ export class SyncDbAmpasamadinikaService {
     constructor(
         @InjectModel(MongoDBCentre.name) private readonly mongooseCentre: Model<MongoDBCentre>,
         @InjectModel(PersonnelMongo.name) private readonly mongoosePersonnel: Model<PersonnelMongo>,
+        @InjectModel(FonctionMongo.name) private readonly mongooseFonction: Model<FonctionMongo>,
         @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
         @Inject('CentreSql') private readonly mysqlCentre: typeof MySQLCentre,
         @Inject('PersonnelSql') private readonly mysqlPersonnel: typeof PersonnelSql,
+        @Inject('FonctionSql') private readonly mysqlFonction: typeof FonctionSql,
         private readonly syncservicebase:SyncroService,
       ) {}
     
@@ -74,6 +78,35 @@ export class SyncDbAmpasamadinikaService {
         return await this.syncservicebase.update(
             this.mysqlPersonnel as any,
             this.mongoosePersonnel,
+            'mongoose'
+        );
+      }
+
+
+      async syncToMongooseFonction() {
+        return await this.syncservicebase.synchronizeToMongoose(
+            this.mysqlFonction as any,
+            this.mongooseFonction
+        );
+      }
+    
+      async syncToSequelizeFonction() {
+        return await this.syncservicebase.synchronizeToSequelize(
+            this.mysqlFonction as any,
+            this.mongooseFonction
+        );
+      }
+      async updateFonctioninMongodbFonction(){
+        return await this.syncservicebase.update(
+            this.mysqlFonction as any,
+            this.mongooseFonction,
+            'sequelize'
+        );
+      }
+      async updateFonctioninSequelizeFonction(){
+        return await this.syncservicebase.update(
+            this.mysqlFonction as any,
+            this.mongooseFonction,
             'mongoose'
         );
       }
