@@ -6,17 +6,37 @@ export class SyncDbAmpasamadinikaController {
     constructor(
         private readonly syncronisationservice:SyncDbAmpasamadinikaService,
     ){}
-    @Post('/adherent/sql-to-mongo')
-  async syncAdherentSQLtoMongo(): Promise<string> {
-    return this.syncronisationservice.syncToMongoose();
+    @Post('/centre/sql-to-mongo')
+  async syncCentreSQLtoMongo(): Promise<string> {
+    return this.syncronisationservice.syncToMongooseCentre();
   }
-  @Post('/adherent/mongo-to-sql')
-  async syncAdherentMongotoSQL(): Promise<string> {
-    return this.syncronisationservice.syncToSequelize();
+  @Post('/centre/mongo-to-sql')
+  async syncCentreMongotoSQL(): Promise<string> {
+    return this.syncronisationservice.syncToSequelizeCentre();
   }
-  @Post('update/adherent/sql-to-mongo')
-  async updatesyncAdherentMongotoSQL(): Promise<void> {
-    return this.syncronisationservice.updateAdherentinMongodb();
+  @Post('update/centre/sql-to-mongo')
+  async updatesyncCentreMongotoSQL(): Promise<void> {
+    return this.syncronisationservice.updateCentreinMongodbCentre();
+  }
+  @Post('update/centre/mongo-to-sql')
+  async updatesyncCentreSQLtoMongo(): Promise<void> {
+    return this.syncronisationservice.updateCentreinSequelizeCentre();
   }
 
+  @Post('/personnel/sql-to-mongo')
+  async syncPersonnelSQLtoMongo(): Promise<string> {
+    return this.syncronisationservice.syncToMongoosePersonnel();
+  }
+  @Post('/personnel/mongo-to-sql')
+  async syncPersonnelMongotoSQL(): Promise<string> {
+    return this.syncronisationservice.syncToSequelizePersonnel();
+  }
+  @Post('update/personnel/sql-to-mongo')
+  async updatesyncPersonnelMongotoSQL(): Promise<void> {
+    return this.syncronisationservice.updatePersonnelinMongodbPersonnel();
+  }
+  @Post('update/personnel/mongo-to-sql')
+  async updatesyncPersonnelSQLtoMongo(): Promise<void> {
+    return this.syncronisationservice.updatePersonnelinSequelizePersonnel();
+  }
 }
