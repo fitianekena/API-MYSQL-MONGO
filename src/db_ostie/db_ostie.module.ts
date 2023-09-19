@@ -13,18 +13,18 @@ import { Affilie as AffilieMongo, AffilieSchema } from './schema/mongodb/affilie
 @Module({
     imports:[
         
-        MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ostie'),
+        MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ostie',{connectionName:'db_ostie'}),
+        MongooseModule.forFeature([{name:Adherent.name,schema:AdherentSchema},{name:AffilieMongo.name,schema:AffilieSchema}],'db_ostie'),
         SequelizeModule.forRoot({
-        dialect: 'mysql', 
-        host: 'localhost',
-        port: 3306,
-        username: 'root',
-        password: '',
-        database: 'db_ostie',
-        models: [AdherentSql,AffilieSql], // Vous pouvez ajuster cette option en fonction de vos besoins
-         }),
-        MongooseModule.forFeature([{name:Adherent.name,schema:AdherentSchema},{name:AffilieMongo.name,schema:AffilieSchema}])],
-      
+          dialect: 'mysql', 
+          host: 'localhost',
+          port: 3306,
+          username: 'root',
+          password: '',
+          database: 'db_ostie',
+          models: [AdherentSql,AffilieSql], // Vous pouvez ajuster cette option en fonction de vos besoins
+           }),],
+        
       controllers: [SyncDbOstieController],
       providers: [
         MappingService,

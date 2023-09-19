@@ -16,7 +16,7 @@ import { SyncDbAmpasamadinikaController } from './controllers/sync_db_ampasamadi
 @Module({
     imports:[
         
-        MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ampasamadinika'),
+        MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ampasamadinika',{connectionName:'db_ampasamadinika'}),
         SequelizeModule.forRoot({
         dialect: 'mysql', 
         host: 'localhost',
@@ -26,7 +26,7 @@ import { SyncDbAmpasamadinikaController } from './controllers/sync_db_ampasamadi
         database: 'db_ampasamadinika',
         models: [CentreSql, PersonnelSql, FonctionSql], // Vous pouvez ajuster cette option en fonction de vos besoins
          }),
-        MongooseModule.forFeature([{name:Centre.name,schema:CentreSchema}, {name:PersonnelMongo.name,schema:PersonnelSchema}, {name:FonctionMongo.name,schema:FonctionSchema}])],
+        MongooseModule.forFeature([{name:Centre.name,schema:CentreSchema}, {name:PersonnelMongo.name,schema:PersonnelSchema}, {name:FonctionMongo.name,schema:FonctionSchema}],'db_ampasamadinika')],
       
       controllers: [SyncDbAmpasamadinikaController],
       providers: [
@@ -48,6 +48,7 @@ import { SyncDbAmpasamadinikaController } from './controllers/sync_db_ampasamadi
         provide: 'FonctionSql',
         useValue: FonctionSql // Your Sequelize model
       }],
+      exports:[MongooseModule]
 })
 export class DbAmpasamadinikaModule {
 

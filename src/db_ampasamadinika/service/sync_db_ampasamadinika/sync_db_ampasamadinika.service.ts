@@ -1,7 +1,7 @@
 
 import { Inject, Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { InjectConnection, InjectModel } from '@nestjs/mongoose';
+import { Connection, Model } from 'mongoose';
 import { Sequelize } from 'sequelize';
 import { Centre as MongoDBCentre} from 'src/db_ampasamadinika/schema/mongodb/centre.schema';
 import { Centre as MySQLCentre} from 'src/db_ampasamadinika/schema/mysql/centre.schema';
@@ -16,14 +16,15 @@ import { SyncroService } from 'src/syncro.service';
 @Injectable()
 export class SyncDbAmpasamadinikaService {
     constructor(
-        @InjectModel(MongoDBCentre.name) private readonly mongooseCentre: Model<MongoDBCentre>,
-        @InjectModel(PersonnelMongo.name) private readonly mongoosePersonnel: Model<PersonnelMongo>,
-        @InjectModel(FonctionMongo.name) private readonly mongooseFonction: Model<FonctionMongo>,
+        @InjectModel(MongoDBCentre.name,'db_ampasamadinika') private readonly mongooseCentre: Model<MongoDBCentre>,
+        @InjectModel(PersonnelMongo.name,'db_ampasamadinika') private readonly mongoosePersonnel: Model<PersonnelMongo>,
+        @InjectModel(FonctionMongo.name,'db_ampasamadinika') private readonly mongooseFonction: Model<FonctionMongo>,
         @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
         @Inject('CentreSql') private readonly mysqlCentre: typeof MySQLCentre,
         @Inject('PersonnelSql') private readonly mysqlPersonnel: typeof PersonnelSql,
         @Inject('FonctionSql') private readonly mysqlFonction: typeof FonctionSql,
         private readonly syncservicebase:SyncroService,
+        @InjectConnection('db_ampasamadinika') private readonly connexion: Connection,
       ) {}
     
       async syncToMongooseCentre() {
