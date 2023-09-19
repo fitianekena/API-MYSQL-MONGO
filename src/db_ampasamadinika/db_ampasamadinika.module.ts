@@ -13,6 +13,9 @@ import sequelize from 'sequelize';
 import { SyncroService } from 'src/syncro.service';
 import { MappingService } from 'src/mapping.service';
 import { SyncDbAmpasamadinikaController } from './controllers/sync_db_ampasamadinika/db_ampasamadinika.controller';
+import { UtilService } from 'src/util.service';
+import { Visiteaffilie as VisiteaffilieSql } from './schema/mysql/visiteaffilie.schema';
+import { Visiteaffilie as VisiteaffilieMongo, VisiteaffilieSchema } from './schema/mongodb/visiteaffilie.schema';
 @Module({
     imports:[
         
@@ -24,29 +27,34 @@ import { SyncDbAmpasamadinikaController } from './controllers/sync_db_ampasamadi
         username: 'root',
         password: '',
         database: 'db_ampasamadinika',
-        models: [CentreSql, PersonnelSql, FonctionSql], // Vous pouvez ajuster cette option en fonction de vos besoins
+        models: [CentreSql, PersonnelSql, FonctionSql,VisiteaffilieSql], // Vous pouvez ajuster cette option en fonction de vos besoins
          }),
-        MongooseModule.forFeature([{name:Centre.name,schema:CentreSchema}, {name:PersonnelMongo.name,schema:PersonnelSchema}, {name:FonctionMongo.name,schema:FonctionSchema}],'db_ampasamadinika')],
+        MongooseModule.forFeature([{name:Centre.name,schema:CentreSchema}, {name:PersonnelMongo.name,schema:PersonnelSchema}, {name:FonctionMongo.name,schema:FonctionSchema},{name:VisiteaffilieSql.name,schema:VisiteaffilieSchema}],'db_ampasamadinika')],
       
       controllers: [SyncDbAmpasamadinikaController],
       providers: [
+        UtilService,
         MappingService,
         SyncDbAmpasamadinikaService,
         SyncroService,
         {
         provide: 'SEQUELIZE',
-        useValue: sequelize, // Your Sequelize instance
+        useValue: sequelize, 
         },{
         provide: 'CentreSql',
-        useValue: CentreSql // Your Sequelize model
+        useValue: CentreSql 
       },
       {
         provide: 'PersonnelSql',
-        useValue: PersonnelSql // Your Sequelize model
+        useValue: PersonnelSql 
       },
       {
         provide: 'FonctionSql',
-        useValue: FonctionSql // Your Sequelize model
+        useValue: FonctionSql 
+      },
+      {
+        provide: 'VisiteaffilieSql',
+        useValue: VisiteaffilieSql
       }],
       exports:[MongooseModule]
 })

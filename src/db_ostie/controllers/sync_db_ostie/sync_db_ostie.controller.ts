@@ -6,7 +6,7 @@ export class SyncDbOstieController {
     constructor(
         private readonly syncronisationservice:SyncDbOstieService,
     ){}
-    @Post('/adherent/sql-to-mongo')
+  @Post('/adherent/sql-to-mongo')
   async syncAdherentSQLtoMongo(): Promise<string> {
     return this.syncronisationservice.syncToMongooseAdherent();
   }

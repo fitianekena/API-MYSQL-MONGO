@@ -22,6 +22,6 @@ import { UtilService } from './util.service';
     ],
   
   controllers: [AppController],
-  providers: [AppService, UtilService],
+  providers: [AppService],
 })
 export class AppModule { }

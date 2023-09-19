@@ -10,6 +10,7 @@ import { SyncroService } from 'src/syncro.service';
 import { MappingService } from 'src/mapping.service';
 import { SyncDbOstieController } from './controllers/sync_db_ostie/sync_db_ostie.controller';
 import { Affilie as AffilieMongo, AffilieSchema } from './schema/mongodb/affilie.schema';
+import { UtilService } from 'src/util.service';
 @Module({
     imports:[
         
@@ -27,6 +28,7 @@ import { Affilie as AffilieMongo, AffilieSchema } from './schema/mongodb/affilie
         
       controllers: [SyncDbOstieController],
       providers: [
+        UtilService,
         MappingService,
         SyncDbOstieService,
         SyncroService,

@@ -9,7 +9,8 @@ import { Personnel as PersonnelMongo, PersonnelSchema} from 'src/db_ampasamadini
 import { Personnel as PersonnelSql} from 'src/db_ampasamadinika/schema/mysql/personnel.schema';
 import { Fonction as FonctionMongo, FonctionSchema} from 'src/db_ampasamadinika/schema/mongodb/fonction.schema';
 import { Fonction as FonctionSql} from 'src/db_ampasamadinika/schema/mysql/fonction.schema';
-
+import { Visiteaffilie as VisiteaffilieSql } from 'src/db_ampasamadinika/schema/mysql/visiteaffilie.schema'; 
+import { Visiteaffilie as VisiteaffilieMongo } from 'src/db_ampasamadinika/schema/mongodb/visiteaffilie.schema';
 
 import { SyncroService } from 'src/syncro.service';
 
@@ -19,10 +20,12 @@ export class SyncDbAmpasamadinikaService {
         @InjectModel(MongoDBCentre.name,'db_ampasamadinika') private readonly mongooseCentre: Model<MongoDBCentre>,
         @InjectModel(PersonnelMongo.name,'db_ampasamadinika') private readonly mongoosePersonnel: Model<PersonnelMongo>,
         @InjectModel(FonctionMongo.name,'db_ampasamadinika') private readonly mongooseFonction: Model<FonctionMongo>,
+        @InjectModel(VisiteaffilieMongo.name,'db_ampasamadinika') private readonly mongooseVisiteaffilie: Model<VisiteaffilieMongo>,
         @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
         @Inject('CentreSql') private readonly mysqlCentre: typeof MySQLCentre,
         @Inject('PersonnelSql') private readonly mysqlPersonnel: typeof PersonnelSql,
         @Inject('FonctionSql') private readonly mysqlFonction: typeof FonctionSql,
+        @Inject('VisiteaffilieSql') private readonly mysqlVisiteaffilie: typeof FonctionSql,
         private readonly syncservicebase:SyncroService,
         @InjectConnection('db_ampasamadinika') private readonly connexion: Connection,
       ) {}
@@ -108,6 +111,35 @@ export class SyncDbAmpasamadinikaService {
         return await this.syncservicebase.update(
             this.mysqlFonction as any,
             this.mongooseFonction,
+            'mongoose'
+        );
+      }
+
+      // visiteqffilie
+      async syncToMongooseVisiteaffilie() {
+        return await this.syncservicebase.synchronizeToMongoose(
+            this.mysqlVisiteaffilie as any,
+            this.mongooseVisiteaffilie
+        );
+      }
+    
+      async syncToSequelizeVisiteaffilie() {
+        return await this.syncservicebase.synchronizeToSequelize(
+            this.mysqlVisiteaffilie as any,
+            this.mongooseVisiteaffilie
+        );
+      }
+      async updateVisiteaffilieinMongodbVisiteaffilie(){
+        return await this.syncservicebase.update(
+            this.mysqlVisiteaffilie as any,
+            this.mongooseVisiteaffilie,
+            'sequelize'
+        );
+      }
+      async updateVisiteaffilieinSequelizeVisiteaffilie(){
+        return await this.syncservicebase.update(
+            this.mysqlVisiteaffilie as any,
+            this.mongooseVisiteaffilie,
             'mongoose'
         );
       }
