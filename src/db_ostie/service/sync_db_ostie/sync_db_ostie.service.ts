@@ -60,14 +60,14 @@ export default class SyncDbOstieService {
       this.mongooseAffilie,
     );
   }
-  async updateAdherentinMongodbAffilie(){
+  async updateAffilieinMongodb(){
     return await this.syncservicebase.update(
       this.mysqlAffilie as any,
       this.mongooseAffilie,
         'sequelize'
     );
   }
-  async updateAdherentinSequelizeAffilie(){
+  async updateAffilieinSequelize(){
     return await this.syncservicebase.update(
       this.mysqlAffilie as any,
       this.mongooseAffilie,

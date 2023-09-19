@@ -32,11 +32,11 @@ export class SyncDbOstieController {
   }
   @Post('update/affilie/sql-to-mongo')
   async updatesyncAffilieMongotoSQL(): Promise<void> {
-    return this.syncronisationservice.updateAdherentinMongodbAffilie();
+    return this.syncronisationservice.updateAffilieinMongodb();
   }
   @Post('update/affilie/mongo-to-sql')
   async updatesyncAffilieSQLtoMongo(): Promise<void> {
-    return this.syncronisationservice.updateAdherentinSequelizeAffilie();
+    return this.syncronisationservice.updateAffilieinSequelize();
   }
 
 }
