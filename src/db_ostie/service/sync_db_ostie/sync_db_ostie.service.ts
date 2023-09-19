@@ -14,8 +14,8 @@ import { Affilie as AffilieSql } from 'src/db_ostie/schema/mysql/affilie.schema'
 @Injectable()
 export default class SyncDbOstieService {
   constructor(
-    @InjectModel(AffilieMongo.name) private readonly mongooseAffilie: Model<AffilieMongo>,
-    @InjectModel(MongoDBAdherent.name) private readonly mongooseAdherent: Model<MongoDBAdherent>,
+    @InjectModel(AffilieMongo.name,'db_ostie_mongo') private readonly mongooseAffilie: Model<AffilieMongo>,
+    @InjectModel(MongoDBAdherent.name,'db_ostie_mongo') private readonly mongooseAdherent: Model<MongoDBAdherent>,
     @Inject('SEQUELIZE') private readonly sequelize: Sequelize,
     @InjectModelSql(AdherentSql,'db_ostie_sql') private readonly mysqlAdherent: typeof AdherentSql,
     @InjectModelSql(AffilieSql,'db_ostie_sql') private readonly mysqlAffilie: typeof AffilieSql,

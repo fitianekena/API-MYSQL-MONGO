@@ -7,6 +7,8 @@ import { Personnel as PersonnelSql } from './schema/mysql/Personnel.schema';
 import { Personnel, Personnel as PersonnelMongo, PersonnelSchema } from './schema/mongodb/personnel.schema';
 import { Fonction as FonctionSql } from './schema/mysql/fonction.schema';
 import { Fonction, Fonction as FonctionMongo, FonctionSchema } from './schema/mongodb/fonction.schema';
+import { Visiteaffilie as VisiteaffilieSql } from './schema/mysql/visiteaffilie.schema';
+import { Visiteaffilie as VisiteaffilieMongo, VisiteaffilieSchema } from './schema/mongodb/visiteaffilie.schema';
 import { SyncDbAmpasamadinikaService } from './service/sync_db_ampasamadinika/sync_db_ampasamadinika.service';
 import sequelize from 'sequelize';
 
@@ -25,10 +27,15 @@ import { Mongoose } from 'mongoose';
     username: 'root',
     password: '',
     database: 'db_ampasamadinika',
-    models:[CentreSql, FonctionSql, PersonnelSql]
+    models:[CentreSql, FonctionSql, PersonnelSql, VisiteaffilieSql]
       }),
-    MongooseModule.forFeature([{name:Centre.name,schema:CentreSchema},{name:FonctionMongo.name,schema:FonctionSchema},{name:PersonnelMongo.name,schema:PersonnelSchema}]),
-    SequelizeModule.forFeature([CentreSql, FonctionSql, PersonnelSql], 'db_ampasamadinika_sql')],
+    MongooseModule.forFeature([
+      {name:Centre.name,schema:CentreSchema},
+      {name:FonctionMongo.name,schema:FonctionSchema},
+      {name:PersonnelMongo.name,schema:PersonnelSchema},
+      {name:VisiteaffilieMongo.name,schema:VisiteaffilieSchema}
+    ], 'db_ampasamadinika_mongo'),
+    SequelizeModule.forFeature([CentreSql, FonctionSql, PersonnelSql, VisiteaffilieSql], 'db_ampasamadinika_sql')],
 
   controllers: [SyncDbAmpasamadinikaController],
   providers: [
@@ -49,6 +56,10 @@ import { Mongoose } from 'mongoose';
     {
       provide: 'PersonnelSql',
       useValue: PersonnelSql, // Your Sequelize instance
+    },
+    {
+      provide: 'VisiteaffilieSql',
+      useValue: VisiteaffilieSql, // Your Sequelize instance
     },
     {
       provide: 'Mongo',

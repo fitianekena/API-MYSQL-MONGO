@@ -32,7 +32,7 @@ import { Affilie as AffilieMongo, AffilieSchema } from './schema/mongodb/affilie
         name: AdherentMongo.name, // Nom du modèle
         schema:AdherentSchema
       },
-    ]),
+    ],'db_ostie_mongo'),
     SequelizeModule.forFeature([AdherentSql, AffilieSql], 'db_ostie_sql')
   ],
   controllers: [SyncDbOstieController],
