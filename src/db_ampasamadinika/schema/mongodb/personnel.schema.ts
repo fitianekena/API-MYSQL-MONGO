@@ -31,10 +31,10 @@ export class Personnel extends Document {
   @Prop({ type: Number })
   prsnlcp_id : number ;
 
-  @Prop({ type: Date, default: null })
+  @Prop({ type: String, default: null })
   persnl_tel : string | null;
 
-  @Prop({ type: Number, default: null })
+  @Prop({ type: String, default: null })
   persnl_email : string | null;
 
   @Prop({ type: String, default: null })

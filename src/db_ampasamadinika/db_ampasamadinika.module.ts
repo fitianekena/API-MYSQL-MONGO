@@ -16,14 +16,14 @@ import { SyncDbAmpasamadinikaController } from './controllers/sync_db_ampasamadi
 @Module({
     imports:[
         
-        MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ostie'),
+        MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ampasamadinika'),
         SequelizeModule.forRoot({
         dialect: 'mysql', 
         host: 'localhost',
         port: 3306,
         username: 'root',
         password: '',
-        database: 'db_ostie',
+        database: 'db_ampasamadinika',
         models: [CentreSql, PersonnelSql, FonctionSql], // Vous pouvez ajuster cette option en fonction de vos besoins
          }),
         MongooseModule.forFeature([{name:Centre.name,schema:CentreSchema}, {name:PersonnelMongo.name,schema:PersonnelSchema}, {name:FonctionMongo.name,schema:FonctionSchema}])],

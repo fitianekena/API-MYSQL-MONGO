@@ -19,7 +19,7 @@ import { DbAmpasamadinikaModule } from './db_ampasamadinika/db_ampasamadinika.mo
      DbAmpasamadinikaModule
     ],
   
-  controllers: [AppController, SyncDbAmpasamadinikaController],
-  providers: [AppService, SyncDbAmpasamadinikaService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule { }

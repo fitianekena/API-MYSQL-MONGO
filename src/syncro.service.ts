@@ -12,6 +12,7 @@ export class SyncroService {
         sequelizeModel: SequelizeModel,
         mongooseModel: MongooseModel<any>
     ) {
+        let nombre=0;
         try {
             const mapSequelizeToMongoose = this.mappingService.mapSequelizeToMongoose(
                 sequelizeModel,
@@ -24,9 +25,10 @@ export class SyncroService {
                 const mappedData = mapSequelizeToMongoose(record);
                 const mongooseRecord = new mongooseModel(mappedData);
                 await mongooseRecord.save();
+                nombre ++;
             }
 
-            return 'Synchronization to MongoDB complete';
+            return 'Synchronization to MongoDB complete'+nombre+' donnees migrés';
         } catch (error) {
             throw new Error('Data synchronization to MongoDB failed: ' + error.message);
         }

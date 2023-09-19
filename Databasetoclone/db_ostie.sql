@@ -183,7 +183,7 @@ INSERT INTO `adherent` (`adh_idIndex`, `adh_id`, `adh_centreId`, `adh_num`, `adh
 --
 
 CREATE TABLE `affilie` (
-  `aff_id` bigint(20) UNSIGNED NOT NULL,
+  `aff_id` bigint(20) UNSIGNED NOT NULL PRIMARY KEY,
   `aff_num` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `aff_numLast` bigint(20) NOT NULL,
   `aff_numNews` bigint(20) NOT NULL,
