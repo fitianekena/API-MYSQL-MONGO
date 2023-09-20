@@ -27,7 +27,7 @@ export class VisiteAffilieController {
   async updateModelsyncVisiteAffilieMongotoSQL(@Param('id') id:any): Promise<void> {
     return this.visiteAffilieservice.updateVisiteaffilieInMongoById(id);
   }
-  @Post('update/mongo-to-sql:id')
+  @Post('update/mongo-to-sql/:id')
   async updateModelsyncVisiteAffilieSQLtoMongo(@Param('id') id:any): Promise<void> {
     return this.visiteAffilieservice.updateVisiteaffilieInMySqlById(id);
   }
