@@ -14,8 +14,7 @@ import { SyncroService } from 'src/syncro.service';
 import { MappingService } from 'src/mapping.service';
 
 import { UtilService } from 'src/util.service';
-import { Visiteaffilie as VisiteaffilieSql } from './schema/mysql/visiteaffilie.schema';
-import { Visiteaffilie as VisiteaffilieMongo, VisiteaffilieSchema } from './schema/mongodb/visiteaffilie.schema';
+
 import { Service as ServiceSql } from './schema/mysql/service.schema';
 import { Service as ServiceMongo, ServiceSchema } from './schema/mongodb/service.schema';
 import { SyncServicesModule } from 'src/sync-services/sync-services.module';
@@ -28,8 +27,7 @@ import { CentreController } from './controllers/centre/centre.controller';
 import { FonctionController } from './controllers/fonction/fonction.controller';
 import { PersonnelController } from './controllers/personnel/personnel.controller';
 import { ServiceController } from './controllers/service/service.controller';
-import { VisiteAffilieController } from './controllers/visiteaffilie/visiteaffilie.controller';
-import { VisiteService } from './service/visite/visite.service';
+
 
 @Module({
   imports: [
@@ -42,13 +40,12 @@ import { VisiteService } from './service/visite/visite.service';
       username: 'root',
       password: '',
       database: 'db_24mklen',
-      models: [CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql], // Vous pouvez ajuster cette option en fonction de vos besoins
+      models: [CentreSql, PersonnelSql, FonctionSql, ServiceSql], // Vous pouvez ajuster cette option en fonction de vos besoins
     }),
     MongooseModule.forFeature([
       { name: Centre.name, schema: CentreSchema },
       { name: PersonnelMongo.name, schema: PersonnelSchema },
       { name: FonctionMongo.name, schema: FonctionSchema },
-      { name: VisiteaffilieMongo.name, schema: VisiteaffilieSchema },
       { name: ServiceMongo.name, schema: ServiceSchema }
 
     ], 'db_24mklen')],
@@ -56,10 +53,8 @@ import { VisiteService } from './service/visite/visite.service';
   controllers: [PersonnelController,
     ServiceController,
     FonctionController,
-    VisiteAffilieController,
     CentreController,],
   providers: [
-    VisiteService,
     UtilService,
     MappingService,
     SyncroService,
@@ -77,10 +72,6 @@ import { VisiteService } from './service/visite/visite.service';
     {
       provide: 'FonctionSql',
       useValue: FonctionSql
-    },
-    {
-      provide: 'VisiteaffilieSql',
-      useValue: VisiteaffilieSql
     },
     {
       provide: 'ServiceSql',
