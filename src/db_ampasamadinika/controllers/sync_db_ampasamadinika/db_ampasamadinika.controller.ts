@@ -1,4 +1,4 @@
-import { Controller,Post } from '@nestjs/common';
+import { Controller,Param,Post } from '@nestjs/common';
 import { SyncDbAmpasamadinikaService } from 'src/db_ampasamadinika/service/sync_db_ampasamadinika/sync_db_ampasamadinika.service';
 
 @Controller('db-ampasamadinika')
@@ -71,5 +71,13 @@ export class SyncDbAmpasamadinikaController {
   @Post('update/visiteaffilie/mongo-to-sql')
   async updatesyncvisiteaffilieSQLtoMongo(): Promise<void> {
     return this.syncronisationservice.updateVisiteaffilieinSequelizeVisiteaffilie();
+  }
+  @Post('update/visiteaffilie/sql-to-mongo/:id')
+  async updatesyncvisiteaffilieSQLtoMongoById(@Param('id') id:any): Promise<void> {
+    return this.syncronisationservice.updateVisiteaffilieInMongoById(id);
+  }
+  @Post('update/visiteaffilie/mongo-to-sql/:id')
+  async updatesyncvisiteaffilieMongotoSQLById(@Param('id') id:any): Promise<void> {
+    return this.syncronisationservice.updateVisiteaffilieInMySqlById(id);
   }
 }
