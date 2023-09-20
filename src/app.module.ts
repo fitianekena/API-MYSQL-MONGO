@@ -15,6 +15,7 @@ import { SyncroService } from './syncro.service';
 import { SyncServicesModule } from './sync-services/sync-services.module';
 import { DbTanjombato } from './db_tanjombato/db_tanjombato.module';
 import { DbBehoririka } from './db_behoririka/db_behoririka.module';
+import { Db24mklen } from './db_24mklen/db_24mklen.module';
 
 
 @Module({
@@ -23,7 +24,8 @@ import { DbBehoririka } from './db_behoririka/db_behoririka.module';
     DbAmpasamadinikaModule,
     SyncServicesModule,
     DbTanjombato,
-    DbBehoririka
+    DbBehoririka,
+    Db24mklen
     ],
   
   controllers: [AppController],
