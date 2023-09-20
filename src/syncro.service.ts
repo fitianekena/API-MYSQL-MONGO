@@ -1,9 +1,10 @@
 // sync.service.ts
 import { Injectable } from '@nestjs/common';
-import { Model as MongooseModel } from 'mongoose';
+import mongoose, { Model as MongooseModel } from 'mongoose';
 import { Model as SequelizeModel } from 'sequelize';
 import { MappingService } from './mapping.service';
 import { UtilService } from './util.service';
+import sequelize from 'sequelize';
 
 @Injectable()
 export class SyncroService {
@@ -122,47 +123,58 @@ export class SyncroService {
             console.log(`Nombre d'éléments migrés de Mongoose vers Sequelize : ${migratedCount}`);
         }
     }
-    async synchronizeModels(
+    async synchronizeModelsSqlToMongoose(
         sourceModel: any,
         targetModel: any,
         primaryKey: string
-    ): Promise<void> {
-        if (this.utilitaire.isSequelizeModel(sourceModel)) {
-            const primaryKeyField = Object.keys((sourceModel as any).rawAttributes).find(
-                (key) => (sourceModel as any).rawAttributes[key].primaryKey
-            );
-            const query = {};
-            query[primaryKeyField] = primaryKey;
+    ): Promise<any> {
+        const primaryKeyField = Object.keys((sourceModel as any).rawAttributes).find(
+            (key) => (sourceModel as any).rawAttributes[key].primaryKey
+        );
+        const filter = {};
+        filter[primaryKeyField] = primaryKey;
 
-            // Utilisez la variable 'query' dans votre appel à find()
-            (sourceModel as any).find(query, (err, result) => {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                console.log(result);
-            });
-        }
-        const sourceRecords = await sourceModel.find().exec();
+        const result = await sourceModel.findOne({
+            where: filter,
+        });
+        
 
-        for (const sourceRecord of sourceRecords) {
-            const sourcePrimaryKey = sourceRecord[primaryKey];
+        const documents = await targetModel.find(filter).exec();
+        const ObjectId = documents[0]._id;
 
-            const targetRecord = await targetModel.findOne({
-                where: { [primaryKey]: sourcePrimaryKey },
-            });
+        const updatedRecord = await targetModel.findOneAndUpdate(
+            { _id: new mongoose.Types.ObjectId(ObjectId) }, // Filtrez par l'ID
+            await this.mappingService.mapSequelizeToMongoose(sourceModel, targetModel)(result), // Les champs à mettre à jour
+            { new: true } // Option pour retourner le nouveau document mis à jour
+        );
+        return "element mis a jour " + updatedRecord;
 
-            if (targetRecord) {
-                for (const key in sourceRecord.toObject()) {
-                    if (sourceRecord[key] !== targetRecord[key]) {
-                        targetRecord[key] = sourceRecord[key];
-                    }
-                }
 
-                // Save the updated target record
-                await targetRecord.save();
-            }
-        }
+    }
+    async synchronizeModelsMongooseToSql(
+        sourceModel: any,
+        targetModel: any,
+        primaryKey: string
+    ): Promise<any> {
+        const primaryKeyField = Object.keys((sourceModel as any).rawAttributes).find(
+            (key) => (sourceModel as any).rawAttributes[key].primaryKey
+        );
+        const filter = {};
+        filter[primaryKeyField] = primaryKey;
+        const documents = await targetModel.find(filter).exec();
+        const mappedData = this.mappingService.mapMongooseToSequelize(
+            sourceModel,
+            targetModel
+        )(documents[0]);
+        const updatedRecord = await sourceModel.update(mappedData,
+            {
+                where: filter, 
+                return:true,
+              }
+        );
+        return "element mis a jour: " + updatedRecord;
+
+
     }
 
 

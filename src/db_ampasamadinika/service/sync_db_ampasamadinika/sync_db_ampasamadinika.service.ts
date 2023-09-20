@@ -176,4 +176,20 @@ export class SyncDbAmpasamadinikaService {
             'mongoose'
         );
       }
+      async updateVisiteaffilieInMongoById(id:string){
+        return await this.syncservicebase.synchronizeModelsSqlToMongoose(
+           
+            this.mysqlVisiteaffilie as any,
+            this.mongooseVisiteaffilie,
+            id,
+        );
+      }
+      async updateVisiteaffilieInMySqlById(id:string){
+        return await this.syncservicebase.synchronizeModelsMongooseToSql(
+           
+            this.mysqlVisiteaffilie as any,
+            this.mongooseVisiteaffilie,
+            id,
+        );
+      }
 }

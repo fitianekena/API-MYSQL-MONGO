@@ -27,7 +27,23 @@ export class MappingService {
       return mongooseData;
     };
   }
+   transformMongooseData(mongooseData) {
+    // Créez un tableau pour les données Sequelize
+  const sequelizeDataArray = [];
 
+  // Parcourez toutes les clés de l'objet Mongoose
+  for (const key in mongooseData) {
+    // Excluez le champ '_id' de Mongoose
+    if (key !== '_id') {
+      // Créez un objet pour chaque champ de Mongoose
+      const sequelizeData = {};
+      sequelizeData[key] = mongooseData[key];
+      sequelizeDataArray.push(sequelizeData);
+    }
+  }
+
+  return sequelizeDataArray;
+  }
   // The mapMongooseToSequelize function remains unchanged
   mapMongooseToSequelize<T extends Model>(
     sequelizeModel: T,
