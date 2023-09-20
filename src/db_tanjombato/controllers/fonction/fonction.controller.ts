@@ -1,7 +1,7 @@
 import { Controller,Param,Post } from '@nestjs/common';
-import { FonctionService } from 'src/db_ampasamadinika/service/fonction/fonction.service';
+import { FonctionService } from 'src/db_tanjombato/service/fonction/fonction.service';
 
-@Controller('db-ampasamadinika/fonction')
+@Controller('db-tanjombato/fonction')
 export class FonctionController {
     constructor(
         private readonly fonctionservice:FonctionService,

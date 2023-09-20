@@ -2,8 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, Model } from 'mongoose';
 import { Sequelize } from 'sequelize';
-import { Personnel as PersonnelMongo, PersonnelSchema} from 'src/db_ampasamadinika/schema/mongodb/personnel.schema';
-import { Personnel as PersonnelSql} from 'src/db_ampasamadinika/schema/mysql/personnel.schema';
+import { Personnel as PersonnelMongo, PersonnelSchema} from 'src/db_tanjombato/schema/mongodb/personnel.schema';
+import { Personnel as PersonnelSql} from 'src/db_tanjombato/schema/mysql/personnel.schema';
 import { SyncroService } from 'src/syncro.service';
 @Injectable()
 export class PersonnelService {
@@ -11,9 +11,9 @@ export class PersonnelService {
        
         @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
         @Inject('PersonnelSql') private readonly mysqlPersonnel: typeof PersonnelSql,
-        @InjectModel(PersonnelMongo.name,'db_ampasamadinika') private readonly mongoosePersonnel: Model<PersonnelMongo>,
+        @InjectModel(PersonnelMongo.name,'db_tanjombato') private readonly mongoosePersonnel: Model<PersonnelMongo>,
         private readonly syncservicebase:SyncroService,
-        @InjectConnection('db_ampasamadinika') private readonly connexion: Connection,
+        @InjectConnection('db_tanjombato') private readonly connexion: Connection,
       ) {}
       async syncToMongoosePersonnel() {
         return await this.syncservicebase.synchronizeToMongoose(

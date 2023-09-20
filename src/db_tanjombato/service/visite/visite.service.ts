@@ -3,18 +3,18 @@ import { Inject } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, Model } from 'mongoose';
 import { Sequelize } from 'sequelize';
-import { Visiteaffilie as VisiteaffilieSql } from 'src/db_ampasamadinika/schema/mysql/visiteaffilie.schema'; 
-import { Visiteaffilie as VisiteaffilieMongo } from 'src/db_ampasamadinika/schema/mongodb/visiteaffilie.schema';
+import { Visiteaffilie as VisiteaffilieSql } from 'src/db_tanjombato/schema/mysql/visiteaffilie.schema'; 
+import { Visiteaffilie as VisiteaffilieMongo } from 'src/db_tanjombato/schema/mongodb/visiteaffilie.schema';
 import { SyncroService } from 'src/syncro.service';
 @Injectable()
 export class VisiteService {
     constructor(
        
         @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
-        @InjectModel(VisiteaffilieMongo.name,'db_ampasamadinika') private readonly mongooseVisiteaffilie: Model<VisiteaffilieMongo>,
+        @InjectModel(VisiteaffilieMongo.name,'db_tanjombato') private readonly mongooseVisiteaffilie: Model<VisiteaffilieMongo>,
         @Inject('VisiteaffilieSql') private readonly mysqlVisiteaffilie: typeof VisiteaffilieSql,
         private readonly syncservicebase:SyncroService,
-        @InjectConnection('db_ampasamadinika') private readonly connexion: Connection,
+        @InjectConnection('db_tanjombato') private readonly connexion: Connection,
       ) {}
       async syncToMongooseVisiteaffilie() {
         return await this.syncservicebase.synchronizeToMongoose(

@@ -1,8 +1,8 @@
 import { Controller,Param,Post } from '@nestjs/common';
-import { CentreService } from 'src/db_ampasamadinika/service/centre/centre.service';
+import { CentreService } from 'src/db_tanjombato/service/centre/centre.service';
 
 
-@Controller('db-ampasamadinika/centre')
+@Controller('db-tanjombato/centre')
 export class CentreController {
     constructor(
         private readonly centreservice:CentreService,

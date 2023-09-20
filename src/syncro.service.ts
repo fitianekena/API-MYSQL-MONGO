@@ -68,7 +68,7 @@ export class SyncroService {
         priority: 'sequelize' | 'mongoose'
       ) {
         return this.updateDeleteService.updatedelete(sequelizeModel,mongooseModel,priority)
-      }
+    }
       
 
 
