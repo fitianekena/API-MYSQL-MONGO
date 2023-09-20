@@ -18,9 +18,11 @@ import { Visiteaffilie as VisiteaffilieSql } from './schema/mysql/visiteaffilie.
 import { Visiteaffilie as VisiteaffilieMongo, VisiteaffilieSchema } from './schema/mongodb/visiteaffilie.schema';
 import { Service as ServiceSql } from './schema/mysql/service.schema';
 import { Service as ServiceMongo, ServiceSchema } from './schema/mongodb/service.schema';
+import { SyncServicesModule } from 'src/sync-services/sync-services.module';
+
 @Module({
     imports:[
-        
+        SyncServicesModule,
         MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ampasamadinika',{connectionName:'db_ampasamadinika'}),
         SequelizeModule.forRoot({
         dialect: 'mysql', 

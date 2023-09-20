@@ -11,9 +11,11 @@ import { MappingService } from 'src/mapping.service';
 import { SyncDbOstieController } from './controllers/sync_db_ostie/sync_db_ostie.controller';
 import { Affilie as AffilieMongo, AffilieSchema } from './schema/mongodb/affilie.schema';
 import { UtilService } from 'src/util.service';
+import { SyncServicesModule } from 'src/sync-services/sync-services.module';
+
 @Module({
     imports:[
-        
+      SyncServicesModule,
         MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ostie',{connectionName:'db_ostie'}),
         MongooseModule.forFeature([{name:Adherent.name,schema:AdherentSchema},{name:AffilieMongo.name,schema:AffilieSchema}],'db_ostie'),
         SequelizeModule.forRoot({
