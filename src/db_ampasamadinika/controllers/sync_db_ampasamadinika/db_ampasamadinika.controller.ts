@@ -72,4 +72,21 @@ export class SyncDbAmpasamadinikaController {
   async updatesyncvisiteaffilieSQLtoMongo(): Promise<void> {
     return this.syncronisationservice.updateVisiteaffilieinSequelizeVisiteaffilie();
   }
+
+  @Post('/service/sql-to-mongo')
+  async syncServiceSQLtoMongo(): Promise<string> {
+    return this.syncronisationservice.syncToMongooseService();
+  }
+  @Post('/service/mongo-to-sql')
+  async syncServiceMongotoSQL(): Promise<string> {
+    return this.syncronisationservice.syncToSequelizeService();
+  }
+  @Post('update/service/sql-to-mongo')
+  async updatesyncServiceMongotoSQL(): Promise<void> {
+    return this.syncronisationservice.updateServiceinMongodbService();
+  }
+  @Post('update/service/mongo-to-sql')
+  async updatesyncServiceSQLtoMongo(): Promise<void> {
+    return this.syncronisationservice.updateServiceinSequelizeService();
+  }
 }

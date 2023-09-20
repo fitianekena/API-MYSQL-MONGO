@@ -16,6 +16,8 @@ import { SyncDbAmpasamadinikaController } from './controllers/sync_db_ampasamadi
 import { UtilService } from 'src/util.service';
 import { Visiteaffilie as VisiteaffilieSql } from './schema/mysql/visiteaffilie.schema';
 import { Visiteaffilie as VisiteaffilieMongo, VisiteaffilieSchema } from './schema/mongodb/visiteaffilie.schema';
+import { Service as ServiceSql } from './schema/mysql/service.schema';
+import { Service as ServiceMongo, ServiceSchema } from './schema/mongodb/service.schema';
 @Module({
     imports:[
         
@@ -27,9 +29,16 @@ import { Visiteaffilie as VisiteaffilieMongo, VisiteaffilieSchema } from './sche
         username: 'root',
         password: '',
         database: 'db_ampasamadinika',
-        models: [CentreSql, PersonnelSql, FonctionSql,VisiteaffilieSql], // Vous pouvez ajuster cette option en fonction de vos besoins
+        models: [CentreSql, PersonnelSql, FonctionSql,VisiteaffilieSql, ServiceSql], // Vous pouvez ajuster cette option en fonction de vos besoins
          }),
-        MongooseModule.forFeature([{name:Centre.name,schema:CentreSchema}, {name:PersonnelMongo.name,schema:PersonnelSchema}, {name:FonctionMongo.name,schema:FonctionSchema},{name:VisiteaffilieSql.name,schema:VisiteaffilieSchema}],'db_ampasamadinika')],
+        MongooseModule.forFeature([
+          {name:Centre.name,schema:CentreSchema},
+          {name:PersonnelMongo.name,schema:PersonnelSchema}, 
+          {name:FonctionMongo.name,schema:FonctionSchema},
+          {name:VisiteaffilieMongo.name,schema:VisiteaffilieSchema},
+          {name:ServiceMongo.name,schema:ServiceSchema}
+          
+          ],'db_ampasamadinika')],
       
       controllers: [SyncDbAmpasamadinikaController],
       providers: [
@@ -55,7 +64,12 @@ import { Visiteaffilie as VisiteaffilieMongo, VisiteaffilieSchema } from './sche
       {
         provide: 'VisiteaffilieSql',
         useValue: VisiteaffilieSql
-      }],
+      },
+      {
+        provide: 'ServiceSql',
+        useValue: ServiceSql 
+      },
+    ],
       exports:[MongooseModule]
 })
 export class DbAmpasamadinikaModule {
