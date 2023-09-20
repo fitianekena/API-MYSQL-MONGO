@@ -16,8 +16,12 @@ export class CentreController {
     return this.centreservice.syncToSequelizeCentre();
   }
   @Post('update/sql-to-mongo')
-  async updatesyncCentreMongotoSQL(): Promise<void> {
+  async updatesyncCentreSql(): Promise<void> {
     return this.centreservice.updateCentreinMongodbCentre();
+  }
+  @Post('update/mongo-to-sql')
+  async updatesyncCentreMongotoSQL(): Promise<void> {
+    return this.centreservice.updateCentreinSequelizeCentre();
   }
   @Post('update/sql-to-mongo/:id')
   async updateModelsyncVisiteAffilieMongotoSQL(@Param('id') id:any): Promise<void> {
