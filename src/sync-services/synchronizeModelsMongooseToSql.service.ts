@@ -10,7 +10,7 @@ import { UtilService } from '../util.service';
 export class SynchronizeModelsMongooseToSql {
     constructor(
         private readonly mappingService: MappingService,) { }
-        async synchronizeModelsSqlToMongoose(
+        async synchronizeModelsMongooseToSql(
             sourceModel: any,
             targetModel: any,
             primaryKey: string
@@ -20,21 +20,18 @@ export class SynchronizeModelsMongooseToSql {
             );
             const filter = {};
             filter[primaryKeyField] = primaryKey;
-    
-            const result = await sourceModel.findOne({
-                where: filter,
-            });
-            
-    
             const documents = await targetModel.find(filter).exec();
-            const ObjectId = documents[0]._id;
-    
-            const updatedRecord = await targetModel.findOneAndUpdate(
-                { _id: new mongoose.Types.ObjectId(ObjectId) }, // Filtrez par l'ID
-                await this.mappingService.mapSequelizeToMongoose(sourceModel, targetModel)(result), // Les champs à mettre à jour
-                { new: true } // Option pour retourner le nouveau document mis à jour
+            const mappedData = this.mappingService.mapMongooseToSequelize(
+                sourceModel,
+                targetModel
+            )(documents[0]);
+            const updatedRecord = await sourceModel.update(mappedData,
+                {
+                    where: filter, 
+                    return:true,
+                  }
             );
-            return "Voici l'element mis a jour  " + updatedRecord;
+            return "element mis a jour: " + updatedRecord;
     
     
         }

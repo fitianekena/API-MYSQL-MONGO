@@ -58,7 +58,7 @@ export class SyncroService {
         targetModel: any,
         primaryKey: string
     ): Promise<any> {
-        return this.synchronizeModelsMongooseToSqlService.synchronizeModelsSqlToMongoose(sourceModel,targetModel,primaryKey);
+        return this.synchronizeModelsMongooseToSqlService.synchronizeModelsMongooseToSql(sourceModel,targetModel,primaryKey);
 
 
     }
