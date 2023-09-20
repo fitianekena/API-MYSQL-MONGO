@@ -22,13 +22,14 @@ import { SyncServicesModule } from 'src/sync-services/sync-services.module';
 import { PersonnelService } from './service/personnel/personnel.service';
 import { ServiceService } from './service/service/service.service';
 import { FonctionService } from './service/fonction/fonction.service';
-import { VisiteAffilieService } from './service/visiteaffilie/visiteaffilie.service';
+
 import { CentreService } from './service/centre/centre.service';
 import { CentreController } from './controllers/centre/centre.controller';
 import { FonctionController } from './controllers/fonction/fonction.controller';
 import { PersonnelController } from './controllers/personnel/personnel.controller';
 import { ServiceController } from './controllers/service/service.controller';
-import { VisiteAffilieController } from './controllers/visite-affilie/visiteaffilie.controller';
+import { VisiteAffilieController } from './controllers/visiteaffilie/visiteaffilie.controller';
+import { VisiteService } from './service/visite/visite.service';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { VisiteAffilieController } from './controllers/visite-affilie/visiteaffi
     VisiteAffilieController,
     CentreController,],
   providers: [
+    VisiteService,
     UtilService,
     MappingService,
     SyncroService,
@@ -87,7 +89,6 @@ import { VisiteAffilieController } from './controllers/visite-affilie/visiteaffi
     PersonnelService,
     ServiceService,
     FonctionService,
-    VisiteAffilieService,
     CentreService,
   ],
   exports: [MongooseModule]

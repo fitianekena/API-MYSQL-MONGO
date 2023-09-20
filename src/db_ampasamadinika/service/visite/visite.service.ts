@@ -1,4 +1,5 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { Inject } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, Model } from 'mongoose';
 import { Sequelize } from 'sequelize';
@@ -6,13 +7,14 @@ import { Visiteaffilie as VisiteaffilieSql } from 'src/db_ampasamadinika/schema/
 import { Visiteaffilie as VisiteaffilieMongo } from 'src/db_ampasamadinika/schema/mongodb/visiteaffilie.schema';
 import { SyncroService } from 'src/syncro.service';
 @Injectable()
-export class VisiteAffilieService {
+export class VisiteService {
     constructor(
        
+        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
         @InjectModel(VisiteaffilieMongo.name,'db_ampasamadinika') private readonly mongooseVisiteaffilie: Model<VisiteaffilieMongo>,
         @Inject('VisiteaffilieSql') private readonly mysqlVisiteaffilie: typeof VisiteaffilieSql,
         private readonly syncservicebase:SyncroService,
-        
+        @InjectConnection('db_ampasamadinika') private readonly connexion: Connection,
       ) {}
       async syncToMongooseVisiteaffilie() {
         return await this.syncservicebase.synchronizeToMongoose(
@@ -41,8 +43,20 @@ export class VisiteAffilieService {
             'mongoose'
         );
       }
-      
-      
-      
-
+      async updateVisiteaffilieInMongoById(id:string){
+        return await this.syncservicebase.synchronizeModelsSqlToMongoose(
+           
+            this.mysqlVisiteaffilie as any,
+            this.mongooseVisiteaffilie,
+            id,
+        );
+      }
+      async updateVisiteaffilieInMySqlById(id:string){
+        return await this.syncservicebase.synchronizeModelsMongooseToSql(
+           
+            this.mysqlVisiteaffilie as any,
+            this.mongooseVisiteaffilie,
+            id,
+        );
+      }
 }
