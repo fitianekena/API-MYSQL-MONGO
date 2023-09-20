@@ -23,6 +23,14 @@ export class VisiteAffilieController {
   async updatesyncVisiteAffilieSQLtoMongo(): Promise<void> {
     return this.visiteAffilieservice.updateVisiteaffilieinSequelizeVisiteaffilie();
   }
+  @Post('update/sql-to-mongo/:id')
+  async updateModelsyncVisiteAffilieMongotoSQL(@Param('id') id:any): Promise<void> {
+    return this.visiteAffilieservice.updateVisiteaffilieInMongoById(id);
+  }
+  @Post('update/mongo-to-sql:id')
+  async updateModelsyncVisiteAffilieSQLtoMongo(@Param('id') id:any): Promise<void> {
+    return this.visiteAffilieservice.updateVisiteaffilieInMySqlById(id);
+  }
 
   
 }
