@@ -59,8 +59,6 @@ export class SyncroService {
         primaryKey: string
     ): Promise<any> {
         return this.synchronizeModelsMongooseToSqlService.synchronizeModelsMongooseToSql(sourceModel,targetModel,primaryKey);
-
-
     }
     async updatedelete(
         sequelizeModel: SequelizeModel,

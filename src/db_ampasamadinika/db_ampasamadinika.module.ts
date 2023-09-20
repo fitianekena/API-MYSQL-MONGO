@@ -30,6 +30,8 @@ import { PersonnelController } from './controllers/personnel/personnel.controlle
 import { ServiceController } from './controllers/service/service.controller';
 import { VisiteAffilieController } from './controllers/visiteaffilie/visiteaffilie.controller';
 import { VisiteService } from './service/visite/visite.service';
+import { DbAmpasamadinikaController } from './db_ampasamadinika.controller';
+import { DbAmpasamadinikaService } from './db_ampasamadinika.service';
 
 @Module({
   imports: [
@@ -57,7 +59,8 @@ import { VisiteService } from './service/visite/visite.service';
     ServiceController,
     FonctionController,
     VisiteAffilieController,
-    CentreController,],
+    CentreController,
+  DbAmpasamadinikaController],
   providers: [
     VisiteService,
     UtilService,
@@ -90,6 +93,7 @@ import { VisiteService } from './service/visite/visite.service';
     ServiceService,
     FonctionService,
     CentreService,
+    DbAmpasamadinikaService
   ],
   exports: [MongooseModule]
 })

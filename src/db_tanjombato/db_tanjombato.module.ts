@@ -30,6 +30,8 @@ import { PersonnelController } from './controllers/personnel/personnel.controlle
 import { ServiceController } from './controllers/service/service.controller';
 import { VisiteAffilieController } from './controllers/visiteaffilie/visiteaffilie.controller';
 import { VisiteService } from './service/visite/visite.service';
+import { DbTanjombatoService } from './db_tanjombato.service';
+import { DbTanjombatoController } from './db_tanjombato.controller';
 
 @Module({
   imports: [
@@ -57,12 +59,13 @@ import { VisiteService } from './service/visite/visite.service';
     ServiceController,
     FonctionController,
     VisiteAffilieController,
-    CentreController,],
+    CentreController,DbTanjombatoController],
   providers: [
     VisiteService,
     UtilService,
     MappingService,
     SyncroService,
+    DbTanjombatoService,
     {
       provide: 'SEQUELIZE',
       useValue: sequelize,

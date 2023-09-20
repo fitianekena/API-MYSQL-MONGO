@@ -27,6 +27,8 @@ import { CentreController } from './controllers/centre/centre.controller';
 import { FonctionController } from './controllers/fonction/fonction.controller';
 import { PersonnelController } from './controllers/personnel/personnel.controller';
 import { ServiceController } from './controllers/service/service.controller';
+import { Db24mklenService } from './db_24mklen.service';
+import { Db24mklenController } from './db_24mklen.controller';
 
 
 @Module({
@@ -53,11 +55,13 @@ import { ServiceController } from './controllers/service/service.controller';
   controllers: [PersonnelController,
     ServiceController,
     FonctionController,
-    CentreController,],
+    CentreController,
+  Db24mklenController],
   providers: [
     UtilService,
     MappingService,
     SyncroService,
+    Db24mklenService,
     {
       provide: 'SEQUELIZE',
       useValue: sequelize,

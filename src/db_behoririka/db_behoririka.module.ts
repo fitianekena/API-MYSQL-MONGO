@@ -30,9 +30,12 @@ import { PersonnelController } from './controllers/personnel/personnel.controlle
 import { ServiceController } from './controllers/service/service.controller';
 import { VisiteAffilieController } from './controllers/visiteaffilie/visiteaffilie.controller';
 import { VisiteService } from './service/visite/visite.service';
+import { DbBehoririkaService } from './db_behoririka.service';
+import { DbBehoririkaController } from './db_behoririka.controller';
 
 @Module({
   imports: [
+    
     SyncServicesModule,
     MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_behoririka', { connectionName: 'db_behoririka' }),
     SequelizeModule.forRoot({
@@ -57,7 +60,7 @@ import { VisiteService } from './service/visite/visite.service';
     ServiceController,
     FonctionController,
     VisiteAffilieController,
-    CentreController,],
+    CentreController,DbBehoririkaController],
   providers: [
     VisiteService,
     UtilService,
@@ -89,7 +92,7 @@ import { VisiteService } from './service/visite/visite.service';
     PersonnelService,
     ServiceService,
     FonctionService,
-    CentreService,
+    CentreService,DbBehoririkaService
   ],
   exports: [MongooseModule]
 })
