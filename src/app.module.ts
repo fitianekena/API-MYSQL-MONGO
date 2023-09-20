@@ -14,7 +14,7 @@ import { MappingService } from './mapping.service';
 import { SyncroService } from './syncro.service';
 import { SyncServicesModule } from './sync-services/sync-services.module';
 import { DbTanjombato } from './db_tanjombato/db_tanjombato.module';
-
+import { DbBehoririka } from './db_behoririka/db_behoririka.module';
 
 
 @Module({
@@ -22,7 +22,8 @@ import { DbTanjombato } from './db_tanjombato/db_tanjombato.module';
     DbOstieModule,
     DbAmpasamadinikaModule,
     SyncServicesModule,
-    DbTanjombato
+    DbTanjombato,
+    DbBehoririka
     ],
   
   controllers: [AppController],
