@@ -32,11 +32,11 @@ import { VisiteAffilieController } from './controllers/visiteaffilie/visiteaffil
 import { VisiteService } from './service/visite/visite.service';
 import { DbTanjombatoService } from './db_tanjombato.service';
 import { DbTanjombatoController } from './db_tanjombato.controller';
-
+import * as dotenv from 'dotenv';
 @Module({
   imports: [
     SyncServicesModule,
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_tanjombato', { connectionName: 'db_tanjombato' }),
+    MongooseModule.forRoot(process.env.MONGODB_URL+'db_tanjombato', { connectionName: 'db_tanjombato' }),
     SequelizeModule.forRoot({
       dialect: 'mysql',
       host: 'localhost',

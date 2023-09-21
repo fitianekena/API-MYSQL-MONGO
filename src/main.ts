@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { config } from 'dotenv';
+import * as dotenv from 'dotenv';
 
 async function bootstrap() {
-  config();
+  dotenv.configDotenv()
   console.log(process.env.MONGODB_URL); 
   const app = await NestFactory.create(AppModule);
   await app.listen(3000);
