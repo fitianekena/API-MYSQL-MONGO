@@ -7,21 +7,31 @@ import { SequelizeModule } from '@nestjs/sequelize';
 
 import { DbOstieModule } from './db_ostie/db_ostie.module';
 
-import { SyncDbAmpasamadinikaController } from './db_ampasamadinika/controllers/sync_db_ampasamadinika/db_ampasamadinika.controller';
-import { SyncDbAmpasamadinikaService } from './db_ampasamadinika/service/sync_db_ampasamadinika/sync_db_ampasamadinika.service';
+
 import { DbAmpasamadinikaModule } from './db_ampasamadinika/db_ampasamadinika.module';
 import { UtilService } from './util.service';
-
+import { MappingService } from './mapping.service';
+import { SyncroService } from './syncro.service';
+import { SyncServicesModule } from './sync-services/sync-services.module';
+import { DbTanjombato } from './db_tanjombato/db_tanjombato.module';
+import { DbBehoririka } from './db_behoririka/db_behoririka.module';
+import { Db24mklen } from './db_24mklen/db_24mklen.module';
+import { ConfigModule } from '@nestjs/config';
+import { OstieModule } from './ostie/ostie.module';
 
 @Module({
   imports:[
+    ConfigModule.forRoot({isGlobal: true}),
     DbOstieModule,
     DbAmpasamadinikaModule,
-    
-     
+    SyncServicesModule,
+    DbTanjombato,
+    DbBehoririka,
+    Db24mklen,
+    OstieModule
     ],
   
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,MappingService,SyncroService,UtilService],
 })
 export class AppModule { }
