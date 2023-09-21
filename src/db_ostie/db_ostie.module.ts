@@ -12,11 +12,13 @@ import { SyncDbOstieController } from './controllers/sync_db_ostie/sync_db_ostie
 import { Affilie as AffilieMongo, AffilieSchema } from './schema/mongodb/affilie.schema';
 import { UtilService } from 'src/util.service';
 import { SyncServicesModule } from 'src/sync-services/sync-services.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
     imports:[
+      ConfigModule.forRoot(),
       SyncServicesModule,
-        MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ostie',{connectionName:'db_ostie'}),
+        MongooseModule.forRoot(process.env.MONGODB_URL+'db_ostie',{connectionName:'db_ostie'}),
         MongooseModule.forFeature([{name:Adherent.name,schema:AdherentSchema},{name:AffilieMongo.name,schema:AffilieSchema}],'db_ostie'),
         SequelizeModule.forRoot({
           dialect: 'mysql', 

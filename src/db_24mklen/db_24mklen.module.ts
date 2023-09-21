@@ -29,12 +29,14 @@ import { PersonnelController } from './controllers/personnel/personnel.controlle
 import { ServiceController } from './controllers/service/service.controller';
 import { Db24mklenService } from './db_24mklen.service';
 import { Db24mklenController } from './db_24mklen.controller';
+import { ConfigModule } from '@nestjs/config';
 
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     SyncServicesModule,
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_24mklen', { connectionName: 'db_24mklen' }),
+    MongooseModule.forRoot(process.env.MONGODB_URL+'db_24mklen', { connectionName: 'db_24mklen' }),
     SequelizeModule.forRoot({
       dialect: 'mysql',
       host: 'localhost',

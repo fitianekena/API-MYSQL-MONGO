@@ -32,11 +32,13 @@ import { VisiteAffilieController } from './controllers/visiteaffilie/visiteaffil
 import { VisiteService } from './service/visite/visite.service';
 import { DbAmpasamadinikaController } from './db_ampasamadinika.controller';
 import { DbAmpasamadinikaService } from './db_ampasamadinika.service';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     SyncServicesModule,
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ampasamadinika', { connectionName: 'db_ampasamadinika' }),
+    MongooseModule.forRoot(process.env.MONGODB_URL+'db_ampasamadinika', { connectionName: 'db_ampasamadinika' }),
     SequelizeModule.forRoot({
       dialect: 'mysql',
       host: 'localhost',

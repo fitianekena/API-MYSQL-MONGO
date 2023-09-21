@@ -14,11 +14,13 @@ import { Hdec as HdecMongo, HdecSchema } from './schema/mongodb/hdec.schema';
 import { Recepdec as RecepdecMongo, RecepdecSchema} from './schema/mongodb/recepdec.schema';
 import { Reglemt as ReglemtMongo, ReglemtSchema} from './schema/mongodb/reglemt.schema';
 import { Statut as StatutMongo, StatutSchema} from './schema/mongodb/statut.schema';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
     imports: [
+        ConfigModule.forRoot(),
         SyncServicesModule,
-        MongooseModule.forRoot('mongodb://127.0.0.1:27017/ostie', { connectionName: 'ostie' }),
+        MongooseModule.forRoot(process.env.MONGODB_URL+'ostie', { connectionName: 'ostie' }),
         SequelizeModule.forRoot({
           dialect: 'mysql',
           host: 'localhost',

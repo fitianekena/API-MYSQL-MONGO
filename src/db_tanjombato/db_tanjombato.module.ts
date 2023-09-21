@@ -32,9 +32,11 @@ import { VisiteAffilieController } from './controllers/visiteaffilie/visiteaffil
 import { VisiteService } from './service/visite/visite.service';
 import { DbTanjombatoService } from './db_tanjombato.service';
 import { DbTanjombatoController } from './db_tanjombato.controller';
-import * as dotenv from 'dotenv';
+import { ConfigModule } from '@nestjs/config';
+
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     SyncServicesModule,
     MongooseModule.forRoot(process.env.MONGODB_URL+'db_tanjombato', { connectionName: 'db_tanjombato' }),
     SequelizeModule.forRoot({
