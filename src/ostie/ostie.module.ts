@@ -11,6 +11,10 @@ import { Centre as CentreSql } from './schema/mysql/centre.schema';
 import { DetRegl as DetReglSql } from './schema/mysql/det_regl.schema';
 import { Echeance as EcheanceSql } from './schema/mysql/echeance.schema';
 import { Ecriture as EcritureSql } from './schema/mysql/ecriture.schema';
+import { Hdec as HdecSql } from './schema/mysql/hdec.schema';
+import { Recepdec as RecepdecSql } from './schema/mysql/recepdec.schema';
+import { Reglemt as ReglemtSql } from './schema/mysql/reglemt.schema';
+import { Statut as StatutSql } from './schema/mysql/statut.schema';
 
 import { Adherent as AdherentMongo, AdherentSchema} from './schema/mongodb/adherent.schema';
 import { Carnet as CarnetMongo, CarnetSchema} from './schema/mongodb/carnet.schema';
@@ -36,7 +40,7 @@ import { ConfigModule } from '@nestjs/config';
           username: process.env.MYSQL_USERNAME,
           password: process.env.MYSQL_PASSWORD,
           database: 'ostie',
-          models: [ActiviteSql, AdherentSql, CarnetSql, CentreSql, DetReglSql, EcheanceSql, EcritureSql], // Vous pouvez ajuster cette option en fonction de vos besoins
+          models: [ActiviteSql, AdherentSql, CarnetSql, CentreSql, DetReglSql, EcheanceSql, EcritureSql, HdecSql, RecepdecSql, ReglemtSql, StatutSql], // Vous pouvez ajuster cette option en fonction de vos besoins
         }),
         MongooseModule.forFeature([
           { name: ActiviteMongo.name, schema: ActiviteSchema },
@@ -88,6 +92,22 @@ import { ConfigModule } from '@nestjs/config';
           provide: 'EcritureSql',
           useValue: EcritureSql,
         }, 
+        {
+          provide: 'HdecSql',
+          useValue: HdecSql,
+        }, 
+        {
+          provide: 'RecepdecSql',
+          useValue: RecepdecSql,
+        }, 
+        {
+          provide: 'ReglemtSql',
+          useValue: ReglemtSql,
+        }, 
+        {
+          provide: 'StatutSql',
+          useValue: StatutSql,
+        },
       ],
       exports: [MongooseModule]
 })

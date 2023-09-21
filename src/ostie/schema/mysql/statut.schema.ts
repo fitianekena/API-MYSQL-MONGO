@@ -1,10 +1,10 @@
 import { Table, Model, Column, DataType, PrimaryKey } from 'sequelize-typescript';
 
 @Table({
-  tableName: 'status',
+  tableName: 'statut',
   timestamps: false, // Si vous ne souhaitez pas utiliser les timestamps
 })
-export class Status extends Model {
+export class Statut extends Model {
   @PrimaryKey
   @Column({ type: DataType.DOUBLE })
   RANG : number;
