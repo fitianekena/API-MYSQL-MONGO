@@ -4,6 +4,14 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import sequelize from 'sequelize';
 import { SyncServicesModule } from 'src/sync-services/sync-services.module';
 import { Activite as ActiviteMongo, ActiviteSchema} from './schema/mongodb/activite.schema';
+import { Activite as ActiviteSql } from './schema/mysql/activite.schema';
+import { Adherent as AdherentSql } from './schema/mysql/adherent.schema';
+import { Carnet as CarnetSql } from './schema/mysql/carnet.schema';
+import { Centre as CentreSql } from './schema/mysql/centre.schema';
+import { DetRegl as DetReglSql } from './schema/mysql/det_regl.schema';
+import { Echeance as EcheanceSql } from './schema/mysql/echeance.schema';
+import { Ecriture as EcritureSql } from './schema/mysql/ecriture.schema';
+
 import { Adherent as AdherentMongo, AdherentSchema} from './schema/mongodb/adherent.schema';
 import { Carnet as CarnetMongo, CarnetSchema} from './schema/mongodb/carnet.schema';
 import { Centre as CentreMongo, CentreSchema} from './schema/mongodb/centre.schema';
@@ -26,7 +34,7 @@ import { Statut as StatutMongo, StatutSchema} from './schema/mongodb/statut.sche
           username: 'root',
           password: '',
           database: 'ostie',
-          models: [], // Vous pouvez ajuster cette option en fonction de vos besoins
+          models: [ActiviteSql, AdherentSql, CarnetSql, CentreSql, DetReglSql, EcheanceSql, EcritureSql], // Vous pouvez ajuster cette option en fonction de vos besoins
         }),
         MongooseModule.forFeature([
           { name: ActiviteMongo.name, schema: ActiviteSchema },
@@ -49,6 +57,34 @@ import { Statut as StatutMongo, StatutSchema} from './schema/mongodb/statut.sche
         {
           provide: 'SEQUELIZE',
           useValue: sequelize,
+        }, 
+        {
+          provide: 'ActiviteSql',
+          useValue: ActiviteSql,
+        }, 
+        {
+          provide: 'AdherentSql',
+          useValue: AdherentSql,
+        }, 
+        {
+          provide: 'CarnetSql',
+          useValue: CarnetSql,
+        }, 
+        {
+          provide: 'CentreSql',
+          useValue: CentreSql,
+        }, 
+        {
+          provide: 'DetReglSql',
+          useValue: DetReglSql,
+        }, 
+        {
+          provide: 'EcheanceSql',
+          useValue: EcheanceSql,
+        }, 
+        {
+          provide: 'EcritureSql',
+          useValue: EcritureSql,
         }, 
       ],
       exports: [MongooseModule]
