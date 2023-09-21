@@ -3,19 +3,19 @@ import { Document } from 'mongoose';
 
 @Schema({ collection: 'carnet' }) // Nom de la collection dans la base de données
 export class Carnet extends Document {
-  @Prop({ required: true })
+  @Prop({  })
   LIGNE: number;
 
-  @Prop({ required: true, maxlength: 6 })
+  @Prop({  maxlength: 6 })
   CODE_ADH: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   NO_DEBUT: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NO_FIN: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_LIVR: Date;
 }
 

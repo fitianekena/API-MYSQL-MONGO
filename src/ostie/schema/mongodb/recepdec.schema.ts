@@ -3,106 +3,106 @@ import { Document } from 'mongoose';
 
 @Schema({ collection: 'recepdec' }) // Nom de la collection dans la base de données
 export class Recepdec extends Document {
-  @Prop({ required: true })
+  @Prop({  })
   NO_RD: number;
 
-  @Prop({ required: true, maxlength: 6 })
+  @Prop({  maxlength: 6 })
   CODE_ADH: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_RD: Date;
 
-  @Prop({ required: true, maxlength: 5 })
+  @Prop({  maxlength: 5 })
   TYPE_DECL: string;
 
-  @Prop({ required: true, maxlength: 32 })
+  @Prop({  maxlength: 32 })
   LIBELLE: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   ANNEE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   TRIMESTRE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   EFFECTIF: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   MASSE_SAL: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   PART_PATR: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   PART_TRAV: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   PENALITE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   DECLAREE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   TOTAL_PAYE: number;
 
-  @Prop({ required: true, maxlength: 15 })
+  @Prop({  maxlength: 15 })
   ACCORD: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_ACCOR: Date;
 
-  @Prop({ required: true })
+  @Prop({  })
   NOMBRE_PAY: number;
 
-  @Prop({ required: true, maxlength: 10 })
+  @Prop({  maxlength: 10 })
   POSTE: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   PEN_APPLIQ: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NOECR: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   LIGNEECR: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   LIGNE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   TOTSALDEC: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   TOTCOTTRAV: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   TOTCOTPATR: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   TOTSALCALC: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   MOIS: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   TRIMANNEE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   VALID: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   COMPTAB: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   COTCALC: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_CTRL: Date;
 
-  @Prop({ required: true, maxlength: 35 })
+  @Prop({  maxlength: 35 })
   REF_NOTE: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_CREATION: Date;
 }
 

@@ -3,64 +3,64 @@ import { Document } from 'mongoose';
 
 @Schema({ collection: 'reglemt' }) // Nom de la collection dans la base de données
 export class Reglemt extends Document {
-  @Prop({ required: true })
+  @Prop({  })
   NO_RP: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_PAIE: Date;
 
-  @Prop({ required: true, maxlength: 15 })
+  @Prop({  maxlength: 15 })
   BANQUE: string;
 
-  @Prop({ required: true, maxlength: 30 })
+  @Prop({  maxlength: 30 })
   CHEQUE: string;
 
-  @Prop({ required: true, maxlength: 6 })
+  @Prop({  maxlength: 6 })
   CODE_ADH: string;
 
-  @Prop({ required: true, maxlength: 1 })
+  @Prop({  maxlength: 1 })
   MODEPAIM: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   MONTANT: number;
 
-  @Prop({ required: true, maxlength: 10 })
+  @Prop({  maxlength: 10 })
   POSTE: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   NOECR: number;
 
-  @Prop({ required: true, maxlength: 32 })
+  @Prop({  maxlength: 32 })
   LIBELLE: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_ECH: Date;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_REF: Date;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_CREATION: Date;
 
-  @Prop({ required: true })
+  @Prop({  })
   ANNUL: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NOCENTRE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NOPOSTE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   RANG: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   MOIS: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   ANNEE: number;
 
-  @Prop({ required: true, maxlength: 10 })
+  @Prop({  maxlength: 10 })
   abcdef: string;
 }
 

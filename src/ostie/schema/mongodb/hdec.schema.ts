@@ -3,58 +3,58 @@ import { Document } from 'mongoose';
 
 @Schema({ collection: 'hdec' }) // Nom de la collection dans la base de données
 export class Hdec extends Document {
-  @Prop({ required: true })
+  @Prop({  })
   NO_RD: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_RD: Date;
 
-  @Prop({ required: true, maxlength: 10 })
+  @Prop({  maxlength: 10 })
   CODE_ADH: string;
 
-  @Prop({ required: true, maxlength: 35 })
+  @Prop({  maxlength: 35 })
   LIBELLE: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   MONTANT: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   TOTAL_PAYE: number;
 
-  @Prop({ required: true, maxlength: 10 })
+  @Prop({  maxlength: 10 })
   POSTE: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   MOIS: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   ANNEE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   VALID: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   COMPTAB: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   RANG: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NBRRAP: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_CREATION: Date;
 
-  @Prop({ required: true })
+  @Prop({  })
   OLD_RD: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NOCENTRE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NOPOSTE: number;
 
-  @Prop({ required: true, maxlength: 25 })
+  @Prop({  maxlength: 25 })
   MODEPAIEMENT: string;
 }
 

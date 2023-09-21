@@ -3,37 +3,37 @@ import { Document } from 'mongoose';
 
 @Schema({ collection: 'statut' }) // Nom de la collection dans la base de données
 export class Statut extends Document {
-  @Prop({ required: true })
+  @Prop({  })
   RANG: number;
 
-  @Prop({ required: true, maxlength: 6 })
+  @Prop({  maxlength: 6 })
   CODE_ADH: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_STATU: Date;
 
-  @Prop({ required: true, maxlength: 1 })
+  @Prop({  maxlength: 1 })
   TYPE_STATU: string;
 
-  @Prop({ required: true, maxlength: 20 })
+  @Prop({  maxlength: 20 })
   NOTE_SERV: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_CREAT: Date;
 
-  @Prop({ required: true, maxlength: 30 })
+  @Prop({  maxlength: 30 })
   MOTIF: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   VALIDAT: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   MOIS: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   ANNEE: number;
 
-  @Prop({ required: true, maxlength: 10 })
+  @Prop({  maxlength: 10 })
   POSTE: string;
 }
 

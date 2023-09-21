@@ -17,6 +17,7 @@ import { DbTanjombato } from './db_tanjombato/db_tanjombato.module';
 import { DbBehoririka } from './db_behoririka/db_behoririka.module';
 import { Db24mklen } from './db_24mklen/db_24mklen.module';
 import { ConfigModule } from '@nestjs/config';
+import { OstieModule } from './ostie/ostie.module';
 
 @Module({
   imports:[
@@ -26,7 +27,8 @@ import { ConfigModule } from '@nestjs/config';
     SyncServicesModule,
     DbTanjombato,
     DbBehoririka,
-    Db24mklen
+    Db24mklen,
+    OstieModule
     ],
   
   controllers: [AppController],

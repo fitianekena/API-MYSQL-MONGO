@@ -8,13 +8,13 @@ import { SyncroService } from 'src/syncro.service';
 @Injectable()
 export class AdherentService {
     constructor(
-    @InjectModel(AdherentMongo.name,'db_behoririka') private readonly mongooseAdherent: Model<AdherentMongo>,
+    @InjectModel(AdherentMongo.name,'ostie') private readonly mongooseAdherent: Model<AdherentMongo>,
         
         @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
         @Inject('AdherentSql') private readonly mysqlAdherent: typeof AdherentSql,
         
         private readonly syncservicebase:SyncroService,
-        @InjectConnection('db_behoririka') private readonly connexion: Connection,
+        @InjectConnection('ostie') private readonly connexion: Connection,
       ) {}
 
       async syncToMongooseAdherent() {

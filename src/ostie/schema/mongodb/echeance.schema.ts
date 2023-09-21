@@ -1,33 +1,33 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop,Schema,SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema({ collection: 'echeance' }) // Nom de la collection dans la base de données
 export class Echeance extends Document {
-  @Prop({ required: true })
+  @Prop({  })
   LIGNE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NO_RD: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_ECH: Date;
 
-  @Prop({ required: true })
+  @Prop({  })
   MONT_ECH: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   MONT_PAYE: number;
 
-  @Prop({ required: true, maxlength: 1 })
+  @Prop({  maxlength: 1 })
   MODE_PAIE: string;
 
-  @Prop({ required: true, maxlength: 6 })
+  @Prop({  maxlength: 6 })
   CODE_ADH: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   RANG: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NBRRAP: number;
 }
 

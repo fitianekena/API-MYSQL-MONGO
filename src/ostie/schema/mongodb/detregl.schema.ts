@@ -3,46 +3,46 @@ import { Document } from 'mongoose';
 
 @Schema({ collection: 'det_regl' }) // Nom de la collection dans la base de données
 export class DetRegl extends Document {
-  @Prop({ required: true })
+  @Prop({  })
   LIGNE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NO_RP: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NO_RD: number;
 
-  @Prop({ required: true, maxlength: 8 })
+  @Prop({  maxlength: 8 })
   CODE_ADH: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   MONTANT: number;
 
-  @Prop({ required: true, maxlength: 32 })
+  @Prop({  maxlength: 32 })
   LIBELLE: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   LIGNEECR: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   VALID: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   COMPTAB: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_PAIE: Date;
 
-  @Prop({ required: true })
+  @Prop({  })
   MOIS: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   ANNEE: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   NOECH: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_CREATION: Date;
 }
 

@@ -27,6 +27,30 @@ import { Recepdec as RecepdecMongo, RecepdecSchema} from './schema/mongodb/recep
 import { Reglemt as ReglemtMongo, ReglemtSchema} from './schema/mongodb/reglemt.schema';
 import { Statut as StatutMongo, StatutSchema} from './schema/mongodb/statut.schema';
 import { ConfigModule } from '@nestjs/config';
+import { OstieController } from './ostie.controller';
+import { ActiviteController } from './controllers/activite/activite.controller';
+import { AdherentController } from './controllers/adherent/adherent.controller';
+import { CentreController } from './controllers/centre/centre.controller';
+import { CarnetController } from './controllers/carnet/carnet.controller';
+import { DetReglController } from './controllers/det_regl/det_regl.controller';
+import { EcheanceController } from './controllers/echeance/echeance.controller';
+import { EcritureController } from './controllers/ecriture/ecriture.controller';
+import { HdecController } from './controllers/hdec/hdec.controller';
+import { RecepdecController } from './controllers/recepdec/recepdec.controller';
+import { StatusController } from './controllers/status/status.controller';
+import { OstieService } from './ostie.service';
+import { ActiviteService } from './service/activite/activite.service';
+import { AdherentService } from './service/adherent/adherent.service';
+import { CarnetService } from './service/carnet/carnet.service';
+import { CentreService } from './service/centre/centre.service';
+import { DetReglService } from './service/det_regl/det_regl.service';
+import { EcheanceService } from './service/echeance/echeance.service';
+import { EcritureService } from './service/ecriture/ecriture.service';
+import { HdecService } from './service/hdec/hdec.service';
+import { RecepdecService } from './service/recepdec/recepdec.service';
+import { StatutService } from './service/statut/statut.service';
+import { ReglemtService } from './service/reglemt/reglemt.service';
+import { ReglemtController } from './controllers/reglemt/reglemt.controller';
 
 @Module({
     imports: [
@@ -57,10 +81,10 @@ import { ConfigModule } from '@nestjs/config';
     
         ], 'ostie')],
     
-      controllers: [],
+      controllers: [OstieController,ActiviteController,AdherentController,CentreController,CarnetController,DetReglController,EcheanceController,EcritureController,HdecController,RecepdecController,StatusController,ReglemtController],
       providers: [
-        
-        {
+        OstieService,ActiviteService,AdherentService,CentreService,CarnetService,DetReglService,EcheanceService,EcritureService,HdecService,RecepdecService,StatutService,ReglemtService
+        ,{
           provide: 'SEQUELIZE',
           useValue: sequelize,
         }, 

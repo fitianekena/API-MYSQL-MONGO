@@ -3,121 +3,121 @@ import { Document } from 'mongoose';
 
 @Schema({ collection: 'adherent' }) // Nom de la collection dans la base de données
 export class Adherent extends Document {
-  @Prop({ required: true, maxlength: 6 })
+  @Prop({  maxlength: 6 })
   CODE_ADH: string;
 
-  @Prop({ required: true, maxlength: 60 })
+  @Prop({  maxlength: 60 })
   RAISON_SOC: string;
 
-  @Prop({ required: true, maxlength: 3 })
+  @Prop({  maxlength: 3 })
   CODE_CEN: string;
 
-  @Prop({ required: true, maxlength: 30 })
+  @Prop({  maxlength: 30 })
   TEL: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_ADH: Date;
 
-  @Prop({ required: true, maxlength: 15 })
+  @Prop({  maxlength: 15 })
   STATUT: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   EFFECTIF: number;
 
-  @Prop({ required: true, maxlength: 4 })
+  @Prop({  maxlength: 4 })
   CODE_ACT: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_ACT: Date;
 
-  @Prop({ required: true, maxlength: 4 })
+  @Prop({  maxlength: 4 })
   CODE_ACT2: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_CREAT: Date;
 
-  @Prop({ required: true })
+  @Prop({  })
   DATE_ETAT: Date;
 
-  @Prop({ required: true, maxlength: 20 })
+  @Prop({  maxlength: 20 })
   MOTIF_ETAT: string;
 
-  @Prop({ required: true, maxlength: 30 })
+  @Prop({  maxlength: 30 })
   NOCNAPS: string;
 
-  @Prop({ required: true, maxlength: 60 })
+  @Prop({  maxlength: 60 })
   ADRESSE: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   EFFEC_M: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   EFFEC_F: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   EFFEC_MF: number;
 
-  @Prop({ required: true, maxlength: 20 })
+  @Prop({  maxlength: 20 })
   SIGLE: string;
 
-  @Prop({ required: true, maxlength: 8 })
+  @Prop({  maxlength: 8 })
   BP: string;
 
-  @Prop({ required: true, maxlength: 15 })
+  @Prop({  maxlength: 15 })
   FAX: string;
 
-  @Prop({ required: true, maxlength: 15 })
+  @Prop({  maxlength: 15 })
   NIF: string;
 
-  @Prop({ required: true, maxlength: 40 })
+  @Prop({  maxlength: 40 })
   RESPONSABL: string;
 
-  @Prop({ required: true, maxlength: 6 })
+  @Prop({  maxlength: 6 })
   TYPE_ADH: string;
 
-  @Prop({ required: true, maxlength: 6 })
+  @Prop({  maxlength: 6 })
   CODE_GROUP: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   MASSE_SAL: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   DIA: number;
 
-  @Prop({ required: true, maxlength: 20 })
+  @Prop({  maxlength: 20 })
   STATIST: string;
 
-  @Prop({ required: true, maxlength: 30 })
+  @Prop({  maxlength: 30 })
   LIEU_DE_TR: string;
 
-  @Prop({ required: true, maxlength: 30 })
+  @Prop({  maxlength: 30 })
   ADR_ACTIV: string;
 
-  @Prop({ required: true, maxlength: 20 })
+  @Prop({  maxlength: 20 })
   NATIONALIT: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   VERSEMENT: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   DEBIT: number;
 
-  @Prop({ required: true })
+  @Prop({  })
   CREDIT: number;
 
-  @Prop({ required: true, maxlength: 15 })
+  @Prop({  maxlength: 15 })
   TITRE: string;
 
-  @Prop({ required: true, maxlength: 20 })
+  @Prop({  maxlength: 20 })
   VILLE: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   CODE_POST: number;
 
-  @Prop({ required: true, maxlength: 80 })
+  @Prop({  maxlength: 80 })
   EMAIL: string;
 
-  @Prop({ required: true })
+  @Prop({  })
   EFFECTIF_ANTECEDENT: number;
 }
 
