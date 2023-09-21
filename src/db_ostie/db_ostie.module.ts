@@ -12,18 +12,20 @@ import { SyncDbOstieController } from './controllers/sync_db_ostie/sync_db_ostie
 import { Affilie as AffilieMongo, AffilieSchema } from './schema/mongodb/affilie.schema';
 import { UtilService } from 'src/util.service';
 import { SyncServicesModule } from 'src/sync-services/sync-services.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
     imports:[
+      ConfigModule.forRoot(),
       SyncServicesModule,
-        MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_ostie',{connectionName:'db_ostie'}),
+        MongooseModule.forRoot(process.env.MONGODB_URL+'db_ostie',{connectionName:'db_ostie'}),
         MongooseModule.forFeature([{name:Adherent.name,schema:AdherentSchema},{name:AffilieMongo.name,schema:AffilieSchema}],'db_ostie'),
         SequelizeModule.forRoot({
           dialect: 'mysql', 
-          host: 'localhost',
-          port: 3306,
-          username: 'root',
-          password: '',
+          host: process.env.MYSQL_HOST,
+          port: parseInt(process.env.MYSQL_PORT),
+          username: process.env.MYSQL_USERNAME,
+          password: process.env.MYSQL_PASSWORD,
           database: 'db_ostie',
           models: [AdherentSql,AffilieSql], // Vous pouvez ajuster cette option en fonction de vos besoins
            }),],

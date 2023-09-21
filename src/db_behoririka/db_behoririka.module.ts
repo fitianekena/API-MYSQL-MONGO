@@ -32,18 +32,19 @@ import { VisiteAffilieController } from './controllers/visiteaffilie/visiteaffil
 import { VisiteService } from './service/visite/visite.service';
 import { DbBehoririkaService } from './db_behoririka.service';
 import { DbBehoririkaController } from './db_behoririka.controller';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    
+    ConfigModule.forRoot(),
     SyncServicesModule,
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/db_behoririka', { connectionName: 'db_behoririka' }),
+    MongooseModule.forRoot(process.env.MONGODB_URL+'db_behoririka', { connectionName: 'db_behoririka' }),
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
+      host: process.env.MYSQL_HOST,
+      port: parseInt(process.env.MYSQL_PORT),
+      username: process.env.MYSQL_USERNAME,
+      password: process.env.MYSQL_PASSWORD,
       database: 'db_behoririka',
       models: [CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql], // Vous pouvez ajuster cette option en fonction de vos besoins
     }),
