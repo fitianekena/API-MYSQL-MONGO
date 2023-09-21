@@ -23,10 +23,10 @@ import { ConfigModule } from '@nestjs/config';
         MongooseModule.forRoot(process.env.MONGODB_URL+'ostie', { connectionName: 'ostie' }),
         SequelizeModule.forRoot({
           dialect: 'mysql',
-          host: 'localhost',
-          port: 3306,
-          username: 'root',
-          password: '',
+          host: process.env.MYSQL_HOST,
+          port: parseInt(process.env.MYSQL_PORT),
+          username: process.env.MYSQL_USERNAME,
+          password: process.env.MYSQL_PASSWORD,
           database: 'ostie',
           models: [], // Vous pouvez ajuster cette option en fonction de vos besoins
         }),
