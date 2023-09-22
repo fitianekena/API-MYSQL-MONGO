@@ -31,7 +31,7 @@ export class Update {
     
                     const matchingData = mongooseData.find((mongooseRecord) => {
                         // Compare les valeurs des champs clés primaires pour faire correspondre les enregistrements
-                        return primaryKeyValue === mongooseRecord[primaryKeyField];
+                        return String(primaryKeyValue) === String(mongooseRecord[primaryKeyField]);
                     });
                     if (!matchingData) {
                         const mappedData = this.mappingService.mapSequelizeToMongoose(

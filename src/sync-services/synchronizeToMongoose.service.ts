@@ -27,9 +27,9 @@ export class SynchronizeToMongoose {
                     mongooseModel
                 )(record);
                 const mongooseRecord = new mongooseModel(mappedData);
-                if (mappedData.aff_id===1120010000040527400) {
-                    console.log(mappedData)
-                }
+                // if (mappedData.aff_id===1120010000040527400) {
+                //     console.log(mappedData)
+                // }
                 
                 await mongooseRecord.save();
                 nombre++;

@@ -13,6 +13,12 @@ import { Affilie as AffilieMongo, AffilieSchema } from './schema/mongodb/affilie
 import { UtilService } from 'src/util.service';
 import { SyncServicesModule } from 'src/sync-services/sync-services.module';
 import { ConfigModule } from '@nestjs/config';
+import { AdherentController } from './controllers/adherent/adherent.controller';
+import { AdherentService } from './service/adherent/adherent.service';
+import { DbOstieController } from './db_ostie.controller';
+import { DbOstieService } from './db_ostie.service';
+import { AffilieController } from './controllers/affilie/affilie.controller';
+import { AffilieService } from './service/affilie/affilie.service';
 
 @Module({
     imports:[
@@ -30,7 +36,7 @@ import { ConfigModule } from '@nestjs/config';
           models: [AdherentSql,AffilieSql], // Vous pouvez ajuster cette option en fonction de vos besoins
            }),],
         
-      controllers: [SyncDbOstieController],
+      controllers: [SyncDbOstieController, AdherentController, DbOstieController, AffilieController],
       providers: [
         UtilService,
         MappingService,
@@ -46,7 +52,10 @@ import { ConfigModule } from '@nestjs/config';
       {
         provide: 'AffilieSql',
         useValue: AffilieSql // Your Sequelize model
-      }],
+      },
+      AdherentService,
+      DbOstieService,
+      AffilieService],
 })
 export class DbOstieModule {
     

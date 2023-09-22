@@ -10,11 +10,11 @@ import {
 
 @Table({ tableName: 'affilie', timestamps: false })
 export class Affilie extends Model {
-  
+  @PrimaryKey
   @Column({ type: DataType.BIGINT })
   aff_id: number;
 
-  @PrimaryKey
+  
   @Column({ type: DataType.STRING(25) })
   aff_num: string;
 

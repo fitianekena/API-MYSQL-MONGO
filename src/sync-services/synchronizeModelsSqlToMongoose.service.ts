@@ -21,11 +21,11 @@ export class SynchronizeModelsSqlToMongoose {
         );
         const filter = {};
         filter[primaryKeyField] = primaryKey;
-
+        
         const result = await sourceModel.findOne({
             where: filter,
         });
-
+        
 
         const documents = await targetModel.find(filter).exec();
         const ObjectId = documents[0]._id;
