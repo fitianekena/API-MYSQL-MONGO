@@ -45,6 +45,7 @@ import { ConfigModule } from '@nestjs/config';
       port: parseInt(process.env.MYSQL_PORT),
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
+      database:'db_tanjombato',
       models: [CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql], // Vous pouvez ajuster cette option en fonction de vos besoins
     }),
     MongooseModule.forFeature([
@@ -95,7 +96,7 @@ import { ConfigModule } from '@nestjs/config';
     FonctionService,
     CentreService,
   ],
-  exports: [MongooseModule]
+  exports: [MongooseModule, DbTanjombatoService,]
 })
 export class DbTanjombato {
 

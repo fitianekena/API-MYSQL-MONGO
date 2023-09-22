@@ -97,7 +97,38 @@ import { ConfigModule } from '@nestjs/config';
     CentreService,
     DbAmpasamadinikaService
   ],
-  exports: [MongooseModule]
+  exports: [MongooseModule,VisiteService,
+    UtilService,
+    MappingService,
+    SyncroService,
+    {
+      provide: 'SEQUELIZE',
+      useValue: sequelize,
+    }, {
+      provide: 'CentreSql',
+      useValue: CentreSql
+    },
+    {
+      provide: 'PersonnelSql',
+      useValue: PersonnelSql
+    },
+    {
+      provide: 'FonctionSql',
+      useValue: FonctionSql
+    },
+    {
+      provide: 'VisiteaffilieSql',
+      useValue: VisiteaffilieSql
+    },
+    {
+      provide: 'ServiceSql',
+      useValue: ServiceSql
+    },
+    PersonnelService,
+    ServiceService,
+    FonctionService,
+    CentreService,
+    DbAmpasamadinikaService]
 })
 export class DbAmpasamadinikaModule {
 

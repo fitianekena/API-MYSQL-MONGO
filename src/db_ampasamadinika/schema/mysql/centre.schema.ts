@@ -6,7 +6,7 @@ import { Table, Model, Column, DataType, PrimaryKey } from 'sequelize-typescript
 })
 export class Centre extends Model {
   @PrimaryKey
-  @Column({ type: DataType.INTEGER })
+  @Column({ type: DataType.NUMBER })
   centre_id : number;
 
   @Column({ type: DataType.STRING, allowNull: true })
