@@ -27,13 +27,7 @@ export class SynchronizeToMongoose {
                     mongooseModel
                 )(record);
                 const mongooseRecord = new mongooseModel(mappedData);
-<<<<<<< HEAD
-                // if (mappedData.aff_id===1120010000040527400) {
-                //     console.log(mappedData)
-                // }
-=======
                 
->>>>>>> f4d17374f67a4e9df501dfa48a966a16cd411263
                 
                 await mongooseRecord.save();
                 nombre++;
