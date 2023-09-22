@@ -1,7 +1,7 @@
 import { Controller,Param,Post,Put,Delete } from '@nestjs/common';
 import { AdherentService } from 'src/db_ostie/service/adherent/adherent.service';
 
-@Controller('db-ostie/adherent')
+@Controller('db_ostie/adherent')
 export class AdherentController {
     constructor(
         private readonly adherentservice:AdherentService,

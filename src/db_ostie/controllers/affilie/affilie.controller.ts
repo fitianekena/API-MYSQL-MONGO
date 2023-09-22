@@ -1,7 +1,7 @@
 import { Controller,Param,Post, Put, Delete} from '@nestjs/common';
 import { AffilieService } from 'src/db_ostie/service/affilie/affilie.service';
 
-@Controller('db-ostie/affilie')
+@Controller('db_ostie/affilie')
 export class AffilieController {
     constructor(
         private readonly affilieservice:AffilieService,

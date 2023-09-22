@@ -3,7 +3,7 @@ import { CentreService } from 'src/db_24mklen/service/centre/centre.service';
 import { Db24mklenService } from './db_24mklen.service';
 
 
-@Controller('db-24mklen/all')
+@Controller('db_24mklen/all')
 export class Db24mklenController {
     constructor(
         private readonly dbservice:Db24mklenService,

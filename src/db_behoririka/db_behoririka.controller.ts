@@ -4,7 +4,7 @@ import { CentreService } from 'src/db_24mklen/service/centre/centre.service';
 import { DbBehoririkaService } from './db_behoririka.service';
 
 
-@Controller('db-behoririka/all')
+@Controller('db_behoririka/all')
 export class DbBehoririkaController {
     constructor(
         private readonly dbservice:DbBehoririkaService,

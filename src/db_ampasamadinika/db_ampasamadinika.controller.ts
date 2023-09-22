@@ -3,7 +3,7 @@ import { CentreService } from 'src/db_24mklen/service/centre/centre.service';
 import { DbAmpasamadinikaService } from './db_ampasamadinika.service';
 
 
-@Controller('db-ampasamadinika/all')
+@Controller('db_ampasamadinika/all')
 export class DbAmpasamadinikaController {
     constructor(
         private readonly dbservice:DbAmpasamadinikaService,

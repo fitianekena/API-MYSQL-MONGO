@@ -1,7 +1,7 @@
 import { Controller,Param,Post, Put, Delete } from '@nestjs/common';
 import { PersonnelService } from 'src/db_tanjombato/service/personnel/personnel.service';
 
-@Controller('db-tanjombato/personnel')
+@Controller('db_tanjombato/personnel')
 export class PersonnelController {
     constructor(
         private readonly personnelservice:PersonnelService,

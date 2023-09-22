@@ -1,7 +1,7 @@
 import { Controller,Param, Post, Put } from '@nestjs/common';
 import { DbOstieService } from './db_ostie.service';
 
-@Controller('db-ostie/all')
+@Controller('db_ostie/all')
 export class DbOstieController {
     constructor(
         private readonly dbservice:DbOstieService,

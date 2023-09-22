@@ -1,7 +1,7 @@
 import { Controller,Param,Post, Put,Delete} from '@nestjs/common';
 import { PersonnelService } from 'src/db_behoririka/service/personnel/personnel.service';
 
-@Controller('db-behoririka/personnel')
+@Controller('db_behoririka/personnel')
 export class PersonnelController {
     constructor(
         private readonly personnelservice:PersonnelService,

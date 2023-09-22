@@ -1,7 +1,7 @@
 import { Controller,Post } from '@nestjs/common';
 import SyncDbOstieService from 'src/db_ostie/service/sync_db_ostie/sync_db_ostie.service';
 
-@Controller('db-ostie')
+@Controller('db_ostie')
 export class SyncDbOstieController {
     constructor(
         private readonly syncronisationservice:SyncDbOstieService,

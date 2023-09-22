@@ -1,7 +1,7 @@
 import { Controller,Param,Post,Put, Delete } from '@nestjs/common';
 import { ServiceService } from 'src/db_behoririka/service/service/service.service';
 
-@Controller('db-behoririka/service')
+@Controller('db_behoririka/service')
 export class ServiceController {
     constructor(
         private readonly serviceservice:ServiceService,

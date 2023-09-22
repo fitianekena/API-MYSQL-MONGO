@@ -4,7 +4,7 @@ import { CentreService } from 'src/db_24mklen/service/centre/centre.service';
 import {  DbTanjombatoService } from './db_tanjombato.service';
 
 
-@Controller('db-tanjombato/all')
+@Controller('db_tanjombato/all')
 export class DbTanjombatoController {
     constructor(
         private readonly dbservice:DbTanjombatoService,

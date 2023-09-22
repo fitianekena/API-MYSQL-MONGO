@@ -2,7 +2,7 @@ import { Controller,Inject,Param,Post,Put, Delete } from '@nestjs/common';
 import { VisiteService } from 'src/db_ampasamadinika/service/visite/visite.service';
 
 
-@Controller('db-ampasamadinika/visiteAffilie')
+@Controller('db_ampasamadinika/visiteAffilie')
 export class VisiteAffilieController {
     constructor(
       private readonly visiteAffilieservice:VisiteService,

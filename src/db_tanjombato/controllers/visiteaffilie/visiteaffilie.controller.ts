@@ -3,7 +3,7 @@ import { VisiteService } from 'src/db_tanjombato/service/visite/visite.service';
 
 
 
-@Controller('db-tanjombato/visiteAffilie')
+@Controller('db_tanjombato/visiteAffilie')
 export class VisiteAffilieController {
     constructor(
       private readonly visiteAffilieservice:VisiteService,

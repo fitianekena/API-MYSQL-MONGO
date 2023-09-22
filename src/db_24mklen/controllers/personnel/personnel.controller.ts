@@ -1,7 +1,7 @@
 import { Controller,Param,Post, Put, Delete} from '@nestjs/common';
 import { PersonnelService } from 'src/db_24mklen/service/personnel/personnel.service';
 
-@Controller('db-24mklen/personnel')
+@Controller('db_24mklen/personnel')
 export class PersonnelController {
     constructor(
         private readonly personnelservice:PersonnelService,

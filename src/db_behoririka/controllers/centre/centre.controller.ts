@@ -2,7 +2,7 @@ import { Controller,Param,Post,Put, Delete } from '@nestjs/common';
 import { CentreService } from 'src/db_behoririka/service/centre/centre.service';
 
 
-@Controller('db-behoririka/centre')
+@Controller('db_behoririka/centre')
 export class CentreController {
     constructor(
         private readonly centreservice:CentreService,

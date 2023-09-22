@@ -2,7 +2,7 @@ import { Controller,Param,Post,Put, Delete } from '@nestjs/common';
 import { CentreService } from 'src/db_tanjombato/service/centre/centre.service';
 
 
-@Controller('db-tanjombato/centre')
+@Controller('db_tanjombato/centre')
 export class CentreController {
     constructor(
         private readonly centreservice:CentreService,
