@@ -1,4 +1,4 @@
-import { Controller,Param, Post } from '@nestjs/common';
+import { Controller,Param, Post, Put } from '@nestjs/common';
 import { DbOstieService } from './db_ostie.service';
 
 @Controller('db-ostie/all')
@@ -14,11 +14,11 @@ export class DbOstieController {
   async syncAdherentMongotoSQL(): Promise<string> {
     return this.dbservice.migrateallMongoToSql();
   }
-  @Post('/update/sql-to-mongo')
+  @Put('/update/sql-to-mongo')
   async updateAdherentSQLtoMongo(): Promise<string> {
     return this.dbservice.updateMongo();
   }
-  @Post('/update/mongo-to-sql')
+  @Put('/update/mongo-to-sql')
   async updateAdherentMongotoSQL(): Promise<string> {
     return this.dbservice.updateSql();
   }
