@@ -133,7 +133,7 @@ import { ReglemtController } from './controllers/reglemt/reglemt.controller';
           useValue: StatutSql,
         },
       ],
-      exports: [MongooseModule]
+      exports: [MongooseModule,OstieService,]
 })
 export class OstieModule {
 

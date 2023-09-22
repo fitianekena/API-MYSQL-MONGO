@@ -88,7 +88,33 @@ import { ConfigModule } from '@nestjs/config';
     FonctionService,
     CentreService,
   ],
-  exports: [MongooseModule]
+  exports: [MongooseModule,UtilService,
+    MappingService,
+    SyncroService,
+    Db24mklenService,
+    {
+      provide: 'SEQUELIZE',
+      useValue: sequelize,
+    }, {
+      provide: 'CentreSql',
+      useValue: CentreSql
+    },
+    {
+      provide: 'PersonnelSql',
+      useValue: PersonnelSql
+    },
+    {
+      provide: 'FonctionSql',
+      useValue: FonctionSql
+    },
+    {
+      provide: 'ServiceSql',
+      useValue: ServiceSql
+    },
+    PersonnelService,
+    ServiceService,
+    FonctionService,
+    CentreService,]
 })
 export class Db24mklen {
 
