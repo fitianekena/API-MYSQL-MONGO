@@ -1,4 +1,4 @@
-import { Controller,Param,Post } from '@nestjs/common';
+import { Controller,Param,Post,Put, Delete } from '@nestjs/common';
 import { CentreService } from 'src/db_tanjombato/service/centre/centre.service';
 
 
@@ -11,28 +11,32 @@ export class CentreController {
   async syncCentreSQLtoMongo(): Promise<string> {
     return this.centreservice.syncToMongooseCentre();
   }
+  @Post('/mongo-to-sql')
+    async syncCentreMongotoSQL(): Promise<string> {
+      return this.centreservice.syncToSequelizeCentre();
+    }
   
-  @Post('update/sql-to-mongo')
+  @Put('update/sql-to-mongo')
   async updatesyncCentreSql(): Promise<void> {
     return this.centreservice.updateCentreinMongodbCentre();
   }
-  @Post('update/mongo-to-sql')
+  @Put('update/mongo-to-sql')
   async updatesyncCentreMongotoSQL(): Promise<void> {
     return this.centreservice.updateCentreinSequelizeCentre();
   }
-  @Post('update/sql-to-mongo/:id')
+  @Put('update/sql-to-mongo/:id')
   async updateModelsyncVisiteAffilieMongotoSQL(@Param('id') id:any): Promise<void> {
     return this.centreservice.updateCentreInMongoById(id);
   }
-  @Post('update/mongo-to-sql/:id')
+  @Put('update/mongo-to-sql/:id')
   async updateModelsyncVisiteAffilieSQLtoMongo(@Param('id') id:any): Promise<void> {
     return this.centreservice.updateCentreInMySqlById(id);
   }
-  @Post('update/delete/sql-to-mongo/')
+  @Delete('update/delete/sql-to-mongo/')
   async updateDeleteSqlToMongo(): Promise<void> {
     return this.centreservice.updateDelete('sequelize');
   }
-  @Post('update/delete/mongo-to-sql/')
+  @Delete('update/delete/mongo-to-sql/')
   async updateDeleteMongoToSql(): Promise<void> {
     return this.centreservice.updateDelete('mongoose');
   }

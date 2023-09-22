@@ -1,4 +1,4 @@
-import { Controller,Param,Post } from '@nestjs/common';
+import { Controller,Param,Post, Put } from '@nestjs/common';
 import { CentreService } from 'src/db_24mklen/service/centre/centre.service';
 import { OstieService } from './ostie.service';
 
@@ -18,11 +18,11 @@ export class OstieController {
   async syncCentreMongotoSQL(): Promise<string> {
     return this.ostieservice.migrateallMongoToSql();
   }
-  @Post('/update/sql-to-mongo')
+  @Put('/update/sql-to-mongo')
   async updateCentreSQLtoMongo(): Promise<string> {
     return this.ostieservice.updateMongo();
   }
-  @Post('/update/mongo-to-sql')
+  @Put('/update/mongo-to-sql')
   async updateCentreMongotoSQL(): Promise<string> {
     return this.ostieservice.updateSql();
   }

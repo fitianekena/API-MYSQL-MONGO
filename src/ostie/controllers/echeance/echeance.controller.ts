@@ -1,4 +1,4 @@
-import { Controller, Param, Post } from '@nestjs/common';
+import { Controller, Param, Post, Put, Delete } from '@nestjs/common';
 import { EcheanceService } from 'src/ostie/service/echeance/echeance.service';
 
 @Controller('ostie/echeance')
@@ -10,28 +10,32 @@ export class EcheanceController {
   async syncEcheanceSQLtoMongo(): Promise<string> {
     return this.echeanceservice.syncToMongooseEcheance();
   }
+  @Post('/mongo-to-sql')
+  async syncEcheanceMongotoSQL(): Promise<string> {
+    return this.echeanceservice.syncToSequelizeEcheance();
+  }
   
-  @Post('update/sql-to-mongo')
+  @Put('update/sql-to-mongo')
   async updatesyncEcheanceSql(): Promise<void> {
     return this.echeanceservice.updateEcheanceinMongodbEcheance();
   }
-  @Post('update/mongo-to-sql')
+  @Put('update/mongo-to-sql')
   async updatesyncEcheanceMongotoSQL(): Promise<void> {
     return this.echeanceservice.updateEcheanceinSequelizeEcheance();
   }
-  @Post('update/sql-to-mongo/:id')
+  @Put('update/sql-to-mongo/:id')
   async updateModelsyncVisiteAffilieMongotoSQL(@Param('id') id:any): Promise<void> {
     return this.echeanceservice.updateEcheanceInMongoById(id);
   }
-  @Post('update/mongo-to-sql/:id')
+  @Put('update/mongo-to-sql/:id')
   async updateModelsyncVisiteAffilieSQLtoMongo(@Param('id') id:any): Promise<void> {
     return this.echeanceservice.updateEcheanceInMySqlById(id);
   }
-  @Post('update/delete/sql-to-mongo/')
+  @Delete('update/delete/sql-to-mongo/')
   async updateDeleteSqlToMongo(): Promise<void> {
     return this.echeanceservice.updateDelete('sequelize');
   }
-  @Post('update/delete/mongo-to-sql/')
+  @Delete('update/delete/mongo-to-sql/')
   async updateDeleteMongoToSql(): Promise<void> {
     return this.echeanceservice.updateDelete('mongoose');
   }

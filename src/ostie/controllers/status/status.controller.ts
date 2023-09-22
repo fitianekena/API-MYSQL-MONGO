@@ -1,4 +1,4 @@
-import { Controller, Param, Post } from '@nestjs/common';
+import { Controller, Delete, Param, Post, Put } from '@nestjs/common';
 import { StatutService } from 'src/ostie/service/statut/statut.service';
 
 @Controller('status')
@@ -10,28 +10,32 @@ export class StatusController {
   async syncStatutSQLtoMongo(): Promise<string> {
     return this.statutservice.syncToMongooseStatut();
   }
+  @Post('/mongo-to-sql')
+  async syncStatutMongotoSQL(): Promise<string> {
+    return this.statutservice.syncToSequelizeStatut();
+  }
   
-  @Post('update/sql-to-mongo')
+  @Put('update/sql-to-mongo')
   async updatesyncStatutSql(): Promise<void> {
     return this.statutservice.updateStatutinMongodbStatut();
   }
-  @Post('update/mongo-to-sql')
+  @Put('update/mongo-to-sql')
   async updatesyncStatutMongotoSQL(): Promise<void> {
     return this.statutservice.updateStatutinSequelizeStatut();
   }
-  @Post('update/sql-to-mongo/:id')
+  @Put('update/sql-to-mongo/:id')
   async updateModelsyncVisiteAffilieMongotoSQL(@Param('id') id:any): Promise<void> {
     return this.statutservice.updateStatutInMongoById(id);
   }
-  @Post('update/mongo-to-sql/:id')
+  @Put('update/mongo-to-sql/:id')
   async updateModelsyncVisiteAffilieSQLtoMongo(@Param('id') id:any): Promise<void> {
     return this.statutservice.updateStatutInMySqlById(id);
   }
-  @Post('update/delete/sql-to-mongo/')
+  @Delete('update/delete/sql-to-mongo/')
   async updateDeleteSqlToMongo(): Promise<void> {
     return this.statutservice.updateDelete('sequelize');
   }
-  @Post('update/delete/mongo-to-sql/')
+  @Delete('update/delete/mongo-to-sql/')
   async updateDeleteMongoToSql(): Promise<void> {
     return this.statutservice.updateDelete('mongoose');
   }
