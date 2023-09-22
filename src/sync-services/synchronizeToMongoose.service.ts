@@ -17,16 +17,20 @@ export class SynchronizeToMongoose {
     ) {
         let nombre = 0;
         try {
-            const mapSequelizeToMongoose = this.mappingService.mapSequelizeToMongoose(
-                sequelizeModel,
-                mongooseModel
-            );
+            
 
             const sequelizeData = await (sequelizeModel as any).findAll();
 
             for (const record of sequelizeData) {
-                const mappedData = mapSequelizeToMongoose(record);
+                const mappedData = this.mappingService.mapSequelizeToMongoose(
+                    sequelizeModel,
+                    mongooseModel
+                )(record);
                 const mongooseRecord = new mongooseModel(mappedData);
+                if (mappedData.aff_id===1120010000040527400) {
+                    console.log(mappedData)
+                }
+                
                 await mongooseRecord.save();
                 nombre++;
             }

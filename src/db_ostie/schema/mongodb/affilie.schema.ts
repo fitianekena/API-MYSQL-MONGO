@@ -3,8 +3,8 @@ import { Document } from 'mongoose';
 
 @Schema()
 export class Affilie extends Document {
-  @Prop({ type: Number })
-  aff_id: number;
+  @Prop({ type: String })
+  aff_id: string;
 
   @Prop({ type: String, default: null })
   aff_num: string;
@@ -100,7 +100,7 @@ export class Affilie extends Document {
   aff_rang: number;
 
   @Prop({ type: Number })
-  aff_codeUnique: boolean;
+  aff_codeUnique: Number;
 
   @Prop({ type: Boolean })
   aff_doublon: boolean;
@@ -225,4 +225,3 @@ export class Affilie extends Document {
 
 export const AffilieSchema = SchemaFactory.createForClass(Affilie);
 
- 

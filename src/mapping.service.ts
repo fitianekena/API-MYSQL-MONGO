@@ -16,10 +16,7 @@ export class MappingService {
       const mongooseData: any = {};
 
       for (const attribute of sequelizeAttributes) {
-        if (sequelizeData[attribute] !== '0000-00-00') {
-          // Check if the value is "0000-00-00" and skip it
-          mongooseData[attribute] = sequelizeData[attribute];
-        }
+        mongooseData[attribute] = sequelizeData[attribute] === '0000-00-00' ? null : sequelizeData[attribute];
         // If you want to explicitly set it to null, you can do:
         // mongooseData[attribute] = sequelizeData[attribute] === '0000-00-00' ? null : sequelizeData[attribute];
       }
