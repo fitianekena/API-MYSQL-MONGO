@@ -17,7 +17,7 @@ export class DbBehoririkaService {
       ) {}
     async migrateallSqlToMongo(){
         try {
-            this.centreService.syncToMongooseCentre();
+            this.centreService.synchronizeToMongoose();
             this.fonctionService.syncToMongooseFonction();
             this.personnelService.syncToMongoosePersonnel();
             this.serviceService.syncToMongooseService();
@@ -31,7 +31,7 @@ export class DbBehoririkaService {
     }
     async migrateallMongoToSql(){
         try {
-            this.centreService.syncToSequelizeCentre();
+            this.centreService.synchronizeToSequelize();
             this.fonctionService.syncToSequelizeFonction();
             this.personnelService.syncToSequelizePersonnel();
             this.serviceService.syncToSequelizeService();
@@ -45,7 +45,7 @@ export class DbBehoririkaService {
     }
     async updateMongo(){
         try {
-            this.centreService.updateCentreinMongodbCentre();
+            this.centreService.updateMongo();
             this.fonctionService.updateFonctioninMongodbFonction();
             this.personnelService.updatePersonnelinMongodbPersonnel();
             this.serviceService.updateServiceinMongodbService();
@@ -57,7 +57,7 @@ export class DbBehoririkaService {
     }
     async updateSql(){
         try {
-            this.centreService.updateCentreinSequelizeCentre();
+            this.centreService.updateSql();
             this.fonctionService.updateFonctioninSequelizeFonction();
             this.personnelService.updatePersonnelinSequelizePersonnel;
             this.serviceService.updateServiceinSequelizeService;

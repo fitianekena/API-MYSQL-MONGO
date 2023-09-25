@@ -21,51 +21,6 @@ export class CentreService extends ServicesSyncro<MongooseModel<any>,SequelizeMo
       ) {
         super(syncservicebase,mysqlCentre as any,mongooseCentre as any);
       }
-    async syncToMongooseCentre() {
-        return await this.syncservicebase.synchronizeToMongoose(
-            this.mysqlCentre as any,
-            this.mongooseCentre
-        );
-      }
     
-      async syncToSequelizeCentre() {
-        return await this.syncservicebase.synchronizeToSequelize(
-            this.mysqlCentre as any,
-            this.mongooseCentre
-        );
-      }
-      async updateCentreinMongodbCentre(){
-        return await this.syncservicebase.update(
-            this.mysqlCentre as any,
-            this.mongooseCentre,
-            'sequelize'
-        );
-      }
-      async updateCentreinSequelizeCentre(){
-        return await this.syncservicebase.update(
-            this.mysqlCentre as any,
-            this.mongooseCentre,
-            'mongoose'
-        );
-      }
-      async updateCentreInMongoById(id:string){
-        return await this.syncservicebase.synchronizeModelsSqlToMongoose(
-           
-            this.mysqlCentre as any,
-            this.mongooseCentre,
-            id,
-        );
-      }
-      async updateCentreInMySqlById(id:string){
-        return await this.syncservicebase.synchronizeModelsMongooseToSql(
-           
-            this.mysqlCentre as any,
-            this.mongooseCentre,
-            id,
-        );
-      }
-      async updateDelete(priority: "sequelize"|"mongoose"){
-        return await this.syncservicebase.updatedelete(this.mysqlCentre as any,this.mongooseCentre,priority);
-      }
 
 }

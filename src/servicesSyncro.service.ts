@@ -12,56 +12,52 @@ export class ServicesSyncro<N extends MongooseModel<any>, M extends  SequelizeMo
     ) {}
 
     async synchronizeToMongoose() {
-        // Instanciez vos modèles Sequelize et Mongoose si ce n'est pas déjà fait
-        
         const mongooseInstance = new this.mongooseModel();
         return await this.syncroService.synchronizeToMongoose(this.sequelizeModel as any , mongooseInstance);
     }
 
     async synchronizeToSequelize() {
-        // Instanciez vos modèles Sequelize et Mongoose si ce n'est pas déjà fait
-        
         const mongooseInstance = new this.mongooseModel();
         return await this.syncroService.synchronizeToSequelize(this.sequelizeModel as any, mongooseInstance);
     }
 
-    async updateSql() {
-        // Instanciez vos modèles Sequelize et Mongoose si ce n'est pas déjà fait
+    async updateMongo() {
+        
         
         const mongooseInstance = new this.mongooseModel();
         return await this.syncroService.update(this.sequelizeModel as any, mongooseInstance, 'sequelize');
     }
 
-    async updatemongooseModelongo() {
-        // Instanciez vos modèles Sequelize et Mongoose si ce n'est pas déjà fait
+    async updateSql() {
+        
         
         const mongooseInstance = new this.mongooseModel();
         return await this.syncroService.update(this.sequelizeModel as any, mongooseInstance, 'mongoose');
     }
 
-    async synchronizemongooseModelodelsSqlToMongoose(primaryKey) {
-        // Instanciez vos modèles Sequelize et Mongoose si ce n'est pas déjà fait
+    async synchronizeModelSqlToMongoose(primaryKey) {
+        
         
         const mongooseInstance = new this.mongooseModel();
         return await this.syncroService.synchronizeModelsSqlToMongoose(this.sequelizeModel as any, mongooseInstance, primaryKey);
     }
 
     async synchronizeModelsMongooseToSql(primaryKey) {
-        // Instanciez vos modèles Sequelize et Mongoose si ce n'est pas déjà fait
+        
         
         const mongooseInstance = new this.mongooseModel();
         return await this.syncroService.synchronizeModelsMongooseToSql(this.sequelizeModel as any, mongooseInstance, primaryKey);
     }
 
     async updatedeleteSql() {
-        // Instanciez vos modèles Sequelize et Mongoose si ce n'est pas déjà fait
+        
         
         const mongooseInstance = new this.mongooseModel();
         return await this.syncroService.updatedelete(this.sequelizeModel as any, mongooseInstance, 'sequelize');
     }
 
     async updatedeleteMongo() {
-        // Instanciez vos modèles Sequelize et Mongoose si ce n'est pas déjà fait
+        
         
         const mongooseInstance = new this.mongooseModel();
         return await this.syncroService.updatedelete(this.sequelizeModel as any, mongooseInstance, 'mongoose');
