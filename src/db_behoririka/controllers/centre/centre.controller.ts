@@ -5,6 +5,11 @@ import { CentreService } from 'src/db_behoririka/service/centre/centre.service';
 
 @Controller('db-behoririka/centre')
 export class CentreController extends ServicesSyncroController<CentreService>{
+    constructor(
+        private readonly centreservice:CentreService,
+    ){
+      super(centreservice);
+    }
     
 
   
