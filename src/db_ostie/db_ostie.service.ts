@@ -11,8 +11,8 @@ export class DbOstieService {
       ) {}
     async migrateallSqlToMongo(){
         try {
-            this.adherentService.syncToMongooseAdherent();
-            this.affilieService.syncToMongooseAffilie();
+            this.adherentService.synchronizeToMongoose();
+            this.affilieService.synchronizeToMongoose();
             return "Succes toutes les données ont été  migrés vers MongoDb pour cette database";
         } catch (error) {
             return "Une erreur est survenue:"+error;
@@ -22,8 +22,8 @@ export class DbOstieService {
     }
     async migrateallMongoToSql(){
         try {
-            this.adherentService.syncToSequelizeAdherent();
-            this.affilieService.syncToSequelizeAffilie();
+            this.adherentService.synchronizeToSequelize();
+            this.affilieService.synchronizeToSequelize();
             return "Succes toutes les données ont été  migrés vers MySql pour cette database";
         } catch (error) {
             return "Une erreur est survenue:"+error;
@@ -33,8 +33,8 @@ export class DbOstieService {
     }
     async updateMongo(){
         try {
-            this.adherentService.updateAdherentinMongodbAdherent();
-            this.affilieService.updateAffilieinMongodbAffilie();
+            this.adherentService.updateMongo();
+            this.affilieService.updateMongo();
             return "Succes  cette database est maintenant à jour et dispose des données manquants. ";
         } catch (error) {
             return "Une erreur est survenue:"+error;
@@ -42,8 +42,8 @@ export class DbOstieService {
     }
     async updateSql(){
         try {
-            this.adherentService.updateAdherentinSequelizeAdherent();
-            this.affilieService.updateAffilieinSequelizeAffilie();
+            this.adherentService.updateSql();
+            this.affilieService.updateSql();
             return "Succes  cette database est maintenant à jour et dispose des données manquants. ";
         } catch (error) {
             return "Une erreur est survenue:"+error;
