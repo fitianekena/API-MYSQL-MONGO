@@ -1,7 +1,7 @@
-import { Controller,Param,Post } from '@nestjs/common';
+import { Controller,Param,Post,Put,Delete } from '@nestjs/common';
 import { AdherentService } from 'src/db_ostie/service/adherent/adherent.service';
 
-@Controller('db-ostie/adherent')
+@Controller('db_ostie/adherent')
 export class AdherentController {
     constructor(
         private readonly adherentservice:AdherentService,
@@ -15,27 +15,27 @@ export class AdherentController {
     async syncAdherentMongotoSQL(): Promise<string> {
       return this.adherentservice.syncToSequelizeAdherent();
     }
-    @Post('update/sql-to-mongo')
+    @Put('update/sql-to-mongo')
     async updatesyncAdherentMongotoSQL(): Promise<void> {
       return this.adherentservice.updateAdherentinMongodbAdherent();
     }
-    @Post('update/mongo-to-sql')
+    @Put('update/mongo-to-sql')
     async updatesyncAdherentSQLtoMongo(): Promise<void> {
       return this.adherentservice.updateAdherentinSequelizeAdherent();
     }
-    @Post('update/sql-to-mongo/:id')
+    @Put('update/sql-to-mongo/:id')
   async updateModelsyncVisiteAffilieMongotoSQL(@Param('id') id:any): Promise<void> {
     return this.adherentservice.updateAdherentInMongoById(id);
   }
-  @Post('update/mongo-to-sql/:id')
+  @Put('update/mongo-to-sql/:id')
   async updateModelsyncVisiteAffilieSQLtoMongo(@Param('id') id:any): Promise<void> {
     return this.adherentservice.updateAdherentInMySqlById(id);
   }
-  @Post('update/delete/sql-to-mongo/')
+  @Delete('update/delete/sql-to-mongo/')
   async updateDeleteSqlToMongo(): Promise<void> {
     return this.adherentservice.updateDelete('sequelize');
   }
-  @Post('update/delete/mongo-to-sql/')
+  @Delete('update/delete/mongo-to-sql/')
   async updateDeleteMongoToSql(): Promise<void> {
     return this.adherentservice.updateDelete('mongoose');
   }

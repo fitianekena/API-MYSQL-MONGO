@@ -20,7 +20,6 @@ export class synchronizeToSequelize {
                     sequelizeModel,
                     mongooseModel
                 );
-    
                 const mongooseData = await mongooseModel.find();
     
                 for (const record of mongooseData) {
@@ -30,7 +29,7 @@ export class synchronizeToSequelize {
     
                 return 'Synchronization to Sequelize complete';
             } catch (error) {
-                throw new Error('Data synchronization to Sequelize failed: ' + error.message);
+                throw new Error('Data synchronization to Sequelize failed: ' + error);
             }
         }
 }

@@ -1,8 +1,8 @@
-import { Controller,Inject,Param,Post } from '@nestjs/common';
+import { Controller,Inject,Param,Post, Put,Delete} from '@nestjs/common';
 import { VisiteService } from 'src/db_behoririka/service/visite/visite.service';
 
 
-@Controller('db-behoririka/visiteAffilie')
+@Controller('db_behoririka/visiteAffilie')
 export class VisiteAffilieController {
     constructor(
       private readonly visiteAffilieservice:VisiteService,
@@ -15,27 +15,27 @@ export class VisiteAffilieController {
   async syncVisiteAffilieMongotoSQL(): Promise<string> {
     return this.visiteAffilieservice.syncToSequelizeVisiteaffilie();
   }
-  @Post('update/sql-to-mongo')
+  @Put('update/sql-to-mongo')
   async updatesyncVisiteAffilieMongotoSQL(): Promise<void> {
     return this.visiteAffilieservice.updateVisiteaffilieinMongodbVisiteaffilie();
   }
-  @Post('update/mongo-to-sql')
+  @Put('update/mongo-to-sql')
   async updatesyncVisiteAffilieSQLtoMongo(): Promise<void> {
     return this.visiteAffilieservice.updateVisiteaffilieinSequelizeVisiteaffilie();
   }
-  @Post('update/sql-to-mongo/:id')
+  @Put('update/sql-to-mongo/:id')
   async updateModelsyncVisiteAffilieMongotoSQL(@Param('id') id:any): Promise<void> {
     return this.visiteAffilieservice.updateVisiteaffilieInMongoById(id);
   }
-  @Post('update/mongo-to-sql/:id')
+  @Put('update/mongo-to-sql/:id')
   async updateModelsyncVisiteAffilieSQLtoMongo(@Param('id') id:any): Promise<void> {
     return this.visiteAffilieservice.updateVisiteaffilieInMySqlById(id);
   }
-  @Post('update/delete/sql-to-mongo/')
+  @Delete('update/delete/sql-to-mongo/')
   async updateDeleteSqlToMongo(): Promise<void> {
     return this.visiteAffilieservice.updateDelete('sequelize');
   }
-  @Post('update/delete/mongo-to-sql/')
+  @Delete('update/delete/mongo-to-sql/')
   async updateDeleteMongoToSql(): Promise<void> {
     return this.visiteAffilieservice.updateDelete('mongoose');
   }
