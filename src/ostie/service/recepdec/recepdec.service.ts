@@ -2,11 +2,14 @@ import { Inject, Injectable } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, Model } from 'mongoose';
 import { Sequelize } from 'sequelize';
+import { ServicesSyncro } from 'src/commons/servicesSyncro.service';
 import { Recepdec as RecepdecMongo} from 'src/ostie/schema/mongodb/recepdec.schema';
 import { Recepdec as RecepdecSql} from 'src/ostie/schema/mysql/recepdec.schema';
 import { SyncroService } from 'src/syncro.service';
+import { Model as SequelizeModel } from 'sequelize';
+import { Model as MongooseModel, Document } from 'mongoose';
 @Injectable()
-export class RecepdecService {
+export class RecepdecService extends ServicesSyncro<MongooseModel<any>,SequelizeModel>{
     constructor(
         @InjectModel(RecepdecMongo.name,'ostie') private readonly mongooseRecepdec: Model<RecepdecMongo>,
         
@@ -15,52 +18,8 @@ export class RecepdecService {
         
         private readonly syncservicebase:SyncroService,
         @InjectConnection('ostie') private readonly connexion: Connection,
-      ) {}
-    async syncToMongooseRecepdec() {
-        return await this.syncservicebase.synchronizeToMongoose(
-            this.mysqlRecepdec as any,
-            this.mongooseRecepdec
-        );
+      ) {
+        super(syncservicebase,mysqlRecepdec as any,mongooseRecepdec as any);
       }
-    
-      async syncToSequelizeRecepdec() {
-        return await this.syncservicebase.synchronizeToSequelize(
-            this.mysqlRecepdec as any,
-            this.mongooseRecepdec
-        );
-      }
-      async updateRecepdecinMongodbRecepdec(){
-        return await this.syncservicebase.update(
-            this.mysqlRecepdec as any,
-            this.mongooseRecepdec,
-            'sequelize'
-        );
-      }
-      async updateRecepdecinSequelizeRecepdec(){
-        return await this.syncservicebase.update(
-            this.mysqlRecepdec as any,
-            this.mongooseRecepdec,
-            'mongoose'
-        );
-      }
-      async updateRecepdecInMongoById(id:string){
-        return await this.syncservicebase.synchronizeModelsSqlToMongoose(
-           
-            this.mysqlRecepdec as any,
-            this.mongooseRecepdec,
-            id,
-        );
-      }
-      async updateRecepdecInMySqlById(id:string){
-        return await this.syncservicebase.synchronizeModelsMongooseToSql(
-           
-            this.mysqlRecepdec as any,
-            this.mongooseRecepdec,
-            id,
-        );
-      }
-      async updateDelete(priority: "sequelize"|"mongoose"){
-        return await this.syncservicebase.updatedelete(this.mysqlRecepdec as any,this.mongooseRecepdec,priority);
-      }
-
+   
 }

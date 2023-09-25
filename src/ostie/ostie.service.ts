@@ -32,17 +32,17 @@ export class OstieService {
       ) {}
     async migrateallSqlToMongo(){
         try {
-            this.centreService.syncToMongooseCentre();
-            this.activiteService.syncToMongooseActivite();
-            this.det_reglService.syncToMongooseDetRegl();
-            this.echeanceService.syncToMongooseEcheance();
-            this.ecritureService.syncToMongooseEcriture();
-            this.adherentService.syncToMongooseAdherent();
-            this.carnetService.syncToMongooseCarnet();
-            this.hdecService.syncToMongooseHdec();
-            this.recepdecService.syncToMongooseRecepdec;
-            this.reglemtService.syncToMongooseReglemt();
-            this.statusService.syncToMongooseStatut();
+            this.centreService.synchronizeToMongoose();
+            this.activiteService.synchronizeToMongoose();
+            this.det_reglService.synchronizeToMongoose();
+            this.echeanceService.synchronizeToMongoose();
+            this.ecritureService.synchronizeToMongoose();
+            this.adherentService.synchronizeToMongoose();
+            this.carnetService.synchronizeToMongoose();
+            this.hdecService.synchronizeToMongoose();
+            this.recepdecService.synchronizeToMongoose();
+            this.reglemtService.synchronizeToMongoose();
+            this.statusService.synchronizeToMongoose();
             return "Succes toutes les données ont été  migrés vers MongoDb pour cette database";
         } catch (error) {
             return "Une erreur est survenue:"+error;
@@ -52,17 +52,17 @@ export class OstieService {
     }
     async migrateallMongoToSql(){
         try {
-            this.centreService.syncToSequelizeCentre();
-            this.activiteService.syncToSequelizeActivite();
-            this.det_reglService.syncToSequelizeDetRegl();
-            this.echeanceService.syncToSequelizeEcheance();
-            this.ecritureService.syncToSequelizeEcriture();
-            this.adherentService.syncToSequelizeAdherent();
-            this.carnetService.syncToSequelizeCarnet();
-            this.hdecService.syncToSequelizeHdec();
-            this.recepdecService.syncToSequelizeRecepdec;
-            this.reglemtService.syncToSequelizeReglemt();
-            this.statusService.syncToSequelizeStatut();
+            this.centreService.synchronizeToSequelize();
+            this.activiteService.synchronizeToSequelize();
+            this.det_reglService.synchronizeToSequelize();
+            this.echeanceService.synchronizeToSequelize();
+            this.ecritureService.synchronizeToSequelize();
+            this.adherentService.synchronizeToSequelize();
+            this.carnetService.synchronizeToSequelize();
+            this.hdecService.synchronizeToSequelize();
+            this.recepdecService.synchronizeToSequelize();
+            this.reglemtService.synchronizeToSequelize();
+            this.statusService.synchronizeToSequelize();
             return "Succes toutes les données ont été  migrés vers MySql pour cette database";
         } catch (error) {
             return "Une erreur est survenue:"+error;
@@ -72,17 +72,17 @@ export class OstieService {
     }
     async updateMongo(){
         try {
-            this.centreService.updateCentreinMongodbCentre();
-            this.activiteService.updateActiviteinMongodbActivite();
-            this.det_reglService.updateDetReglinMongodbDetRegl();
-            this.echeanceService.updateEcheanceinMongodbEcheance();
-            this.ecritureService.updateEcritureinMongodbEcriture();
-            this.adherentService.updateAdherentinMongodbAdherent();
-            this.carnetService.updateCarnetinMongodbCarnet();
-            this.hdecService.updateHdecinMongodbHdec();
-            this.recepdecService.updateRecepdecinMongodbRecepdec;
-            this.reglemtService.updateReglemtinMongodbReglemt();
-            this.statusService.updateStatutinMongodbStatut;
+            this.centreService.updateMongo();
+            this.activiteService.updateMongo();
+            this.det_reglService.updateMongo();
+            this.echeanceService.updateMongo();
+            this.ecritureService.updateMongo();
+            this.adherentService.updateMongo();
+            this.carnetService.updateMongo();
+            this.hdecService.updateMongo();
+            this.recepdecService.updateMongo();
+            this.reglemtService.updateMongo();
+            this.statusService.updateMongo();
             return "Succes  cette database est maintenant à jour et dispose des données manquants. ";
         } catch (error) {
             return "Une erreur est survenue:"+error;
@@ -90,17 +90,17 @@ export class OstieService {
     }
     async updateSql(){
         try {
-            this.centreService.updateCentreinSequelizeCentre();
-            this.activiteService.updateActiviteinSequelizeActivite();
-            this.det_reglService.updateDetReglinSequelizeDetRegl();
-            this.echeanceService.updateEcheanceinSequelizeEcheance();
-            this.ecritureService.updateEcritureinSequelizeEcriture();
-            this.adherentService.updateAdherentinSequelizeAdherent();
-            this.carnetService.updateCarnetinSequelizeCarnet();
-            this.hdecService.updateHdecinSequelizeHdec();
-            this.recepdecService.updateRecepdecinSequelizeRecepdec;
-            this.reglemtService.updateReglemtinSequelizeReglemt();
-            this.statusService.updateStatutinSequelizeStatut;
+            this.centreService.updateSql();
+            this.activiteService.updateSql();
+            this.det_reglService.updateSql();
+            this.echeanceService.updateSql();
+            this.ecritureService.updateSql();
+            this.adherentService.updateSql();
+            this.carnetService.updateSql();
+            this.hdecService.updateSql();
+            this.recepdecService.updateSql();
+            this.reglemtService.updateSql();
+            this.statusService.updateSql();
             return "Succes  cette database est maintenant à jour et dispose des données manquants. ";
         } catch (error) {
             return "Une erreur est survenue:"+error;
