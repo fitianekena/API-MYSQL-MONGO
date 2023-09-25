@@ -62,6 +62,7 @@ import { ConfigModule } from '@nestjs/config';
     FonctionController,
     VisiteAffilieController,
     CentreController,DbBehoririkaController],
+    
   providers: [
     VisiteService,
     UtilService,
