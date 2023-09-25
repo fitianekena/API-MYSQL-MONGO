@@ -62,6 +62,7 @@ import { ConfigModule } from '@nestjs/config';
     FonctionController,
     VisiteAffilieController,
     CentreController,DbBehoririkaController],
+    
   providers: [
     VisiteService,
     UtilService,
@@ -95,7 +96,37 @@ import { ConfigModule } from '@nestjs/config';
     FonctionService,
     CentreService,DbBehoririkaService
   ],
-  exports: [MongooseModule]
+  exports: [MongooseModule,VisiteService,
+    UtilService,
+    MappingService,
+    SyncroService,
+    {
+      provide: 'SEQUELIZE',
+      useValue: sequelize,
+    }, {
+      provide: 'CentreSql',
+      useValue: CentreSql
+    },
+    {
+      provide: 'PersonnelSql',
+      useValue: PersonnelSql
+    },
+    {
+      provide: 'FonctionSql',
+      useValue: FonctionSql
+    },
+    {
+      provide: 'VisiteaffilieSql',
+      useValue: VisiteaffilieSql
+    },
+    {
+      provide: 'ServiceSql',
+      useValue: ServiceSql
+    },
+    PersonnelService,
+    ServiceService,
+    FonctionService,
+    CentreService,DbBehoririkaService]
 })
 export class DbBehoririka {
 

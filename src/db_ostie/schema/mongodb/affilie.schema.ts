@@ -103,7 +103,7 @@ export class Affilie extends Document {
   aff_codeUnique: Number;
 
   @Prop({ type: Boolean })
-  aff_doublon: boolean;
+  aff_doublon: number;
 
   @Prop({ type: Date })
   aff_dateCreation: Date;

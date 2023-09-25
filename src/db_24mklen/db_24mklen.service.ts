@@ -13,12 +13,13 @@ export class Db24mklenService {
         private readonly serviceService:ServiceService,
         
       ) {}
-    async migrateallSqlToMongo(){
+      async migrateallSqlToMongo(){
         try {
-            this.centreService.syncToMongooseCentre();
-            this.fonctionService.syncToMongooseFonction();
-            this.personnelService.syncToMongoosePersonnel();
-            this.serviceService.syncToMongooseService();
+            this.centreService.synchronizeToMongoose();
+            this.fonctionService.synchronizeToMongoose();
+            this.personnelService.synchronizeToMongoose();
+            this.serviceService.synchronizeToMongoose();
+            
             return "Succes toutes les données ont été  migrés vers MongoDb pour cette database";
         } catch (error) {
             return "Une erreur est survenue:"+error;
@@ -28,10 +29,11 @@ export class Db24mklenService {
     }
     async migrateallMongoToSql(){
         try {
-            this.centreService.syncToSequelizeCentre();
-            this.fonctionService.syncToSequelizeFonction();
-            this.personnelService.syncToSequelizePersonnel();
-            this.serviceService.syncToSequelizeService();
+            this.centreService.synchronizeToSequelize();
+            this.fonctionService.synchronizeToSequelize();
+            this.personnelService.synchronizeToSequelize();
+            this.serviceService.synchronizeToSequelize();
+            
             return "Succes toutes les données ont été  migrés vers MySql pour cette database";
         } catch (error) {
             return "Une erreur est survenue:"+error;
@@ -41,10 +43,10 @@ export class Db24mklenService {
     }
     async updateMongo(){
         try {
-            this.centreService.updateCentreinMongodbCentre();
-            this.fonctionService.updateFonctioninMongodbFonction();
-            this.personnelService.updatePersonnelinMongodbPersonnel();
-            this.serviceService.updateServiceinMongodbService();
+            this.centreService.updateMongo();
+            this.fonctionService.updateMongo();
+            this.personnelService.updateMongo();
+            this.serviceService.updateMongo();
             
             return "Succes  cette database est maintenant à jour et dispose des données manquants. ";
         } catch (error) {
@@ -53,10 +55,10 @@ export class Db24mklenService {
     }
     async updateSql(){
         try {
-            this.centreService.updateCentreinSequelizeCentre();
-            this.fonctionService.updateFonctioninSequelizeFonction();
-            this.personnelService.updatePersonnelinSequelizePersonnel;
-            this.serviceService.updateServiceinSequelizeService;
+            this.centreService.updateSql();
+            this.fonctionService.updateSql();
+            this.personnelService.updateSql();
+            this.serviceService.updateSql();
             
             return "Succes  cette database est maintenant à jour et dispose des données manquants. ";
         } catch (error) {

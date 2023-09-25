@@ -1,4 +1,4 @@
-// sync.service.ts
+
 import { Injectable } from '@nestjs/common';
 import mongoose, { Model as MongooseModel } from 'mongoose';
 import { Model as SequelizeModel } from 'sequelize';
@@ -7,7 +7,7 @@ import { UtilService } from '../util.service';
 import sequelize from 'sequelize';
 
 @Injectable()
-export class SynchronizeToMongoose {
+export class SynchronizeToMongoose  {
     constructor(
         private readonly mappingService: MappingService,
         private readonly utilitaire: UtilService) { }
@@ -27,9 +27,9 @@ export class SynchronizeToMongoose {
                     mongooseModel
                 )(record);
                 const mongooseRecord = new mongooseModel(mappedData);
-                if (mappedData.aff_id===1120010000040527400) {
-                    console.log(mappedData)
-                }
+                // if (mappedData.aff_id===1120010000040527400) {
+                //     console.log(mappedData)
+                // }
                 
                 await mongooseRecord.save();
                 nombre++;

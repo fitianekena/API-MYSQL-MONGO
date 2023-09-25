@@ -1,10 +1,10 @@
-import { Controller,Param,Post } from '@nestjs/common';
+import { Controller,Param,Post, Put} from '@nestjs/common';
 import { CentreService } from 'src/db_24mklen/service/centre/centre.service';
 
 import {  DbTanjombatoService } from './db_tanjombato.service';
 
 
-@Controller('db-tanjombato/all')
+@Controller('db_tanjombato/all')
 export class DbTanjombatoController {
     constructor(
         private readonly dbservice:DbTanjombatoService,
@@ -17,11 +17,11 @@ export class DbTanjombatoController {
   async syncCentreMongotoSQL(): Promise<string> {
     return this.dbservice.migrateallMongoToSql();
   }
-  @Post('/update/sql-to-mongo')
+  @Put('/update/sql-to-mongo')
   async updateCentreSQLtoMongo(): Promise<string> {
     return this.dbservice.updateMongo();
   }
-  @Post('/update/mongo-to-sql')
+  @Put('/update/mongo-to-sql')
   async updateCentreMongotoSQL(): Promise<string> {
     return this.dbservice.updateSql();
   }

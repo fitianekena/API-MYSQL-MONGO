@@ -2,11 +2,14 @@ import { Inject, Injectable } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, Model } from 'mongoose';
 import { Sequelize } from 'sequelize';
+import { ServicesSyncro } from 'src/commons/servicesSyncro.service';
 import { Personnel as PersonnelMongo, PersonnelSchema} from 'src/db_24mklen/schema/mongodb/personnel.schema';
 import { Personnel as PersonnelSql} from 'src/db_24mklen/schema/mysql/personnel.schema';
 import { SyncroService } from 'src/syncro.service';
+import { Model as SequelizeModel } from 'sequelize';
+import { Model as MongooseModel, Document } from 'mongoose';
 @Injectable()
-export class PersonnelService {
+export class PersonnelService  extends ServicesSyncro<MongooseModel<any>,SequelizeModel>{
     constructor(
        
         @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
@@ -14,52 +17,8 @@ export class PersonnelService {
         @InjectModel(PersonnelMongo.name,'db_24mklen') private readonly mongoosePersonnel: Model<PersonnelMongo>,
         private readonly syncservicebase:SyncroService,
         @InjectConnection('db_24mklen') private readonly connexion: Connection,
-      ) {}
-      async syncToMongoosePersonnel() {
-        return await this.syncservicebase.synchronizeToMongoose(
-            this.mysqlPersonnel as any,
-            this.mongoosePersonnel
-        );
+      ) {
+        super(syncservicebase,mysqlPersonnel as any,mongoosePersonnel as any);
       }
-    
-      async syncToSequelizePersonnel() {
-        return await this.syncservicebase.synchronizeToSequelize(
-            this.mysqlPersonnel as any,
-            this.mongoosePersonnel
-        );
-      }
-      async updatePersonnelinMongodbPersonnel(){
-        return await this.syncservicebase.update(
-            this.mysqlPersonnel as any,
-            this.mongoosePersonnel,
-            'sequelize'
-        );
-      }
-      async updatePersonnelinSequelizePersonnel(){
-        return await this.syncservicebase.update(
-            this.mysqlPersonnel as any,
-            this.mongoosePersonnel,
-            'mongoose'
-        );
-      }
-      async updatePersonnelInMongoById(id:string){
-        return await this.syncservicebase.synchronizeModelsSqlToMongoose(
-           
-            this.mysqlPersonnel as any,
-            this.mongoosePersonnel,
-            id,
-        );
-      }
-      async updatePersonnelInMySqlById(id:string){
-        return await this.syncservicebase.synchronizeModelsMongooseToSql(
-           
-            this.mysqlPersonnel as any,
-            this.mongoosePersonnel,
-            id,
-        );
-      }
-      async updateDelete(priority: "sequelize"|"mongoose"){
-        return await this.syncservicebase.updatedelete(this.mysqlPersonnel as any,this.mongoosePersonnel,priority);
-      }
-
+      
 }

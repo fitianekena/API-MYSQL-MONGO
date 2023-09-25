@@ -1,4 +1,4 @@
-// sync.service.ts
+
 import { Injectable } from '@nestjs/common';
 import mongoose, { Model as MongooseModel } from 'mongoose';
 
@@ -21,19 +21,19 @@ export class SynchronizeModelsSqlToMongoose {
         );
         const filter = {};
         filter[primaryKeyField] = primaryKey;
-
+        
         const result = await sourceModel.findOne({
             where: filter,
         });
-
+        
 
         const documents = await targetModel.find(filter).exec();
         const ObjectId = documents[0]._id;
 
         const updatedRecord = await targetModel.findOneAndUpdate(
-            { _id: new mongoose.Types.ObjectId(ObjectId) }, // Filtrez par l'ID
-            await this.mappingService.mapSequelizeToMongoose(sourceModel, targetModel)(result), // Les champs à mettre à jour
-            { new: true } // Option pour retourner le nouveau document mis à jour
+            { _id: new mongoose.Types.ObjectId(ObjectId) }, 
+            await this.mappingService.mapSequelizeToMongoose(sourceModel, targetModel)(result), 
+            { new: true } 
         );
         return "Voici l'element mis a jour  " + updatedRecord;
 

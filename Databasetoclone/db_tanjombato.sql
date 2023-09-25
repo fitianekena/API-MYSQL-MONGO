@@ -1261,7 +1261,7 @@ INSERT INTO `service` (`service_id`, `service_code`, `service_nom`, `service_typ
 (41, '41', 'SERVICE PAR DEFAUT', 0, 0, 0),
 (42, '42', 'STOMATOLOGIE 2', 1, 1, 0),
 (43, '43', 'STOMATOLOGIE 3', 1, 1, 0),
-(44, '44', 'RAPPORT D\'ACTIVITE', 1, 0, 0),
+(44, '44', 'RAPPORT DACTIVITE', 1, 0, 0),
 (46, '46', 'CDT', 1, 1, 0),
 (47, '47', 'ALLERGOLOGIE', 1, 1, 0),
 (48, '', 'LUNETTE', 0, 0, 0),

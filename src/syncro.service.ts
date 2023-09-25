@@ -14,6 +14,7 @@ import { UpdateDelete } from './sync-services/updatedelete.service';
 
 @Injectable()
 export class SyncroService {
+    [x: string]: any;
     constructor(
         private readonly mappingService: MappingService,
         private readonly utilitaire: UtilService,

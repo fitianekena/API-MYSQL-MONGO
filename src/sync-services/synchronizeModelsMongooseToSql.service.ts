@@ -1,4 +1,4 @@
-// sync.service.ts
+
 import { Injectable } from '@nestjs/common';
 import mongoose, { Model as MongooseModel } from 'mongoose';
 

@@ -3,16 +3,22 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Adherent as AdherentSql} from './schema/mysql/adherent.schema';
 import { Adherent, AdherentSchema } from './schema/mongodb/adherent.schema';
-import SyncDbOstieService from './service/sync_db_ostie/sync_db_ostie.service';
+
 import sequelize from 'sequelize';
 import { Affilie as AffilieSql } from './schema/mysql/affilie.schema';
 import { SyncroService } from 'src/syncro.service';
 import { MappingService } from 'src/mapping.service';
-import { SyncDbOstieController } from './controllers/sync_db_ostie/sync_db_ostie.controller';
+
 import { Affilie as AffilieMongo, AffilieSchema } from './schema/mongodb/affilie.schema';
 import { UtilService } from 'src/util.service';
 import { SyncServicesModule } from 'src/sync-services/sync-services.module';
 import { ConfigModule } from '@nestjs/config';
+import { AdherentController } from './controllers/adherent/adherent.controller';
+import { AdherentService } from './service/adherent/adherent.service';
+import { DbOstieController } from './db_ostie.controller';
+import { DbOstieService } from './db_ostie.service';
+import { AffilieController } from './controllers/affilie/affilie.controller';
+import { AffilieService } from './service/affilie/affilie.service';
 
 @Module({
     imports:[
@@ -30,11 +36,10 @@ import { ConfigModule } from '@nestjs/config';
           models: [AdherentSql,AffilieSql], // Vous pouvez ajuster cette option en fonction de vos besoins
            }),],
         
-      controllers: [SyncDbOstieController],
+      controllers: [ AdherentController, DbOstieController, AffilieController],
       providers: [
         UtilService,
         MappingService,
-        SyncDbOstieService,
         SyncroService,
         {
         provide: 'SEQUELIZE',
@@ -46,7 +51,10 @@ import { ConfigModule } from '@nestjs/config';
       {
         provide: 'AffilieSql',
         useValue: AffilieSql // Your Sequelize model
-      }],
+      },
+      AdherentService,
+      DbOstieService,
+      AffilieService],
 })
 export class DbOstieModule {
     

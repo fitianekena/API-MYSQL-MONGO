@@ -18,6 +18,8 @@ import { DbBehoririka } from './db_behoririka/db_behoririka.module';
 import { Db24mklen } from './db_24mklen/db_24mklen.module';
 import { ConfigModule } from '@nestjs/config';
 import { OstieModule } from './ostie/ostie.module';
+import { ServicesSyncro } from './commons/servicesSyncro.service';
+import { ServicesSyncroController } from './commons/servicesSyncroController.controller';
 
 @Module({
   imports:[
@@ -32,6 +34,6 @@ import { OstieModule } from './ostie/ostie.module';
     ],
   
   controllers: [AppController],
-  providers: [AppService,MappingService,SyncroService,UtilService],
+  providers: [AppService,MappingService,SyncroService,UtilService,ServicesSyncro,Object,ServicesSyncroController],
 })
 export class AppModule { }
