@@ -1,4 +1,4 @@
-import { Controller,Param,Post } from '@nestjs/common';
+import { Controller,Delete,Param,Post, Put } from '@nestjs/common';
 import { CentreService } from 'src/db_behoririka/service/centre/centre.service';
 import { SyncroService } from 'src/syncro.service';
 import { ServicesSyncro } from './servicesSyncro.service';
@@ -20,27 +20,27 @@ export class ServicesSyncroController<P extends ServicesSyncro<any,any>> {
   async syncCentreMongotoSQL(): Promise<string> {
     return this.servicesSyncro.synchronizeToSequelize();
   }
-  @Post('update/sql-to-mongo')
+  @Put('update/sql-to-mongo')
   async updatesyncCentreMongotoSQL(): Promise<any> {
     return this.servicesSyncro.updateMongo();
   }
-  @Post('update/mongo-to-sql')
+  @Put('update/mongo-to-sql')
   async updatesyncCentreSQLtoMongo(): Promise<any> {
     return this.servicesSyncro.updateSql();
   }
-  @Post('update/sql-to-mongo/:id')
+  @Put('update/sql-to-mongo/:id')
   async updateModelsyncVisiteAffilieMongotoSQL(@Param('id') id:any): Promise<any> {
     return this.servicesSyncro.synchronizeModelSqlToMongoose(id);
   }
-  @Post('update/mongo-to-sql/:id')
+  @Put('update/mongo-to-sql/:id')
   async updateModelsyncVisiteAffilieSQLtoMongo(@Param('id') id:any): Promise<any> {
     return this.servicesSyncro.synchronizeModelsMongooseToSql(id);
   }
-  @Post('update/delete/sql-to-mongo/')
+  @Delete('update/delete/sql-to-mongo/')
   async updateDeleteSqlToMongo(): Promise<any> {
     return this.servicesSyncro.updatedeleteSql;
   }
-  @Post('update/delete/mongo-to-sql/')
+  @Delete('update/delete/mongo-to-sql/')
   async updateDeleteMongoToSql(): Promise<any> {
     return this.servicesSyncro.updatedeleteMongo;
   }
