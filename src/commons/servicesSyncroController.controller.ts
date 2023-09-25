@@ -38,11 +38,11 @@ export class ServicesSyncroController<P extends ServicesSyncro<any,any>> {
   }
   @Delete('update/delete/sql-to-mongo/')
   async updateDeleteSqlToMongo(): Promise<any> {
-    return this.servicesSyncro.updatedeleteSql;
+    return this.servicesSyncro.updatedeleteSql();
   }
   @Delete('update/delete/mongo-to-sql/')
   async updateDeleteMongoToSql(): Promise<any> {
-    return this.servicesSyncro.updatedeleteMongo;
+    return this.servicesSyncro.updatedeleteMongo();
   }
 
   

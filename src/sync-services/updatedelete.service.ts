@@ -27,11 +27,11 @@ export class UpdateDelete {
             );
 
             for (const mongooseRecord of mongooseData) {
-                const primaryKeyValue = mongooseRecord[primaryKeyField];
+                const primaryKeyValue = String(mongooseRecord[primaryKeyField]);
 
                 const matchingData = sequelizeData.find((sequelizeRecord) => {
                     // Compare les valeurs des champs clés primaires pour faire correspondre les enregistrements
-                    return primaryKeyValue === sequelizeRecord.get(primaryKeyField);
+                    return primaryKeyValue === String(sequelizeRecord.get(primaryKeyField));
                 });
 
                 if (!matchingData) {
@@ -53,17 +53,17 @@ export class UpdateDelete {
             );
 
             for (const sequelizeRecord of sequelizeData) {
-                const primaryKeyValue = sequelizeRecord.get(primaryKeyField);
+                const primaryKeyValue = String(sequelizeRecord.get(primaryKeyField));
 
                 const matchingData = await (mongooseModel as any).findOne({
-                    [primaryKeyField]: primaryKeyValue,
+                    [primaryKeyField]: String(primaryKeyValue),
                 });
 
                 if (!matchingData) {
                     await (sequelizeModel as any).destroy({
-                        where: { [primaryKeyField]: primaryKeyValue },
+                        where: { [primaryKeyField]: String(primaryKeyValue) },
                     });
-                    supprimee;
+                    supprimee++;
                 }
             }
 
