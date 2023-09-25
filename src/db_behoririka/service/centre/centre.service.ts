@@ -4,7 +4,7 @@ import { Connection, Model } from 'mongoose';
 import { Sequelize } from 'sequelize';
 import { Centre as MongoDBCentre} from 'src/db_behoririka/schema/mongodb/centre.schema';
 import { Centre as MySQLCentre} from 'src/db_behoririka/schema/mysql/centre.schema';
-import { ServicesSyncro } from 'src/servicesSyncro.service';
+import { ServicesSyncro } from 'src/commons/servicesSyncro.service';
 import { SyncroService } from 'src/syncro.service';
 import { Model as SequelizeModel } from 'sequelize';
 import { Model as MongooseModel, Document } from 'mongoose';

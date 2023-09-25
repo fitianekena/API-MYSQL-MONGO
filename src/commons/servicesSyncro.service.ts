@@ -5,12 +5,19 @@ import { SyncroService } from "src/syncro.service";
 
 @Injectable()
 export class ServicesSyncro<N extends MongooseModel<any>, M extends  SequelizeModel> {
+    
+    
     constructor(
         private readonly syncroService: SyncroService,
-        private readonly sequelizeModel: M,
-        private readonly mongooseModel: N,
+        private readonly _sequelizeModel: M,
+        private readonly _mongooseModel: N,
     ) {}
-
+    public get mongooseModel(): N {
+        return this._mongooseModel;
+    }
+    public get sequelizeModel(): M {
+        return this._sequelizeModel;
+    }
     async synchronizeToMongoose() {
         const mongooseInstance = new this.mongooseModel();
         return await this.syncroService.synchronizeToMongoose(this.sequelizeModel as any , mongooseInstance);
