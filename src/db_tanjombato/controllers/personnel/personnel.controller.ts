@@ -1,42 +1,16 @@
-import { Controller,Param,Post, Put, Delete } from '@nestjs/common';
+import { Controller,Param,Post, Put,Delete} from '@nestjs/common';
+import { ServicesSyncroController } from 'src/commons/servicesSyncroController.controller';
+import { FonctionService } from 'src/db_tanjombato/service/fonction/fonction.service';
 import { PersonnelService } from 'src/db_tanjombato/service/personnel/personnel.service';
 
 @Controller('db_tanjombato/personnel')
-export class PersonnelController {
+export class PersonnelController extends ServicesSyncroController<PersonnelService>{
     constructor(
         private readonly personnelservice:PersonnelService,
-    ){}
-    @Post('/sql-to-mongo')
-  async syncPersonnelSQLtoMongo(): Promise<string> {
-    return this.personnelservice.syncToMongoosePersonnel();
-  }
-  @Post('/mongo-to-sql')
-  async syncPersonnelMongotoSQL(): Promise<string> {
-    return this.personnelservice.syncToSequelizePersonnel();
-  }
-  @Put('update/sql-to-mongo')
-  async updatesyncPersonnelMongotoSQL(): Promise<void> {
-    return this.personnelservice.updatePersonnelinMongodbPersonnel();
-  }
-  @Put('update/mongo-to-sql')
-  async updatesyncPersonnelSQLtoMongo(): Promise<void> {
-    return this.personnelservice.updatePersonnelinSequelizePersonnel();
-  }
-  @Put('update/sql-to-mongo/:id')
-  async updateModelsyncVisiteAffilieMongotoSQL(@Param('id') id:any): Promise<void> {
-    return this.personnelservice.updatePersonnelInMongoById(id);
-  }
-  @Put('update/mongo-to-sql/:id')
-  async updateModelsyncVisiteAffilieSQLtoMongo(@Param('id') id:any): Promise<void> {
-    return this.personnelservice.updatePersonnelInMySqlById(id);
-  }
-  @Delete('update/delete/sql-to-mongo/')
-  async updateDeleteSqlToMongo(): Promise<void> {
-    return this.personnelservice.updateDelete('sequelize');
-  }
-  @Delete('update/delete/mongo-to-sql/')
-  async updateDeleteMongoToSql(): Promise<void> {
-    return this.personnelservice.updateDelete('mongoose');
-  }
+    ){
+      super(personnelservice)
+    }
+
+    
   
 }
