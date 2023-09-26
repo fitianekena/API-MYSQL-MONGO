@@ -1,6 +1,6 @@
 import { Model, Column, Table, DataType, PrimaryKey, AutoIncrement, ForeignKey, BelongsTo } from 'sequelize-typescript';
 
-@Table({ tableName: 'visiteaffilie', timestamps: false })
+@Table({ tableName: 'visiteAffilie', timestamps: false })
 export class Visiteaffilie extends Model {
   @PrimaryKey
   @Column({ type: DataType.INTEGER })
