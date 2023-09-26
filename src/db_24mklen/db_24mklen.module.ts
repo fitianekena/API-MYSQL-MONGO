@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { Centre as CentreSql } from './schema/mysql/Centre.schema';
+import { Centre as CentreSql } from './schema/mysql/centre.schema';
 import { Centre, CentreSchema } from './schema/mongodb/centre.schema';
-import { Personnel as PersonnelSql } from './schema/mysql/Personnel.schema';
+import { Personnel as PersonnelSql } from './schema/mysql/personnel.schema';
 import { Personnel as PersonnelMongo, PersonnelSchema } from './schema/mongodb/personnel.schema';
 import { Fonction as FonctionSql } from './schema/mysql/fonction.schema';
 import { Fonction as FonctionMongo, FonctionSchema } from './schema/mongodb/fonction.schema';
