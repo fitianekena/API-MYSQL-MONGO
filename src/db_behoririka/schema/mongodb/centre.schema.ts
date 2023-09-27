@@ -2,6 +2,7 @@
 
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { ChampMere } from 'src/decorators/champ-mere/champ-mere.decorator';
 
 
 @Schema()
@@ -9,6 +10,7 @@ export class Centre {
   @Prop({ type: Number })
   centre_id : number;
 
+  
   @Prop({ type: String,  default: null })
   centre_code : string | null;
 

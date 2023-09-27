@@ -1,4 +1,4 @@
-import { Controller,Delete,Param,Post, Put } from '@nestjs/common';
+import { Controller,Delete,Get,Param,Post, Put } from '@nestjs/common';
 import { CentreService } from 'src/db_behoririka/service/centre/centre.service';
 import { SyncroService } from 'src/syncro.service';
 import { ServicesSyncro } from './servicesSyncro.service';
@@ -44,6 +44,9 @@ export class ServicesSyncroController<P extends ServicesSyncro<any,any>> {
   async updateDeleteMongoToSql(): Promise<any> {
     return this.servicesSyncro.updatedeleteMongo();
   }
-
+  @Get('test')
+  async test(){
+    return await  this.servicesSyncro.test();
+  }
   
 }

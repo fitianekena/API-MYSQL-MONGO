@@ -1,20 +1,26 @@
 import { Table, Model, Column, DataType, PrimaryKey } from 'sequelize-typescript';
-
+import { ChampMere } from 'src/decorators/champ-mere/champ-mere.decorator';
+import { Centre as CentreMongodb } from '../mongodb/centre.schema';
+import { Fonction as FonctionMongodb } from '../mongodb/fonction.schema';
 @Table({
   tableName: 'centre',
   timestamps: false, // Si vous ne souhaitez pas utiliser les timestamps
 })
 export class Centre extends Model {
+  
   @PrimaryKey
   @Column({ type: DataType.INTEGER })
   centre_id : number;
 
+  @ChampMere(FonctionMongodb as any,'centre-code',String,'centre_code')
   @Column({ type: DataType.STRING, allowNull: true })
   centre_code: string | null;
 
+  @ChampMere(CentreMongodb as any,'centre-nom',String,'centre_nom')
   @Column({ type: DataType.STRING, allowNull: true })
   centre_nom: string | null;
 
+  @ChampMere(FonctionMongodb as any,'centre-localisation',String,'centre_')
   @Column({ type: DataType.STRING, allowNull: true })
   centre_localisation: string | null;
 

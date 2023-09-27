@@ -1,7 +1,7 @@
 // sync.service.ts
 import { Injectable } from '@nestjs/common';
 import mongoose, { Model as MongooseModel } from 'mongoose';
-import { Model as SequelizeModel } from 'sequelize';
+import {  Model as SequelizeModel } from 'sequelize';
 import { MappingService } from './mapping.service';
 import { UtilService } from './util.service';
 import sequelize from 'sequelize';
@@ -11,11 +11,13 @@ import { Update } from './sync-services/update.service';
 import { SynchronizeModelsSqlToMongoose } from './sync-services/synchronizeModelsSqlToMongoose.service';
 import { SynchronizeModelsMongooseToSql } from './sync-services/synchronizeModelsMongooseToSql.service';
 import { UpdateDelete } from './sync-services/updatedelete.service';
+import { ChampMereService } from './decoratorServices/champ-mere.service';
 
 @Injectable()
 export class SyncroService {
-    [x: string]: any;
+    
     constructor(
+        private readonly champmereservice: ChampMereService,
         private readonly mappingService: MappingService,
         private readonly utilitaire: UtilService,
         private readonly synchronizeToMongooseService:SynchronizeToMongoose,
@@ -66,7 +68,12 @@ export class SyncroService {
         mongooseModel: MongooseModel<any>,
         priority: 'sequelize' | 'mongoose'
       ) {
+        
         return this.updateDeleteService.updatedelete(sequelizeModel,mongooseModel,priority)
+    }
+    async test(sequelizeModel: SequelizeModel){
+        const instance=sequelizeModel._model
+        return  this.champmereservice.groupChampMereDataByTableFille(sequelizeModel as any);
     }
       
 

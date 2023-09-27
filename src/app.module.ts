@@ -20,6 +20,8 @@ import { ConfigModule } from '@nestjs/config';
 import { OstieModule } from './ostie/ostie.module';
 import { ServicesSyncro } from './commons/servicesSyncro.service';
 import { ServicesSyncroController } from './commons/servicesSyncroController.controller';
+import { ChampMere } from './decorators/champ-mere/champ-mere.decorator';
+import { ChampMereService } from './decoratorServices/champ-mere.service';
 
 @Module({
   imports:[
@@ -34,6 +36,7 @@ import { ServicesSyncroController } from './commons/servicesSyncroController.con
     ],
   
   controllers: [AppController],
-  providers: [AppService,MappingService,SyncroService,UtilService,ServicesSyncro,Object,ServicesSyncroController],
+  providers: [AppService,MappingService,SyncroService,UtilService,ServicesSyncro,Object,ServicesSyncroController,ChampMereService],
+  
 })
 export class AppModule { }

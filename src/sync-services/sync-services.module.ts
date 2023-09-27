@@ -8,10 +8,11 @@ import { SynchronizeToMongoose } from './synchronizeToMongoose.service';
 import { synchronizeToSequelize } from './synchronizeToSequelize.service';
 import { Update } from './update.service';
 import { UpdateDelete } from './updatedelete.service';
+import { ChampMereService } from 'src/decoratorServices/champ-mere.service';
 
 @Module({
-    providers:[UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
-    exports:[UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete]
+    providers:[ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
+    exports:[ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete]
 })
 export class SyncServicesModule {
     

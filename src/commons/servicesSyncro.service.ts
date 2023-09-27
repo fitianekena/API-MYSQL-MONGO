@@ -63,4 +63,7 @@ export class ServicesSyncro<N extends MongooseModel<any>, M extends  SequelizeMo
         
         return await this.syncroService.updatedelete(this.sequelizeModel as any, this.mongooseModel, 'mongoose');
     }
+    async test(){
+        return  await this.syncroService.test(this.sequelizeModel);
+    }
 }
