@@ -1,11 +1,12 @@
 import {  Model as MongooseModel} from "mongoose";
 import { ClassLoaderService } from "src/sync-services/classLoader.service";
-import { MongoNamespace } from "src/test-mongo/schema/dns-affilie.schema";
+
 
 import { Model as SequelizeModel} from "sequelize";
 import { GettingIdMongoService } from "./gettingIdMongoService.service";
 import { Injectable } from "@nestjs/common";
 import { ForeignKeyService } from "src/decoratorServices/foreign_key/foreign-key.service";
+import { AppModule } from "src/app.module";
 
 @Injectable()
 export class ExtractionService{
@@ -22,7 +23,7 @@ export class ExtractionService{
     // Recuperer les attributs de la classe cible 
     const model: any = connection.models[nomdumodele] as any as MongooseModel<Document>;
     const instance = new model();
-    const className: any = this.findClassService.findClassByClassName(nomdumodele, MongoNamespace);
+    const className: any = this.findClassService.findClassByClassName(nomdumodele, AppModule);
     
     // Recuperer le contenu de @ForeignKey de la table fille
     const metadata = await this.foreignKeyService.getAllForeignKeysInAModel(className);

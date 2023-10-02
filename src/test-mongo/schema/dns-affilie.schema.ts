@@ -1,10 +1,14 @@
+import { Injectable } from '@nestjs/common';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+
 import { Document } from 'mongoose';
+import {AppModule as Namespace} from 'src/app.module';
 import { Centre } from 'src/db_behoririka/schema/mongodb/centre.schema';
 import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
-export namespace MongoNamespace{
+
 @Schema()
+@Injectable()
 export class DnsAffilie extends Document {
   @Prop()
   salaire_un: number;
@@ -33,4 +37,3 @@ export class DnsAffilie extends Document {
 }
 
 export const DnsAffilieSchema = SchemaFactory.createForClass( DnsAffilie);
-}

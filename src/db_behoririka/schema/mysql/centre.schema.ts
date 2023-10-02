@@ -2,9 +2,10 @@ import { Table, Model, Column, DataType, PrimaryKey } from 'sequelize-typescript
 import { ChampMere } from 'src/decorators/champ-mere/champ-mere.decorator';
 import { Centre as CentreMongodb } from '../mongodb/centre.schema';
 import { Fonction as FonctionMongodb, FonctionSchema as FonctionMongodbSchema} from '../mongodb/fonction.schema';
-import { MongoNamespace } from 'src/test-mongo/schema/dns-affilie.schema';
+
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
 import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
+import { DnsAffilie } from 'src/test-mongo/schema/dns-affilie.schema';
 @Table({
   tableName: 'centre',
   timestamps: false, // Si vous ne souhaitez pas utiliser les timestamps
@@ -15,16 +16,16 @@ export class Centre extends Model {
   @Column({ type: DataType.INTEGER })
   centre_id   : number;
 
-  @ChampMere(MongoNamespace.DnsAffilie.name,'centre-code','STRING','centre_code')
+  @ChampMere(DnsAffilie.name,'centre-code','STRING','centre_code')
   @Column({ type: DataType.STRING, allowNull: true })
   centre_code: string | null;
   
-  @ChampMere(MongoNamespace.DnsAffilie.name,'centre-localisation',String,'centre_localisation')
-  @ChampMere(MongoNamespace.DnsAffilie.name,'centre-nom',String,'centre_nom')
+  @ChampMere(DnsAffilie.name,'centre-localisation',String,'centre_localisation')
+  @ChampMere(DnsAffilie.name,'centre-nom',String,'centre_nom')
   @Column({ type: DataType.STRING, allowNull: true })
   centre_nom: string | null;
 
-  @ChampMere(MongoNamespace.DnsAffilie.name,'centre-localisation',String,'centre_localisation')
+  @ChampMere(DnsAffilie.name,'centre-localisation',String,'centre_localisation')
   @Column({ type: DataType.STRING, allowNull: true })
   centre_localisation: string | null;
 

@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 
-export namespace MongoNamespace{
+
 @Schema()
 export class AdAffilie extends Document{
   @Prop()
@@ -79,4 +79,3 @@ export class AdAffilie extends Document{
 }
 
 export const AdAffilieSchema = SchemaFactory.createForClass(AdAffilie);
-}

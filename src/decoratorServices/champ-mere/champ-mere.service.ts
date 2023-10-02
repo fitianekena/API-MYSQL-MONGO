@@ -7,7 +7,7 @@ import { Model, Sequelize } from 'sequelize';
 import { Model as SequelizeModel } from 'sequelize';
 import { ForeignKeyService } from '../foreign_key/foreign-key.service';
 import { ClassLoaderService } from 'src/sync-services/classLoader.service';
-import { MongoNamespace } from 'src/test-mongo/schema/dns-affilie.schema';
+
 
 import { SavingOnMongoService } from '../../sync-services/savingOnMongo.service';
 import { ExtractionService } from 'src/sync-services/extraction.service';

@@ -1,6 +1,7 @@
 import { Table, Model, Column, DataType, PrimaryKey } from 'sequelize-typescript';
 import { ChampMere } from 'src/decorators/champ-mere/champ-mere.decorator';
-import { MongoNamespace } from 'src/test-mongo/schema/dns-affilie.schema';
+import { DnsAffilie } from 'src/test-mongo/schema/dns-affilie.schema';
+
 
 @Table({
   tableName: 'affilie',
@@ -207,15 +208,15 @@ export class Affilie extends Model<Affilie> {
 
   @Column({ type: DataType.DATE, allowNull: true })
   affHist_dateObsCba: Date | null;
-  @ChampMere(MongoNamespace.DnsAffilie.name,'salaire_un','STRING','affEmbauche_salaire1eremois')
+  @ChampMere(DnsAffilie.name,'salaire_un','STRING','affEmbauche_salaire1eremois')
   @Column({ type: DataType.DECIMAL(10, 2),  })
   affEmbauche_salaire1eremois: number;
 
-  @ChampMere(MongoNamespace.DnsAffilie.name,'salaire_deux','STRING','affEmbauche_salaire2ememois')
+  @ChampMere(DnsAffilie.name,'salaire_deux','STRING','affEmbauche_salaire2ememois')
   @Column({ type: DataType.DECIMAL(10, 2),  })
   affEmbauche_salaire2ememois: number;
 
-  @ChampMere(MongoNamespace.DnsAffilie.name,'salaire_trois','STRING','affEmbauche_salaire3ememois')
+  @ChampMere(DnsAffilie.name,'salaire_trois','STRING','affEmbauche_salaire3ememois')
   @Column({ type: DataType.DECIMAL(10, 2),  })
   affEmbauche_salaire3ememois: number;
 
