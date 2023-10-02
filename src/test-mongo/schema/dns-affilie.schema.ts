@@ -1,8 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Centre } from 'src/db_behoririka/schema/mongodb/centre.schema';
 import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
-
+export namespace MongoNamespace{
 @Schema()
 export class DnsAffilie extends Document {
   @Prop()
@@ -26,10 +27,10 @@ export class DnsAffilie extends Document {
   @Prop()
   part_travailleur: number;
 
-  
-  @Prop({ type: 'ObjectId', ref: 'Affilie' }) 
   @ForeignKey(Affilie.name,'affilie','aff_id')
+  @Prop({ type: 'ObjectId', ref: 'Affilie' }) 
   affilie: string;
 }
 
 export const DnsAffilieSchema = SchemaFactory.createForClass( DnsAffilie);
+}

@@ -33,6 +33,10 @@ import { VisiteService } from './service/visite/visite.service';
 import { DbBehoririkaService } from './db_behoririka.service';
 import { DbBehoririkaController } from './db_behoririka.controller';
 import { ConfigModule } from '@nestjs/config';
+import { Affilie as AffilieSql} from './schema/mysql/affilie.schema';
+import { Affilie as AffilieMongoDb, AffilieSchema} from './schema/mongodb/affilie.schema';
+import { AffilieService } from './service/affilie/affilie.service';
+import { AffilieController } from './controllers/affilie/affilie.controller';
 
 @Module({
   imports: [
@@ -47,14 +51,15 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: 'db_behoririka',
-      models: [CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql], // Vous pouvez ajuster cette option en fonction de vos besoins
+      models: [CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql,AffilieSql], // Vous pouvez ajuster cette option en fonction de vos besoins
     }),
     MongooseModule.forFeature([
       { name: Centre.name, schema: CentreSchema },
       { name: PersonnelMongo.name, schema: PersonnelSchema },
       { name: FonctionMongo.name, schema: FonctionSchema },
       { name: VisiteaffilieMongo.name, schema: VisiteaffilieSchema },
-      { name: ServiceMongo.name, schema: ServiceSchema }
+      { name: ServiceMongo.name, schema: ServiceSchema },
+      { name: AffilieMongoDb.name, schema: AffilieSchema }
 
     ], 'db_behoririka')],
 
@@ -62,7 +67,8 @@ import { ConfigModule } from '@nestjs/config';
     ServiceController,
     FonctionController,
     VisiteAffilieController,
-    CentreController,DbBehoririkaController],
+    CentreController,DbBehoririkaController,
+  AffilieController],
     
   providers: [
     VisiteService,
@@ -92,6 +98,11 @@ import { ConfigModule } from '@nestjs/config';
       provide: 'ServiceSql',
       useValue: ServiceSql
     },
+    {
+      provide: 'AffilieSql',
+      useValue: AffilieSql
+    },
+    AffilieService,
     PersonnelService,
     ServiceService,
     FonctionService,

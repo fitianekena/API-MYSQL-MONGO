@@ -18,8 +18,10 @@ async getTheIdOfADocumentInTheMongoDatabase(sequelizeModel:SequelizeModel,mongoo
     const filter = {};
     filter[primaryKeyField] = primaryKeyValue;
     const documents = await mongooseModel.find(filter).exec();
+    
     const objectId = documents[0]._id;
-    return objectId;
+    
+    return  objectId;
 }
 
 }

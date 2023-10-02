@@ -1,4 +1,4 @@
-import { type } from '@amcharts/amcharts5';
+
 import { SetMetadata } from '@nestjs/common';
 import { Prop } from '@nestjs/mongoose';
 import { Document } from 'mongodb';
@@ -19,7 +19,7 @@ export const FOREIGNKEYDATA = Symbol('ForeignKeydata');
 
 // Définissez le decorator ChampMere
 function ForeignKey(tableMere:any,local:string,foreign:string) {
-  return (target: any, propertyKey: string) => {
+  return (target: Document, propertyKey: string) => {
     if (!tableMere) {
       throw new Error(`La table parente  "${tableMere}" n'a pas été trouvée.`);
     }
@@ -34,7 +34,7 @@ function ForeignKey(tableMere:any,local:string,foreign:string) {
     console.log(existingMetadata);
     console.log(target.constructor);
     // Enregistrez les métadonnées mises à jour pour la classe cible
-    Reflect.defineMetadata(FOREIGNKEYDATA, existingMetadata,target.constructor,local);
+    Reflect.defineMetadata(FOREIGNKEYDATA, existingMetadata,target.constructor);
     
 
     

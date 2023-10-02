@@ -4,9 +4,9 @@ import { FOREIGNKEYDATA, ForeignKeydata } from 'src/decorators/champ-mere/foreig
 @Injectable()
 export class ForeignKeyService {
 
-     async getAllForeignKeysInAModel(model:MongooseModel<any>){
+     async getAllForeignKeysInAModel(model:any){
         
-      console.log(model.modelName)
+      
         const metadata: ForeignKeydata[] = await Reflect.getMetadata(FOREIGNKEYDATA,model);
         return metadata;
      }
