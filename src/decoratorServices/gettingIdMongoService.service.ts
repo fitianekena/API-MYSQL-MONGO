@@ -23,5 +23,8 @@ async getTheIdOfADocumentInTheMongoDatabase(sequelizeModel:SequelizeModel,mongoo
     
     return  objectId;
 }
+async getTheIdinMongoNotKnowingTheSequelizeModel(mongooseModel:MongooseModel<any>,data:any){
+  
+}
 
 }
