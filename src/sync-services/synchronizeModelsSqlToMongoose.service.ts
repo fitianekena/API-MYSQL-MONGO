@@ -28,10 +28,10 @@ export class SynchronizeModelsSqlToMongoose {
         
 
         const documents = await targetModel.find(filter).exec();
-        const ObjectId = documents[0]._id;
+        const objectId = documents[0]._id;
 
         const updatedRecord = await targetModel.findOneAndUpdate(
-            { _id: new mongoose.Types.ObjectId(ObjectId) }, 
+            { _id: new mongoose.Types.ObjectId(objectId) }, 
             await this.mappingService.mapSequelizeToMongoose(sourceModel, targetModel)(result), 
             { new: true } 
         );

@@ -11,7 +11,7 @@ import { Update } from './sync-services/update.service';
 import { SynchronizeModelsSqlToMongoose } from './sync-services/synchronizeModelsSqlToMongoose.service';
 import { SynchronizeModelsMongooseToSql } from './sync-services/synchronizeModelsMongooseToSql.service';
 import { UpdateDelete } from './sync-services/updatedelete.service';
-import { ChampMereService } from './decoratorServices/champ-mere.service';
+import { ChampMereService } from './decoratorServices/champ-mere/champ-mere.service';
 
 @Injectable()
 export class SyncroService {
@@ -71,9 +71,8 @@ export class SyncroService {
         
         return this.updateDeleteService.updatedelete(sequelizeModel,mongooseModel,priority)
     }
-    async test(sequelizeModel: SequelizeModel){
-        const instance=sequelizeModel._model
-        return  this.champmereservice.groupChampMereDataByTableFille(sequelizeModel as any);
+    async test(sequelizeModel: SequelizeModel, mongooseModel: MongooseModel<any>){
+        return  this.champmereservice.groupChampMereDataByTableFille(sequelizeModel,mongooseModel);
     }
       
 

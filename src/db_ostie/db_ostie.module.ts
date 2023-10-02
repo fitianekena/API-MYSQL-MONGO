@@ -27,6 +27,7 @@ import { AffilieService } from './service/affilie/affilie.service';
         MongooseModule.forRoot(process.env.MONGODB_URL+'db_ostie',{connectionName:'db_ostie'}),
         MongooseModule.forFeature([{name:Adherent.name,schema:AdherentSchema},{name:AffilieMongo.name,schema:AffilieSchema}],'db_ostie'),
         SequelizeModule.forRoot({
+          name:'db_ostie',
           dialect: 'mysql', 
           host: process.env.MYSQL_HOST,
           port: parseInt(process.env.MYSQL_PORT),

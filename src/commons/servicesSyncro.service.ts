@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Model as SequelizeModel } from 'sequelize';
+import { Sequelize, Model as SequelizeModel } from 'sequelize';
 import { Model as MongooseModel, Document } from 'mongoose';
 import { SyncroService } from "src/syncro.service";
 
@@ -64,6 +64,6 @@ export class ServicesSyncro<N extends MongooseModel<any>, M extends  SequelizeMo
         return await this.syncroService.updatedelete(this.sequelizeModel as any, this.mongooseModel, 'mongoose');
     }
     async test(){
-        return  await this.syncroService.test(this.sequelizeModel);
+        return  await this.syncroService.test(this.sequelizeModel as any,this.mongooseModel);
     }
 }

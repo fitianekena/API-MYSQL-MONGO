@@ -21,22 +21,31 @@ import { OstieModule } from './ostie/ostie.module';
 import { ServicesSyncro } from './commons/servicesSyncro.service';
 import { ServicesSyncroController } from './commons/servicesSyncroController.controller';
 import { ChampMere } from './decorators/champ-mere/champ-mere.decorator';
-import { ChampMereService } from './decoratorServices/champ-mere.service';
+import { ChampMereService } from './decoratorServices/champ-mere/champ-mere.service';
+import { DnsAffilie, DnsAffilieSchema } from './test-mongo/schema/dns-affilie.schema';
+import { DevtoolsModule } from '@nestjs/devtools-integration';
+import { ForeignKey } from 'sequelize-typescript';
+import { ForeignKeyService } from './decoratorServices/foreign_key/foreign-key.service';
 
 @Module({
   imports:[
-    ConfigModule.forRoot({isGlobal: true}),
+   ConfigModule.forRoot({isGlobal: true}),
     DbOstieModule,
     DbAmpasamadinikaModule,
     SyncServicesModule,
     DbTanjombato,
     DbBehoririka,
     Db24mklen,
-    OstieModule
+    OstieModule,
+    MongooseModule.forRoot(process.env.MONGODB_URL+'test', { connectionName: 'test' }),
+    MongooseModule.forFeature([
+      { name: DnsAffilie.name, schema: DnsAffilieSchema },
+    ], 'test'),
+    
     ],
   
   controllers: [AppController],
-  providers: [AppService,MappingService,SyncroService,UtilService,ServicesSyncro,Object,ServicesSyncroController,ChampMereService],
+  providers: [ForeignKeyService,AppService,MappingService,SyncroService,UtilService,ServicesSyncro,Object,ServicesSyncroController,ChampMereService],
   
 })
 export class AppModule { }

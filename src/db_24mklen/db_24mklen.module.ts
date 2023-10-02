@@ -38,6 +38,7 @@ import { ConfigModule } from '@nestjs/config';
     SyncServicesModule,
     MongooseModule.forRoot(process.env.MONGODB_URL+'db_24mklen', { connectionName: 'db_24mklen' }),
     SequelizeModule.forRoot({
+      name:'db_24mklen',
       dialect: 'mysql',
       host: process.env.MYSQL_HOST,
       port: parseInt(process.env.MYSQL_PORT),
