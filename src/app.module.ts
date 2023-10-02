@@ -27,6 +27,7 @@ import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { ForeignKey } from 'sequelize-typescript';
 import { ForeignKeyService } from './decoratorServices/foreign_key/foreign-key.service';
 import { MongoNamespace } from './test-mongo/schema/dns-affilie.schema';
+import { MongoNamespace as namespace} from './test-mongo/schema/ad-affilie.schema';
 import { ClassLoaderService } from './sync-services/classLoader.service';
 
 @Module({
@@ -42,6 +43,7 @@ import { ClassLoaderService } from './sync-services/classLoader.service';
     MongooseModule.forRoot(process.env.MONGODB_URL+'test', { connectionName: 'test' }),
     MongooseModule.forFeature([
       { name: MongoNamespace.DnsAffilie.name, schema: MongoNamespace.DnsAffilieSchema },
+      { name: MongoNamespace.Ad.name, schema: MongoNamespace.DnsAffilieSchema },
     ], 'test'),
     
     ],
