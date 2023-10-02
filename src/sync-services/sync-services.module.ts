@@ -11,11 +11,14 @@ import { UpdateDelete } from './updatedelete.service';
 import { ChampMereService } from 'src/decoratorServices/champ-mere/champ-mere.service';
 import { ForeignKeyService } from 'src/decoratorServices/foreign_key/foreign-key.service';
 import { ClassLoaderService } from './classLoader.service';
-import { GettingIdMongoService } from 'src/decoratorServices/gettingIdMongoService.service';
+
+import { ExtractionService } from './extraction.service';
+import { GettingIdMongoService } from './gettingIdMongoService.service';
+import { SavingOnMongoService } from './savingOnMongo.service';
 
 @Module({
-    providers:[GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
-    exports:[GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete]
+    providers:[ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
+    exports:[ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete]
 })
 export class SyncServicesModule {
     

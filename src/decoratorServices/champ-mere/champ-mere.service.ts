@@ -8,9 +8,10 @@ import { Model as SequelizeModel } from 'sequelize';
 import { ForeignKeyService } from '../foreign_key/foreign-key.service';
 import { ClassLoaderService } from 'src/sync-services/classLoader.service';
 import { MongoNamespace } from 'src/test-mongo/schema/dns-affilie.schema';
-import { GettingIdMongoService } from '../gettingIdMongoService.service';
-import { ExtractionService } from '../extraction.service';
-import { SavingOnMongoService } from '../savingOnMongo.service';
+
+import { SavingOnMongoService } from '../../sync-services/savingOnMongo.service';
+import { ExtractionService } from 'src/sync-services/extraction.service';
+import { GettingIdMongoService } from 'src/sync-services/gettingIdMongoService.service';
 @Injectable()
 export class ChampMereService {
   constructor(
@@ -57,7 +58,6 @@ export class ChampMereService {
       
         for (let y = 0; y < donnees.length; y++) {
           this.savingOnMongo.savingOnMongo(result[index].tablefille,donnees[y],this.connection)
-          
         }
         
       

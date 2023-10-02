@@ -1,10 +1,11 @@
 import {  Model as MongooseModel} from "mongoose";
 import { ClassLoaderService } from "src/sync-services/classLoader.service";
 import { MongoNamespace } from "src/test-mongo/schema/dns-affilie.schema";
-import { ForeignKeyService } from "./foreign_key/foreign-key.service";
+
 import { Model as SequelizeModel} from "sequelize";
 import { GettingIdMongoService } from "./gettingIdMongoService.service";
 import { Injectable } from "@nestjs/common";
+import { ForeignKeyService } from "src/decoratorServices/foreign_key/foreign-key.service";
 
 @Injectable()
 export class ExtractionService{
