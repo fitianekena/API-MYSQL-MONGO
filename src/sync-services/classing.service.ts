@@ -1,15 +1,18 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AdAffilie } from 'src/test-mongo/schema/ad-affilie.schema';
+import { Centre } from 'src/test-mongo/schema/centre.schema';
 import { DnsAffilie } from 'src/test-mongo/schema/dns-affilie.schema';
 
 @Injectable()
 export class ClassingService {
     constructor(
         @Inject('DnsAffilie')private readonly dnsAffilie:DnsAffilie,
-        @Inject('AdAffilie')private readonly adAffilie:AdAffilie
+        @Inject('AdAffilie')private readonly adAffilie:AdAffilie,
+        @Inject('Centre')private readonly centre:Centre,
     ){
         this.addClass('DnsAffilie',DnsAffilie);
-        this.addClass('AdAffilie',AdAffilie)
+        this.addClass('AdAffilie',AdAffilie);
+        this.addClass('Centre',Centre);
     }
    public classMap: Record<string, any> = {};
 

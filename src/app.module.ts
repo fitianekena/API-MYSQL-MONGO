@@ -30,6 +30,7 @@ import { ForeignKeyService } from './decoratorServices/foreign_key/foreign-key.s
 import { ClassLoaderService } from './sync-services/classLoader.service';
 import { DnsAffilie, DnsAffilieSchema } from './test-mongo/schema/dns-affilie.schema';
 import { AdAffilie, AdAffilieSchema } from './test-mongo/schema/ad-affilie.schema';
+import { Centre, CentreSchema } from './test-mongo/schema/centre.schema';
 
 
 @Module({
@@ -46,6 +47,7 @@ import { AdAffilie, AdAffilieSchema } from './test-mongo/schema/ad-affilie.schem
     MongooseModule.forFeature([
       { name: DnsAffilie.name, schema: DnsAffilieSchema },
       { name: AdAffilie.name, schema: AdAffilieSchema },
+      { name: Centre.name, schema: CentreSchema },
     ], 'test'),
     
     ],
