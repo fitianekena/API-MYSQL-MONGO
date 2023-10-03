@@ -42,7 +42,7 @@ import { AffilieController } from './controllers/affilie/affilie.controller';
   imports: [
     ConfigModule.forRoot(),
     SyncServicesModule,
-    MongooseModule.forRoot(process.env.MONGODB_URL+'db_behoririka', { connectionName: 'db_behoririka' }),
+    MongooseModule.forRoot(process.env.MONGODB_URL+'test', { connectionName: 'db_behoririka' }),
     SequelizeModule.forRoot({
       name:'db_behoririka',
       dialect: 'mysql',

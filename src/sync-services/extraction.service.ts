@@ -48,6 +48,7 @@ export class ExtractionService{
         
       
       for (const champMetadata of metadata) {
+        //Cas ou on reference un id par rapport a la table Mere
         if (champMetadata.tableMere == nomdelamere) {
           //Recuperer l'id dans mongodb de la table en question 
           const id = await this.gettingMongoIdService.getTheIdOfADocumentInTheMongoDatabase(sequelizeModel, mongooseModel, itemdata);
@@ -56,9 +57,12 @@ export class ExtractionService{
           //Essai recuperation de la table Mere Sequelize 
           const model:SequelizeModel=sequelizeModel.sequelize.model(champMetadata.tableMere);
         }
+        //Cas ou on reference un id par rapport a une autre table
         else  {
-          console.log(sequelizeModel.sequelize.model(champMetadata.tableMere))
-    
+          console.log(await sequelizeModel.sequelize.model(champMetadata.tableMere).findAll())
+          console.log(connection.model(champMetadata.tableMere))
+
+          
         }
       }
     }
