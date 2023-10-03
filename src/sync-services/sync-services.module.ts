@@ -15,10 +15,22 @@ import { ClassLoaderService } from './classLoader.service';
 import { ExtractionService } from './extraction.service';
 import { GettingIdMongoService } from './gettingIdMongoService.service';
 import { SavingOnMongoService } from './savingOnMongo.service';
+import { ClassingService } from './classing.service';
+import { DnsAffilie } from 'src/test-mongo/schema/dns-affilie.schema';
+import { AdAffilie } from 'src/test-mongo/schema/ad-affilie.schema';
 
 @Module({
-    providers:[ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
-    exports:[ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete]
+    providers:[
+        {
+            provide: 'DnsAffilie',
+            useValue: DnsAffilie,
+          },
+          {
+            provide: 'AdAffilie',
+            useValue: AdAffilie,
+          },
+    ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
+    exports:[ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete]
 })
 export class SyncServicesModule {
     

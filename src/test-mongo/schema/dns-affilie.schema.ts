@@ -8,8 +8,10 @@ import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
 
 @Schema()
-@Injectable()
 export class DnsAffilie extends Document {
+  constructor(){
+    super();
+  }
   @Prop()
   salaire_un: number;
 

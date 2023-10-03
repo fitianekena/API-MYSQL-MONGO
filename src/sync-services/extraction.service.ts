@@ -7,6 +7,8 @@ import { GettingIdMongoService } from "./gettingIdMongoService.service";
 import { Injectable } from "@nestjs/common";
 import { ForeignKeyService } from "src/decoratorServices/foreign_key/foreign-key.service";
 import { AppModule } from "src/app.module";
+import * as path from "path";
+import { ClassingService } from "./classing.service";
 
 @Injectable()
 export class ExtractionService{
@@ -14,6 +16,7 @@ export class ExtractionService{
         private readonly findClassService:ClassLoaderService,
         private readonly foreignKeyService:ForeignKeyService,
         private readonly gettingMongoIdService:GettingIdMongoService,
+        private readonly classingService:ClassingService,
     ){
 
     }
@@ -23,7 +26,9 @@ export class ExtractionService{
     // Recuperer les attributs de la classe cible 
     const model: any = connection.models[nomdumodele] as any as MongooseModel<Document>;
     const instance = new model();
-    const className: any = this.findClassService.findClassByClassName(nomdumodele, AppModule);
+
+    const className: any =await  this.classingService.getClass(nomdumodele);
+    console.log(className)
     
     // Recuperer le contenu de @ForeignKey de la table fille
     const metadata = await this.foreignKeyService.getAllForeignKeysInAModel(className);
@@ -39,6 +44,8 @@ export class ExtractionService{
         // Inserer le champ et recuperer la valeur du champ dans le data
         nouvelObjet[item.nomduchamp] = valeur;
       }));
+      if (metadata) {
+        
       
       for (const champMetadata of metadata) {
         if (champMetadata.tableMere == nomdelamere) {
@@ -54,6 +61,7 @@ export class ExtractionService{
     
         }
       }
+    }
     
       
       resultat.push(nouvelObjet);

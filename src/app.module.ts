@@ -50,7 +50,7 @@ import { AdAffilie, AdAffilieSchema } from './test-mongo/schema/ad-affilie.schem
     
     ],
   controllers: [AppController],
-  providers: [DnsAffilie,ForeignKeyService,ClassLoaderService,AppService,MappingService,SyncroService,UtilService,ServicesSyncro,Object,ServicesSyncroController,ChampMereService],
+  providers: [ForeignKeyService,ClassLoaderService,AppService,MappingService,SyncroService,UtilService,ServicesSyncro,Object,ServicesSyncroController,ChampMereService],
   
 })
 export class AppModule { }

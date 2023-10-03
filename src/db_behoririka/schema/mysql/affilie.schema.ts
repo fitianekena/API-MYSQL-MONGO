@@ -1,5 +1,6 @@
 import { Table, Model, Column, DataType, PrimaryKey } from 'sequelize-typescript';
 import { ChampMere } from 'src/decorators/champ-mere/champ-mere.decorator';
+import { AdAffilie } from 'src/test-mongo/schema/ad-affilie.schema';
 import { DnsAffilie } from 'src/test-mongo/schema/dns-affilie.schema';
 
 
@@ -44,36 +45,44 @@ export class Affilie extends Model<Affilie> {
   @Column({ type: DataType.INTEGER, defaultValue: 0, comment: "Le centre de rattachement par défaut de l'affilié" })
   aff_centreId: number;
 
+  @ChampMere(AdAffilie.name,'nom','STRING','aff_nom')
   @Column({ type: DataType.STRING(160), allowNull: true, })
   aff_nom: string | null;
 
+  @ChampMere(AdAffilie.name,'prenom','STRING','aff_prenom')
   @Column({ type: DataType.STRING(160), allowNull: true, })
   aff_prenom: string | null;
 
+  @ChampMere(AdAffilie.name,'sexe','STRING','aff_sexe')
   @Column({ type: DataType.STRING(50), allowNull: true, })
   aff_sexe: string | null;
-
+  @ChampMere(AdAffilie.name,'adresse','STRING','aff_adresse')
   @Column({ type: DataType.STRING(255), allowNull: true, })
   aff_adresse: string | null;
 
+  @ChampMere(AdAffilie.name,'date_de_naissance','STRING','aff_naissDate')
   @Column({ type: DataType.DATE, allowNull: true })
   aff_naissDate: Date | null;
-
+  @ChampMere(AdAffilie.name,'lieu_de_naissance','STRING','aff_naissLieu')
   @Column({ type: DataType.STRING(160), allowNull: true, })
   aff_naissLieu: string | null;
 
+  @ChampMere(AdAffilie.name,'cin_num','STRING','aff_cinNum')
   @Column({ type: DataType.STRING(50), allowNull: true, })
   aff_cinNum: string | null;
 
-  @Column({ type: DataType.DATE, allowNull: true })
+ 
+  @Column({ type: DataType.DATE })
   aff_cinDate: Date | null;
 
+  @ChampMere(AdAffilie.name,'cin_lieu_delivrance','STRING','aff_cinLieu')
   @Column({ type: DataType.STRING(25), allowNull: true, })
   aff_cinLieu: string | null;
-
+  @ChampMere(AdAffilie.name,'cin_lieu_delivrance','STRING','aff_situationFamilialeId')
   @Column({ type: DataType.INTEGER, defaultValue: 0 })
   aff_situationFamilialeId: number;
 
+  @ChampMere(AdAffilie.name,'nombre_enfant_charge','STRING','aff_nbrEnfant')
   @Column({ type: DataType.INTEGER, allowNull: true, comment: "nombre d'enfants" })
   aff_nbrEnfant: number | null;
 
@@ -88,7 +97,7 @@ export class Affilie extends Model<Affilie> {
 
   @Column({ type: DataType.STRING(25), allowNull: true, })
   aff_codePost: string | null;
-
+  @ChampMere(AdAffilie.name,'fonction','STRING','aff_fonction')
   @Column({ type: DataType.STRING(50), allowNull: true, })
   aff_fonction: string | null;
 
@@ -145,7 +154,7 @@ export class Affilie extends Model<Affilie> {
 
   @Column({ type: DataType.DATE, allowNull: true })
   affEmbauche_debaucheDate: Date | null;
-
+  @ChampMere(AdAffilie.name,'salaire_brut','STRING','affEmbauche_salaireBrut')
   @Column({ type: DataType.DECIMAL(10, 2), allowNull: true })
   affEmbauche_salaireBrut: number | null;
 
