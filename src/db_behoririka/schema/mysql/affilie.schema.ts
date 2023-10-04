@@ -97,7 +97,7 @@ export class Affilie extends Model<Affilie> {
 
   @Column({ type: DataType.STRING(25), allowNull: true, })
   aff_codePost: string | null;
-  @ChampMere(AdAffilie.name,'fonction','STRING','aff_fonction')
+  
   @Column({ type: DataType.STRING(50), allowNull: true, })
   aff_fonction: string | null;
 
@@ -158,6 +158,7 @@ export class Affilie extends Model<Affilie> {
   @Column({ type: DataType.DECIMAL(10, 2), allowNull: true })
   affEmbauche_salaireBrut: number | null;
 
+  @ChampMere(AdAffilie.name,'fonction','STRING','affEmbauche_fonction')
   @Column({ type: DataType.STRING(250), allowNull: true })
   affEmbauche_fonction: string | null;
 

@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { Sequelize, Model as SequelizeModel } from 'sequelize';
-import { Model as MongooseModel, Document } from 'mongoose';
+import { Model as MongooseModel, Document, Connection } from 'mongoose';
 import { SyncroService } from "src/syncro.service";
+import { InjectConnection } from "@nestjs/mongoose";
 
 @Injectable()
 export class ServicesSyncro<N extends MongooseModel<any>, M extends  SequelizeModel> {
@@ -10,7 +11,9 @@ export class ServicesSyncro<N extends MongooseModel<any>, M extends  SequelizeMo
         private readonly syncroService: SyncroService,
         public readonly sequelizeModel: M,
         public readonly mongooseModel: N,
-    ) {}
+    ) {
+        
+    }
 
     async synchronizeToMongoose() {
         
@@ -65,5 +68,8 @@ export class ServicesSyncro<N extends MongooseModel<any>, M extends  SequelizeMo
     }
     async test(){
         return  await this.syncroService.test(this.sequelizeModel as any,this.mongooseModel);
+    }
+    async migrateToGlobal(){
+        return  await this.syncroService.migrateToDbGlobal(this.sequelizeModel as any);
     }
 }

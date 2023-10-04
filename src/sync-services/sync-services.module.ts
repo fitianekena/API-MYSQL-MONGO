@@ -20,10 +20,13 @@ import { DnsAffilie } from 'src/test-mongo/schema/dns-affilie.schema';
 import { AdAffilie } from 'src/test-mongo/schema/ad-affilie.schema';
 import { Centre } from 'src/test-mongo/schema/centre.schema';
 import { Adherent } from 'src/test-mongo/schema/adherent.schema';
+import { MigrateToDbGlobalService } from './migrateToDbGlobalService.service';
+import { Fonction } from 'src/test-mongo/schema/fonction.schema';
 
 
 @Module({
     providers:[
+      MigrateToDbGlobalService,
         {
             provide: 'DnsAffilie',
             useValue: DnsAffilie,
@@ -40,8 +43,12 @@ import { Adherent } from 'src/test-mongo/schema/adherent.schema';
             provide: 'Adherent',
             useValue: Adherent,
           },
+          {
+            provide: 'Fonction',
+            useValue: Fonction,
+          },
     ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
-    exports:[ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete]
+    exports:[MigrateToDbGlobalService,ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete]
 })
 export class SyncServicesModule {
     

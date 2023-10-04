@@ -4,6 +4,7 @@ import { Document } from 'mongoose';
 import { Centre } from 'src/db_behoririka/schema/mongodb/centre.schema';
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
 import { Adherent } from './adherent.schema';
+import { Fonction } from './fonction.schema';
 
 
 
@@ -35,7 +36,7 @@ export class AdAffilie extends Document{
   adresse: string;
 
   @Prop()
-  date_de_naissance: Date;
+  date_de_naissance: String;
 
   @Prop()
   lieu_de_naissance: string;
@@ -52,6 +53,7 @@ export class AdAffilie extends Document{
   @Prop()
   cin_lieu_delivrance: string;
 
+  
   @Prop()
   fonction: string;
 

@@ -32,6 +32,8 @@ import { DnsAffilie, DnsAffilieSchema } from './test-mongo/schema/dns-affilie.sc
 import { AdAffilie, AdAffilieSchema } from './test-mongo/schema/ad-affilie.schema';
 import { Centre, CentreSchema } from './test-mongo/schema/centre.schema';
 import { Adherent, AdherentSchema } from './test-mongo/schema/adherent.schema';
+import { Fonction, FonctionSchema } from './test-mongo/schema/fonction.schema';
+
 
 
 @Module({
@@ -50,6 +52,8 @@ import { Adherent, AdherentSchema } from './test-mongo/schema/adherent.schema';
       { name: AdAffilie.name, schema: AdAffilieSchema },
       { name: Centre.name, schema: CentreSchema },
       { name: Adherent.name, schema: AdherentSchema },
+      { name: Fonction.name, schema: FonctionSchema },
+      
     ], 'test'),
     
     ],

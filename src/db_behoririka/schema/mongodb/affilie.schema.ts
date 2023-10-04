@@ -48,8 +48,8 @@ export class Affilie extends Document {
   @Prop({ type: String, default: null })
   aff_adresse: string | null;
 
-  @Prop({ type: Date, default: null })
-  aff_naissDate: Date | null;
+  @Prop({ type: String, default: null })
+  aff_naissDate: String | null;
 
   @Prop({ type: String, default: null })
   aff_naissLieu: string | null;
@@ -57,8 +57,8 @@ export class Affilie extends Document {
   @Prop({ type: String, default: null })
   aff_cinNum: string | null;
 
-  @Prop({ type: Date, default: null })
-  aff_cinDate: Date | null;
+  @Prop({ type: String, default: null })
+  aff_cinDate: String | null;
 
   @Prop({ type: String, default: null })
   aff_cinLieu: string | null;
@@ -105,8 +105,8 @@ export class Affilie extends Document {
   @Prop({ type: Number, allowNull: false })
   aff_doublon: number;
 
-  @Prop({ type: Date, allowNull: false })
-  aff_dateCreation: Date;
+  @Prop({ type: String, allowNull: false })
+  aff_dateCreation: String;
 
   @Prop({ type: Number, allowNull: false })
   aff_fusion: number;
@@ -132,11 +132,11 @@ export class Affilie extends Document {
   @Prop({ type: String,  })
   aff_persIpAdress: string;
 
-  @Prop({ type: Date, default: null })
-  affEmbauche_embauchedate: Date | null;
+  @Prop({ type: String, default: null })
+  affEmbauche_embauchedate: String | null;
 
-  @Prop({ type: Date, default: null })
-  affEmbauche_debaucheDate: Date | null;
+  @Prop({ type: String, default: null })
+  affEmbauche_debaucheDate: String | null;
 
   @Prop({ type: Number, default: null })
   affEmbauche_salaireBrut: number | null;
@@ -156,8 +156,8 @@ export class Affilie extends Document {
   @Prop({ type: String, default: null })
   affEmbauche_type: string | null;
 
-  @Prop({ type: Date, default: null })
-  affEmbauche_debaucheDateSaisie: Date | null;
+  @Prop({ type: String, default: null })
+  affEmbauche_debaucheDateSaisie: String | null;
 
   @Prop({ type: Number, default: null })
   affEmbauche_debauchePersId: number | null;
@@ -180,11 +180,11 @@ export class Affilie extends Document {
   @Prop({ type: String, default: null })
   affHist_motif: string | null;
 
-  @Prop({ type: Date, default: null })
-  affHist_date: Date | null;
+  @Prop({ type: String, default: null })
+  affHist_date: String | null;
 
-  @Prop({ type: Date, default: null })
-  affHist_dateSaisie: Date | null;
+  @Prop({ type: String, default: null })
+  affHist_dateSaisie: String | null;
 
   @Prop({ type: Number, default: null })
   affHist_persId: number | null;
@@ -192,14 +192,14 @@ export class Affilie extends Document {
   @Prop({ type: Number, default: null })
   affHist_certificatScolaire: number | null;
 
-  @Prop({ type: Date, default: null })
-  affHist_certificatScolaireDate: Date | null;
+  @Prop({ type: String, default: null })
+  affHist_certificatScolaireDate: String | null;
 
   @Prop({ type: String, default: null })
   affHist_obsCba: string | null;
 
-  @Prop({ type: Date, default: null })
-  affHist_dateObsCba: Date | null;
+  @Prop({ type: String, default: null })
+  affHist_dateObsCba: String | null;
 
   @Prop({ type: Number,  })
   affEmbauche_salaire1eremois: number;
