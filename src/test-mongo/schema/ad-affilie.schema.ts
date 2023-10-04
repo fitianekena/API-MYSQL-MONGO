@@ -3,10 +3,12 @@ import { Document } from 'mongoose';
 
 import { Centre } from 'src/db_behoririka/schema/mongodb/centre.schema';
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
+import { Adherent } from './adherent.schema';
 
 
 
-@Schema()
+
+@Schema({ collection: 'ad-affilie' })
 export class AdAffilie extends Document{
   @Prop()
   matricule: string;
@@ -65,12 +67,13 @@ export class AdAffilie extends Document{
   @Prop()
   statut: number;
 
-  @Prop()
-  adherent: string; // Assurez-vous que le type correspond au type ObjectId dans votre modèle
+  @ForeignKey(Centre.name,'centre','centre_id','aff_centreId')
+  @Prop({ type: 'ObjectId', ref: 'Centre' }) 
+  centre: string; 
 
-  @ForeignKey(Centre.name,'centre','centre_id')
-  @Prop()
-  centre: string; // Assurez-vous que le type correspond au type ObjectId dans votre modèle
+  @ForeignKey(Adherent.name,'adherent','code_adherent','affHist_adhId')
+  @Prop({ type: 'ObjectId', ref: 'Adherent' }) 
+  adherent: string;
 
   @Prop()
   createdAt: Date;

@@ -33,7 +33,7 @@ export class DnsAffilie extends Document {
   @Prop()
   part_travailleur: number;
 
-  @ForeignKey(Affilie.name,'affilie','aff_id')
+  @ForeignKey(Affilie.name,'affilie','aff_id','aff_id')
   @Prop({ type: 'ObjectId', ref: 'Affilie' }) 
   affilie: string;
 }

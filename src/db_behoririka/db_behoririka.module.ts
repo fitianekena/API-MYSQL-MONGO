@@ -37,6 +37,10 @@ import { Affilie as AffilieSql} from './schema/mysql/affilie.schema';
 import { Affilie as AffilieMongoDb, AffilieSchema} from './schema/mongodb/affilie.schema';
 import { AffilieService } from './service/affilie/affilie.service';
 import { AffilieController } from './controllers/affilie/affilie.controller';
+import {  Adherent as AdherentSql} from './schema/mysql/adherent.schema';
+import { Adherent as AdherentMongo, AdherentSchema} from './schema/mongodb/adherent.schema';
+import { AdherentController } from './controllers/adherent/adherent.controller';
+import { AdherentService } from './service/adherent/adherent.service';
 
 @Module({
   imports: [
@@ -51,7 +55,7 @@ import { AffilieController } from './controllers/affilie/affilie.controller';
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: 'db_behoririka',
-      models: [CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql,AffilieSql], // Vous pouvez ajuster cette option en fonction de vos besoins
+      models: [CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql,AffilieSql,AdherentSql], // Vous pouvez ajuster cette option en fonction de vos besoins
     }),
     MongooseModule.forFeature([
       { name: Centre.name, schema: CentreSchema },
@@ -59,7 +63,8 @@ import { AffilieController } from './controllers/affilie/affilie.controller';
       { name: FonctionMongo.name, schema: FonctionSchema },
       { name: VisiteaffilieMongo.name, schema: VisiteaffilieSchema },
       { name: ServiceMongo.name, schema: ServiceSchema },
-      { name: AffilieMongoDb.name, schema: AffilieSchema }
+      { name: AffilieMongoDb.name, schema: AffilieSchema },
+      { name: AdherentMongo.name, schema: AdherentSchema}
 
     ], 'db_behoririka')],
 
@@ -68,13 +73,14 @@ import { AffilieController } from './controllers/affilie/affilie.controller';
     FonctionController,
     VisiteAffilieController,
     CentreController,DbBehoririkaController,
-  AffilieController],
+  AffilieController,AdherentController],
     
   providers: [
     VisiteService,
     UtilService,
     MappingService,
     SyncroService,
+    AdherentService,
     {
       provide: 'SEQUELIZE',
       useValue: sequelize,
@@ -101,6 +107,10 @@ import { AffilieController } from './controllers/affilie/affilie.controller';
     {
       provide: 'AffilieSql',
       useValue: AffilieSql
+    },
+    {
+      provide: 'AdherentSql',
+      useValue: AdherentSql
     },
     AffilieService,
     PersonnelService,

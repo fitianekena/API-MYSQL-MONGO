@@ -11,6 +11,7 @@ interface ForeignKeydata {
   local:string,
   foreign:string,
   tableMere:any,
+  refcollect:any,
 
 }
 
@@ -18,7 +19,7 @@ interface ForeignKeydata {
 export const FOREIGNKEYDATA = Symbol('ForeignKeydata');
 
 // Définissez le decorator ChampMere
-function ForeignKey(tableMere:any,local:string,foreign:string) {
+function ForeignKey(tableMere:any,local:string,foreign:string,refcollect:any) {
   return (target: Document, propertyKey: string) => {
     if (!tableMere) {
       throw new Error(`La table parente  "${tableMere}" n'a pas été trouvée.`);
@@ -30,7 +31,7 @@ function ForeignKey(tableMere:any,local:string,foreign:string) {
     ) || [];
    
     // Ajoutez les nouvelles métadonnées
-    existingMetadata.push({ local,foreign,tableMere });
+    existingMetadata.push({ local,foreign,tableMere,refcollect });
     console.log(existingMetadata);
     console.log(target.constructor);
     // Enregistrez les métadonnées mises à jour pour la classe cible

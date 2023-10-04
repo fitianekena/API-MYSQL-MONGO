@@ -31,6 +31,7 @@ import { ClassLoaderService } from './sync-services/classLoader.service';
 import { DnsAffilie, DnsAffilieSchema } from './test-mongo/schema/dns-affilie.schema';
 import { AdAffilie, AdAffilieSchema } from './test-mongo/schema/ad-affilie.schema';
 import { Centre, CentreSchema } from './test-mongo/schema/centre.schema';
+import { Adherent, AdherentSchema } from './test-mongo/schema/adherent.schema';
 
 
 @Module({
@@ -48,6 +49,7 @@ import { Centre, CentreSchema } from './test-mongo/schema/centre.schema';
       { name: DnsAffilie.name, schema: DnsAffilieSchema },
       { name: AdAffilie.name, schema: AdAffilieSchema },
       { name: Centre.name, schema: CentreSchema },
+      { name: Adherent.name, schema: AdherentSchema },
     ], 'test'),
     
     ],

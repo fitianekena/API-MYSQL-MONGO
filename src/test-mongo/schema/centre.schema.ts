@@ -46,8 +46,6 @@ export class Centre {
 
   @Prop({ type: String })
   centre_database: string ;
-
-  
 }
 
 export const CentreSchema = SchemaFactory.createForClass(Centre);
