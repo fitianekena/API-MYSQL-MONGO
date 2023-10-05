@@ -24,6 +24,23 @@ async getTheIdOfADocumentInTheMongoDatabase(sequelizeModel:SequelizeModel,mongoo
     
     return  objectId;
 }
+ async getTheIdInTheMongoDatabase(sequelizeModel:SequelizeModel,mongooseModel:MongooseModel<any>,data:any){
+  const primaryKeyField = Object.keys((sequelizeModel as any).rawAttributes).find(
+      (key) => (sequelizeModel as any).rawAttributes[key].primaryKey
+  );
+  const primaryKeyValue = data.get(primaryKeyField);
+  const filter = {};
+  filter[primaryKeyField] = primaryKeyValue;
+  const documents = await mongooseModel.find(filter).exec();
+  if (documents) {
+    return  primaryKeyValue;
+  }else{
+    return
+  }
+ 
+  
+ 
+}
 async getTheIdinMongoNotKnowingTheSequelizeModel(connectionmongoose:any,data:any,tableMere:string,local:any,foreign:any,refcollect:any){
   const modelmongoose:Model<any>=connectionmongoose.model(tableMere);
   

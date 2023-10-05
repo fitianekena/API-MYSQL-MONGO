@@ -77,4 +77,38 @@ export class ExtractionService{
     return resultat;
     
       }
+      async extraireDonneesIdIhany(sequelizeModel, mongooseModel, result, data, nomdumodele, nomdelamere,connection): Promise<Record<string, any>[]> {
+        const resultat: any[] = [];
+    
+    // Recuperer les attributs de la classe cible 
+    const model: any = connection.models[nomdumodele] as any as MongooseModel<Document>;
+    const instance = new model();
+
+    const className: any =await  this.classingService.getClass(nomdumodele);
+    console.log(className)
+    
+    
+    let idlist:any[]=[]
+    // Boucler les données
+    await Promise.all(data.map(async (itemdata) => {
+      
+          
+          //Recuperer l'id dans mongodb de la table en question 
+          const id = await this.gettingMongoIdService.getTheIdInTheMongoDatabase(sequelizeModel, mongooseModel, itemdata); 
+          if (id) {
+            idlist.push(String(id))
+          }
+          
+        
+        
+      
+    }))
+    return idlist;
+      
+      
+    };
+    
+    
+    
+      
 }
