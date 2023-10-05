@@ -33,12 +33,23 @@ import { AdAffilie, AdAffilieSchema } from './test-mongo/schema/ad-affilie.schem
 import { Centre, CentreSchema } from './test-mongo/schema/centre.schema';
 import { Adherent, AdherentSchema } from './test-mongo/schema/adherent.schema';
 import { Fonction, FonctionSchema } from './test-mongo/schema/fonction.schema';
+import { GAdherent, GAdherentSchema } from './test-mongo/schema/g-adherent.schema';
+import { Activite, ActiviteSchema } from './test-mongo/schema/activite.schema';
+import { Carnet, CarnetSchema } from './test-mongo/schema/carnet.schema';
+import { DetRegl, DetReglSchema } from './test-mongo/schema/detregl.schema';
+import { Echeance, EcheanceSchema } from './test-mongo/schema/echeance.schema';
+import { Ecriture, EcritureSchema } from './test-mongo/schema/ecriture.schema';
+import { Hdec, HdecSchema } from './test-mongo/schema/hdec.schema';
+import { Recepdec, RecepdecSchema } from './test-mongo/schema/recepdec.schema';
+import { Reglemt, ReglemtSchema } from './test-mongo/schema/reglemt.schema';
+import { Statut, StatutSchema } from './test-mongo/schema/statut.schema';
+import { BoAffilie, BoAffilieSchema } from './test-mongo/schema/bo-affilie.schema';
 
 
 
 @Module({
-  imports:[
-   ConfigModule.forRoot({isGlobal: true}),
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     DbOstieModule,
     DbAmpasamadinikaModule,
     SyncServicesModule,
@@ -46,19 +57,29 @@ import { Fonction, FonctionSchema } from './test-mongo/schema/fonction.schema';
     DbBehoririka,
     Db24mklen,
     OstieModule,
-    MongooseModule.forRoot(process.env.MONGODB_URL+'test', { connectionName: 'test' }),
+    MongooseModule.forRoot(process.env.MONGODB_URL + 'global_test', { connectionName: 'test' }),
     MongooseModule.forFeature([
       { name: DnsAffilie.name, schema: DnsAffilieSchema },
       { name: AdAffilie.name, schema: AdAffilieSchema },
       { name: Centre.name, schema: CentreSchema },
       { name: Adherent.name, schema: AdherentSchema },
       { name: Fonction.name, schema: FonctionSchema },
-      
+      { name: GAdherent.name, schema: GAdherentSchema },
+      { name: Activite.name, schema: ActiviteSchema },
+      { name: Carnet.name, schema: CarnetSchema },
+      { name: DetRegl.name, schema: DetReglSchema },
+      { name: Echeance.name, schema: EcheanceSchema },
+      { name: Ecriture.name, schema: EcritureSchema },
+      { name: Hdec.name, schema: HdecSchema },
+      { name: Recepdec.name, schema: RecepdecSchema },
+      { name: Reglemt.name, schema: ReglemtSchema },
+      { name: Statut.name, schema: StatutSchema },
+      { name: BoAffilie.name, schema: BoAffilieSchema }
     ], 'test'),
-    
-    ],
+
+  ],
   controllers: [AppController],
-  providers: [ForeignKeyService,ClassLoaderService,AppService,MappingService,SyncroService,UtilService,ServicesSyncro,Object,ServicesSyncroController,ChampMereService],
-  
+  providers: [ForeignKeyService, ClassLoaderService, AppService, MappingService, SyncroService, UtilService, ServicesSyncro, Object, ServicesSyncroController, ChampMereService],
+
 })
 export class AppModule { }

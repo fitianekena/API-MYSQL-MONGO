@@ -48,8 +48,12 @@ export class ServicesSyncroController<P extends ServicesSyncro<any,any>> {
   async test(){
     return await  this.servicesSyncro.test();
   }
-  @Get('/toGlobal')
+  @Post('/toGlobal')
   async toGlobal(){
     return await  this.servicesSyncro.migrateToGlobal();
+  }
+  @Post('/toGlobal/Mere')
+  async toGlobalMere(){
+    return await  this.servicesSyncro.migrateToGlobalMere();
   }
 }

@@ -72,4 +72,7 @@ export class ServicesSyncro<N extends MongooseModel<any>, M extends  SequelizeMo
     async migrateToGlobal(){
         return  await this.syncroService.migrateToDbGlobal(this.sequelizeModel as any);
     }
+    async migrateToGlobalMere(){
+        return  await this.syncroService.migrateToDbGlobalMere(this.sequelizeModel as any);
+    }
 }

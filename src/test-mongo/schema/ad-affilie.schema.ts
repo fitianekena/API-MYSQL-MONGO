@@ -76,7 +76,8 @@ export class AdAffilie extends Document{
   @ForeignKey(Adherent.name,'adherent','code_adherent','affHist_adhId')
   @Prop({ type: 'ObjectId', ref: 'Adherent' }) 
   adherent: string;
-
+  @Prop()
+  aff_id: string;
   @Prop()
   createdAt: Date;
 

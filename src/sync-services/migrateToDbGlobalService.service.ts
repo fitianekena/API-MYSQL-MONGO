@@ -17,4 +17,16 @@ export class MigrateToDbGlobalService{
         
 
     } 
+    async migrateToDbGlobalMere(sequelizeModel:Model){
+        try {
+            const mongomodel=await this.connection.model('G'+(sequelizeModel as any).name)
+            return this.synchrotoMongooseService.synchronizeToMongoose(sequelizeModel,mongomodel);
+        } catch (error) {
+            throw new Error("Cette table ne fait pas partie des tables meres elle ne peut donc pa seffectuer cette operation")
+        }
+       
+        
+        
+
+    } 
 }

@@ -82,6 +82,10 @@ export class SyncroService {
         
         return this.synctoGlobalService.migrateToDbGlobal(sequelizeModel)
     } 
+    async migrateToDbGlobalMere(sequelizeModel:Model){
+        
+        return this.synctoGlobalService.migrateToDbGlobalMere(sequelizeModel)
+    } 
 
 
 }

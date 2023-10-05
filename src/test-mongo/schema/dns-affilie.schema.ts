@@ -6,6 +6,7 @@ import {AppModule as Namespace} from 'src/app.module';
 import { Centre } from 'src/db_behoririka/schema/mongodb/centre.schema';
 import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
+import { BoAffilie } from './bo-affilie.schema';
 
 @Schema()
 export class DnsAffilie extends Document {
@@ -33,8 +34,8 @@ export class DnsAffilie extends Document {
   @Prop()
   part_travailleur: number;
 
-  @ForeignKey(Affilie.name,'affilie','aff_id','aff_id')
-  @Prop({ type: 'ObjectId', ref: 'Affilie' }) 
+  @ForeignKey(BoAffilie.name,'affilie','aff_id','aff_id')
+  @Prop({ type: 'ObjectId', ref: 'BoAffilie' }) 
   affilie: string;
 }
 

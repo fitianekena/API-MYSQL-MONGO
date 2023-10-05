@@ -2,8 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { ChampMere } from 'src/decorators/champ-mere/champ-mere.decorator';
 
-@Schema({collection:'adherents'})
-export class Adherent {
+@Schema({collection:'g-adherents'})
+export class GAdherent {
   @Prop({ type: Number })
   adh_idIndex: number;
 
@@ -146,4 +146,4 @@ export class Adherent {
   adh_affValidation: number;
 }
 
-export const AdherentSchema = SchemaFactory.createForClass(Adherent);
+export const GAdherentSchema = SchemaFactory.createForClass(GAdherent);
