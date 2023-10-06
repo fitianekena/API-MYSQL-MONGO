@@ -4,6 +4,7 @@ import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
 import { BoAffilie } from './bo-affilie.schema';
 import { AdAffilie } from './ad-affilie.schema';
+import { Adherent } from './adherent.schema';
 
 @Schema()
 export class MedecinTravail extends Document {
@@ -21,7 +22,8 @@ export class MedecinTravail extends Document {
   @Prop({ type: 'ObjectId', ref: 'AdAffilie' })
   visiteEmbch_affIdLast: number;
 
-  @Prop({ type: String, default: null })
+  @ForeignKey(Adherent.name,'visiteEmbch_adhId','code_adherent','visiteEmbch_adhId')
+  @Prop({ type: 'ObjectId', ref: 'Adherent' })
   visiteEmbch_adhId: string | null;
 
   @Prop({ type: String })
