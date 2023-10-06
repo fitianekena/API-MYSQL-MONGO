@@ -33,11 +33,18 @@ import { Recepdec } from 'src/test-mongo/schema/recepdec.schema';
 import { Reglemt } from 'src/test-mongo/schema/reglemt.schema';
 import { Statut } from 'src/test-mongo/schema/statut.schema';
 import { BoAffilie } from 'src/test-mongo/schema/bo-affilie.schema';
+import { InsertionParTableFille } from './insertionParTablefille.service';
+import { InsertionParTableFilleUpdate } from './insertionParTablefilleUpdate.service';
+import { MigrateTableFille } from './migrateTableFille.service';
+import { MedecinTravail } from 'src/test-mongo/schema/medecintravail.schema';
 
 
 @Module({
     providers:[
       MigrateToDbGlobalService,
+      InsertionParTableFille,
+      InsertionParTableFilleUpdate,
+      MigrateTableFille,
         {
             provide: 'DnsAffilie',
             useValue: DnsAffilie,
@@ -102,8 +109,13 @@ import { BoAffilie } from 'src/test-mongo/schema/bo-affilie.schema';
             provide: 'BoAffilie',
             useValue: BoAffilie,
           },
+          {
+            provide: 'MedecinTravail',
+            useValue: MedecinTravail,
+          },
     ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
-    exports:[MigrateToDbGlobalService,ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete]
+    exports:[MigrateTableFille,InsertionParTableFille,
+      InsertionParTableFilleUpdate,MigrateToDbGlobalService,ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete]
 })
 export class SyncServicesModule {
     

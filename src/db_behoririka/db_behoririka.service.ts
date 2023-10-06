@@ -5,6 +5,7 @@ import { PersonnelService } from './service/personnel/personnel.service';
 import { ServiceService } from './service/service/service.service';
 import { CentreService } from './service/centre/centre.service';
 import { VisiteService } from './service/visite/visite.service';
+import { MedecinTravailService } from './service/medecintravail/medecintravail.service';
 @Injectable()
 export class DbBehoririkaService {
     constructor(
@@ -13,6 +14,7 @@ export class DbBehoririkaService {
         private readonly personnelService:PersonnelService,
         private readonly serviceService:ServiceService,
         private readonly visiteaffilieService:VisiteService,
+        private readonly essai:MedecinTravailService,
         
       ) {}
     async migrateallSqlToMongo(){

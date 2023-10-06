@@ -30,12 +30,15 @@ async getTheIdOfADocumentInTheMongoDatabase(sequelizeModel:SequelizeModel,mongoo
   );
   const primaryKeyValue = data.get(primaryKeyField);
   const filter = {};
-  filter[primaryKeyField] = primaryKeyValue;
+  filter[primaryKeyField]=primaryKeyValue;
   const documents = await mongooseModel.find(filter).exec();
-  if (documents) {
-    return  primaryKeyValue;
+
+  
+  if (documents[0]) {
+    return  documents[0][primaryKeyField];
   }else{
-    return
+    console.log(primaryKeyValue)
+    return 
   }
  
   

@@ -12,6 +12,7 @@ import { Ecriture } from 'src/test-mongo/schema/ecriture.schema';
 import { Fonction } from 'src/test-mongo/schema/fonction.schema';
 import { GAdherent } from 'src/test-mongo/schema/g-adherent.schema';
 import { Hdec } from 'src/test-mongo/schema/hdec.schema';
+import { MedecinTravail } from 'src/test-mongo/schema/medecintravail.schema';
 import { Recepdec } from 'src/test-mongo/schema/recepdec.schema';
 import { Reglemt } from 'src/test-mongo/schema/reglemt.schema';
 import { Statut } from 'src/test-mongo/schema/statut.schema';
@@ -31,6 +32,7 @@ export class ClassingService {
         @Inject('Echeance')private readonly echeance:Echeance,
         @Inject('Ecriture')private readonly ecriture:Ecriture,
         @Inject('Hdec')private readonly hdec:Hdec,
+        @Inject('MedecinTravail')private readonly medecintravail:MedecinTravail,
        
     ){
         this.addClass('DnsAffilie',DnsAffilie);
@@ -49,6 +51,7 @@ export class ClassingService {
         this.addClass('Hdec',Hdec);
         this.addClass('Statut',Statut);
         this.addClass('BoAffilie',BoAffilie);
+        this.addClass('MedecinTravail',MedecinTravail);
 
     }
    public classMap: Record<string, any> = {};

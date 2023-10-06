@@ -44,6 +44,10 @@ import { Recepdec, RecepdecSchema } from './test-mongo/schema/recepdec.schema';
 import { Reglemt, ReglemtSchema } from './test-mongo/schema/reglemt.schema';
 import { Statut, StatutSchema } from './test-mongo/schema/statut.schema';
 import { BoAffilie, BoAffilieSchema } from './test-mongo/schema/bo-affilie.schema';
+import { InsertionParTableFille } from './sync-services/insertionParTablefille.service';
+import { InsertionParTableFilleUpdate } from './sync-services/insertionParTablefilleUpdate.service';
+import { MigrateTableFille } from './sync-services/migrateTableFille.service';
+import { MedecinTravail, MedecinTravailSchema } from './test-mongo/schema/medecintravail.schema';
 
 
 
@@ -74,12 +78,14 @@ import { BoAffilie, BoAffilieSchema } from './test-mongo/schema/bo-affilie.schem
       { name: Recepdec.name, schema: RecepdecSchema },
       { name: Reglemt.name, schema: ReglemtSchema },
       { name: Statut.name, schema: StatutSchema },
-      { name: BoAffilie.name, schema: BoAffilieSchema }
+      { name: BoAffilie.name, schema: BoAffilieSchema },
+      { name: MedecinTravail.name, schema: MedecinTravailSchema }
     ], 'test'),
 
   ],
   controllers: [AppController],
-  providers: [ForeignKeyService, ClassLoaderService, AppService, MappingService, SyncroService, UtilService, ServicesSyncro, Object, ServicesSyncroController, ChampMereService],
-
+  providers: [
+    MigrateTableFille,ChampMereService,InsertionParTableFille,
+    InsertionParTableFilleUpdate,ForeignKeyService, ClassLoaderService, AppService, MappingService, SyncroService, UtilService, ServicesSyncro, Object, ServicesSyncroController, ChampMereService],
 })
 export class AppModule { }

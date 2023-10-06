@@ -81,11 +81,12 @@ export class ExtractionService{
         const resultat: any[] = [];
     
     // Recuperer les attributs de la classe cible 
-    const model: any = connection.models[nomdumodele] as any as MongooseModel<Document>;
+    const model: any = await connection.models[nomdumodele] as any as MongooseModel<Document>;
     const instance = new model();
 
     const className: any =await  this.classingService.getClass(nomdumodele);
-    console.log(className)
+    const metadata = await this.foreignKeyService.getAllForeignKeysInAModel(className);
+    //console.log(className)
     
     
     let idlist:any[]=[]
@@ -94,7 +95,7 @@ export class ExtractionService{
       
           
           //Recuperer l'id dans mongodb de la table en question 
-          const id = await this.gettingMongoIdService.getTheIdInTheMongoDatabase(sequelizeModel, mongooseModel, itemdata); 
+          const id = await this.gettingMongoIdService.getTheIdInTheMongoDatabase(sequelizeModel, model, itemdata); 
           if (id) {
             idlist.push(String(id))
           }

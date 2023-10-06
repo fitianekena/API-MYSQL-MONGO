@@ -23,7 +23,7 @@ export class ClassLoaderService {
         const filePath = path.join(folderPath, file);
 
         const stats = fs.statSync(filePath);
-        console.log("bisous")
+        //console.log("bisous")
         if (stats.isFile() && filePath.endsWith('.ts')) {
           // If it's a TypeScript file, try to load the class.
           try {

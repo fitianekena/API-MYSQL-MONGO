@@ -14,6 +14,7 @@ export class Affilie extends Model<Affilie> {
 
   @PrimaryKey
   @Column({ type: DataType.BIGINT })
+  @ChampMere(DnsAffilie.name,'aff_id','STRING','aff_id')
   @ChampMere(AdAffilie.name,'aff_id','STRING','aff_id')
   @ChampMere(BoAffilie.name,'aff_id','STRING','aff_id')
   aff_id: number;

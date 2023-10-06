@@ -44,9 +44,13 @@ export class ServicesSyncroController<P extends ServicesSyncro<any,any>> {
   async updateDeleteMongoToSql(): Promise<any> {
     return this.servicesSyncro.updatedeleteMongo();
   }
-  @Get('test')
-  async test(){
-    return await  this.servicesSyncro.test();
+  @Get('/migrateTableFille')
+  async migrateTableFilleToGlobalFunction(){
+    return await  this.servicesSyncro.migrateTableFilleToGlobalFunction();
+  }
+  @Put('/migrateTableFille')
+  async updateTableFilleToGlobalFunction(){
+    return await  this.servicesSyncro.updateTableFilleToGlobalFunction();
   }
   @Post('/toGlobal')
   async toGlobal(){

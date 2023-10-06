@@ -37,6 +37,8 @@ export class DnsAffilie extends Document {
   @ForeignKey(BoAffilie.name,'affilie','aff_id','aff_id')
   @Prop({ type: 'ObjectId', ref: 'BoAffilie' }) 
   affilie: string;
+  @Prop()
+  aff_id: string;
 }
 
 export const DnsAffilieSchema = SchemaFactory.createForClass( DnsAffilie);

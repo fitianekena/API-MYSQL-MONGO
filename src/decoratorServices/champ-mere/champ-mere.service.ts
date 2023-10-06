@@ -12,6 +12,9 @@ import { ClassLoaderService } from 'src/sync-services/classLoader.service';
 import { SavingOnMongoService } from '../../sync-services/savingOnMongo.service';
 import { ExtractionService } from 'src/sync-services/extraction.service';
 import { GettingIdMongoService } from 'src/sync-services/gettingIdMongoService.service';
+import { Update } from 'src/sync-services/update.service';
+import { InsertionParTableFilleUpdate } from 'src/sync-services/insertionParTablefilleUpdate.service';
+import { InsertionParTableFille } from 'src/sync-services/insertionParTablefille.service';
 @Injectable()
 export class ChampMereService {
   constructor(
@@ -21,8 +24,11 @@ export class ChampMereService {
     private readonly getIdMongoService: GettingIdMongoService,
     private readonly extractionService:ExtractionService,
     private readonly savingOnMongo:SavingOnMongoService,
+    private readonly insertionParTableFilleUpdate:InsertionParTableFilleUpdate,
+    private readonly insertionParTableFille:InsertionParTableFille,
   ) { }
 
+  
   
   async groupChampMereDataByTableFille(dynamicModel: SequelizeModel, modelMongoose: MongooseModel<any>) {
     //Recuperation de tous les donnes chez Sql
@@ -51,70 +57,11 @@ export class ChampMereService {
     for (const [tableFille, metadataArray] of groupedMetadata) {
       result.push({ tablefille: tableFille, metadata: this.filtrerDonnees(metadataArray) });
     }
-    //recuperation all data 
-    return await this.insertionParTableFilleUpdate(dynamicModel,modelMongoose,result,this.connection,data);
+    //console.log({dynamicModel:dynamicModel,modelMongoose:modelMongoose,result:result,data:data})
+    return {dynamicModel:dynamicModel,modelMongoose:modelMongoose,result:result,data:data}
   }
 
-  //Fonction pour l'insertion des donnes table filles 
-  async insertionParTableFille(dynamicModel:any,modelMongoose:any,result:any,connection:any,data:any){
-    
-    const alldata: { tablefille: any, data: any[] }[] = [];
-    //boucler les tables filles 
-    for (let index = 0; index < result.length; index++) {
-      //Creer les donnees qui s'apparente a la tableMere 
-      //l'ajouter au tableau
-      //const idlist=await  this.extractionService.extraireDonneesIdIhany(dynamicModel, modelMongoose, result[index].metadata, data, result[index].tablefille, (dynamicModel as any).name,connection) ;
-      
-      const donnees=await this.extractionService.extraireDonnees(dynamicModel, modelMongoose, result[index].metadata, data, result[index].tablefille, (dynamicModel as any).name,connection) ;
-      
-      alldata.push({ tablefille: result[index].tablefille, data: await donnees });
-        
-        for (let y = 0; y < donnees.length; y++) {
-          //Sauvegarder avec la fonction de saving 
-          this.savingOnMongo.savingOnMongo(result[index].tablefille,donnees[y],this.connection)
-        }
-        
-      
-    }
-    
-  }
-  async insertionParTableFilleUpdate(dynamicModel:any,modelMongoose:any,result:any,connection:any,data:any){
-    
-    const alldata: { tablefille: any, data: any[] }[] = [];
-    //boucler les tables filles 
-    for (let index = 0; index < result.length; index++) {
-      //Creer les donnees qui s'apparente a la tableMere 
-      //l'ajouter au tableau
-      const idlist=await  this.extractionService.extraireDonneesIdIhany(dynamicModel, modelMongoose, result[index].metadata, data, result[index].tablefille, (dynamicModel as any).name,connection) ;
-      
-      const primaryKeyField = Object.keys((dynamicModel as any).rawAttributes).find(
-        (key) => (dynamicModel as any).rawAttributes[key].primaryKey
-    );
-    const data2=await dynamicModel.findAll({
-      where: {
-        [primaryKeyField]: {
-
-          [Op.notIn]: idlist,
-        },
-      },
-    });
-    console.log(data2)
-      //const donnees=await this.extractionService.extraireDonnees(dynamicModel, modelMongoose, result[index].metadata, data2, result[index].tablefille, (dynamicModel as any).name,connection) ;
-     
-      //alldata.push({ tablefille: result[index].tablefille, data: await donnees });
-       
-        // for (let y = 0; y < donnees.length; y++) {
-        //   //Sauvegarder avec la fonction de saving 
-        //   this.savingOnMongo.savingOnMongo(result[index].tablefille,donnees[y],this.connection)
-        // }
-        
-      
-    }
-    
-  }
-
-
-
+  
   
   filtrerDonnees(donnees): any[] {
     return donnees.map((item) => {

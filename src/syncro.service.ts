@@ -15,6 +15,7 @@ import { ChampMereService } from './decoratorServices/champ-mere/champ-mere.serv
 import { InjectConnection } from '@nestjs/mongoose';
 import { Model } from 'sequelize-typescript';
 import { MigrateToDbGlobalService } from './sync-services/migrateToDbGlobalService.service';
+import { MigrateTableFille } from './sync-services/migrateTableFille.service';
 
 @Injectable()
 export class SyncroService {
@@ -29,7 +30,8 @@ export class SyncroService {
         private readonly synchronizeModelsSqlToMongooseService:SynchronizeModelsSqlToMongoose,
         private readonly synchronizeModelsMongooseToSqlService:SynchronizeModelsMongooseToSql,
         private readonly updateDeleteService:UpdateDelete,
-        private readonly synctoGlobalService:MigrateToDbGlobalService,) { }
+        private readonly synctoGlobalService:MigrateToDbGlobalService,
+        private readonly migrateTableFilleToGlobal:MigrateTableFille) { }
 
     async synchronizeToMongoose(
         sequelizeModel: SequelizeModel,
@@ -75,8 +77,11 @@ export class SyncroService {
         
         return this.updateDeleteService.updatedelete(sequelizeModel,mongooseModel,priority)
     }
-    async test(sequelizeModel: SequelizeModel, mongooseModel: MongooseModel<any>){
-        return  this.champmereservice.groupChampMereDataByTableFille(sequelizeModel,mongooseModel);
+    async migrateTableFilleToGlobalFunction(sequelizeModel: SequelizeModel, mongooseModel: MongooseModel<any>){
+        return await  this.migrateTableFilleToGlobal.migrateToGlobalTableFille(sequelizeModel,mongooseModel);
+    }
+    async updateTableFilleToGlobalFunction(sequelizeModel: SequelizeModel, mongooseModel: MongooseModel<any>){
+        return await  this.migrateTableFilleToGlobal.updateToGlobalTableFille(sequelizeModel,mongooseModel);
     }
     async migrateToDbGlobal(sequelizeModel:Model){
         

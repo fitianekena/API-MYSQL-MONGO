@@ -32,13 +32,10 @@ function ForeignKey(tableMere:any,local:string,foreign:string,refcollect:any) {
    
     // Ajoutez les nouvelles métadonnées
     existingMetadata.push({ local,foreign,tableMere,refcollect });
-    console.log(existingMetadata);
-    console.log(target.constructor);
+    //console.log(existingMetadata);
+    //console.log(target.constructor);
     // Enregistrez les métadonnées mises à jour pour la classe cible
     Reflect.defineMetadata(FOREIGNKEYDATA, existingMetadata,target.constructor);
-    
-
-    
   };
 }
 

@@ -41,6 +41,11 @@ import {  Adherent as AdherentSql} from './schema/mysql/adherent.schema';
 import { Adherent as AdherentMongo, AdherentSchema} from './schema/mongodb/adherent.schema';
 import { AdherentController } from './controllers/adherent/adherent.controller';
 import { AdherentService } from './service/adherent/adherent.service';
+import { MedecinTravail as MedecinTravailSql} from './schema/mysql/medecintravail.schema';
+import { MedecinTravail as MedecinTravailMongo, MedecinTravailSchema} from './schema/mongodb/medecintravail.schema';
+import { MedecinTravailService } from './service/medecintravail/medecintravail.service';
+import { MedecinTravailController } from './controllers/medecintravail/medecintravail.controller';
+
 
 @Module({
   imports: [
@@ -55,7 +60,7 @@ import { AdherentService } from './service/adherent/adherent.service';
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: 'db_behoririka',
-      models: [CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql,AffilieSql,AdherentSql], // Vous pouvez ajuster cette option en fonction de vos besoins
+      models: [CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql,AffilieSql,AdherentSql,MedecinTravailSql], // Vous pouvez ajuster cette option en fonction de vos besoins
     }),
     MongooseModule.forFeature([
       { name: Centre.name, schema: CentreSchema },
@@ -64,8 +69,8 @@ import { AdherentService } from './service/adherent/adherent.service';
       { name: VisiteaffilieMongo.name, schema: VisiteaffilieSchema },
       { name: ServiceMongo.name, schema: ServiceSchema },
       { name: AffilieMongoDb.name, schema: AffilieSchema },
-      { name: AdherentMongo.name, schema: AdherentSchema}
-
+      { name: AdherentMongo.name, schema: AdherentSchema},
+      { name: MedecinTravailMongo.name, schema: MedecinTravailSchema}
     ], 'db_behoririka')],
 
   controllers: [PersonnelController,
@@ -73,9 +78,12 @@ import { AdherentService } from './service/adherent/adherent.service';
     FonctionController,
     VisiteAffilieController,
     CentreController,DbBehoririkaController,
-  AffilieController,AdherentController],
+  AffilieController,AdherentController,
+  MedecinTravailController,
+  ],
     
   providers: [
+    
     VisiteService,
     UtilService,
     MappingService,
@@ -112,13 +120,17 @@ import { AdherentService } from './service/adherent/adherent.service';
       provide: 'AdherentSql',
       useValue: AdherentSql
     },
+    {
+      provide: 'MedecinTravailSql',
+      useValue: MedecinTravailSql
+    },
     AffilieService,
     PersonnelService,
     ServiceService,
     FonctionService,
-    CentreService,DbBehoririkaService
+    CentreService,DbBehoririkaService,MedecinTravailService,
   ],
-  exports: [MongooseModule,VisiteService,
+  exports: [ MedecinTravailService,MongooseModule,VisiteService,
     UtilService,
     MappingService,
     SyncroService,
@@ -144,6 +156,10 @@ import { AdherentService } from './service/adherent/adherent.service';
     {
       provide: 'ServiceSql',
       useValue: ServiceSql
+    },
+    {
+      provide: 'MedecinTravailSql',
+      useValue: MedecinTravailSql
     },
     PersonnelService,
     ServiceService,
