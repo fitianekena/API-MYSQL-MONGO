@@ -48,6 +48,7 @@ import { InsertionParTableFille } from './sync-services/insertionParTablefille.s
 import { InsertionParTableFilleUpdate } from './sync-services/insertionParTablefilleUpdate.service';
 import { MigrateTableFille } from './sync-services/migrateTableFille.service';
 import { MedecinTravail, MedecinTravailSchema } from './test-mongo/schema/medecintravail.schema';
+import { Ordonnance, OrdonnanceSchema } from './test-mongo/schema/ordonnance.schema';
 
 
 
@@ -79,7 +80,8 @@ import { MedecinTravail, MedecinTravailSchema } from './test-mongo/schema/medeci
       { name: Reglemt.name, schema: ReglemtSchema },
       { name: Statut.name, schema: StatutSchema },
       { name: BoAffilie.name, schema: BoAffilieSchema },
-      { name: MedecinTravail.name, schema: MedecinTravailSchema }
+      { name: MedecinTravail.name, schema: MedecinTravailSchema },
+      { name: Ordonnance.name, schema: OrdonnanceSchema }
     ], 'test'),
 
   ],

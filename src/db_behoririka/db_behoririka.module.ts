@@ -33,34 +33,37 @@ import { VisiteService } from './service/visite/visite.service';
 import { DbBehoririkaService } from './db_behoririka.service';
 import { DbBehoririkaController } from './db_behoririka.controller';
 import { ConfigModule } from '@nestjs/config';
-import { Affilie as AffilieSql} from './schema/mysql/affilie.schema';
-import { Affilie as AffilieMongoDb, AffilieSchema} from './schema/mongodb/affilie.schema';
+import { Affilie as AffilieSql } from './schema/mysql/affilie.schema';
+import { Affilie as AffilieMongoDb, AffilieSchema } from './schema/mongodb/affilie.schema';
 import { AffilieService } from './service/affilie/affilie.service';
 import { AffilieController } from './controllers/affilie/affilie.controller';
-import {  Adherent as AdherentSql} from './schema/mysql/adherent.schema';
-import { Adherent as AdherentMongo, AdherentSchema} from './schema/mongodb/adherent.schema';
+import { Adherent as AdherentSql } from './schema/mysql/adherent.schema';
+import { Adherent as AdherentMongo, AdherentSchema } from './schema/mongodb/adherent.schema';
 import { AdherentController } from './controllers/adherent/adherent.controller';
 import { AdherentService } from './service/adherent/adherent.service';
-import { MedecinTravail as MedecinTravailSql} from './schema/mysql/medecintravail.schema';
-import { MedecinTravail as MedecinTravailMongo, MedecinTravailSchema} from './schema/mongodb/medecintravail.schema';
+import { MedecinTravail as MedecinTravailSql } from './schema/mysql/medecintravail.schema';
+import { MedecinTravail as MedecinTravailMongo, MedecinTravailSchema } from './schema/mongodb/medecintravail.schema';
 import { MedecinTravailService } from './service/medecintravail/medecintravail.service';
 import { MedecinTravailController } from './controllers/medecintravail/medecintravail.controller';
+import { Ordonnance as OrdonnanceSql } from './schema/mysql/ordonnance.schema';
+import { Ordonnance as OrdonnanceMongo, OrdonnanceSchema } from './schema/mongodb/ordonnance.schema';
+import { OrdonnanceService } from './service/ordonnance/ordonnance.service';
 
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     SyncServicesModule,
-    MongooseModule.forRoot(process.env.MONGODB_URL+'test', { connectionName: 'db_behoririka' }),
+    MongooseModule.forRoot(process.env.MONGODB_URL + 'test', { connectionName: 'db_behoririka' }),
     SequelizeModule.forRoot({
-      name:'db_behoririka',
+      name: 'db_behoririka',
       dialect: 'mysql',
       host: process.env.MYSQL_HOST,
       port: parseInt(process.env.MYSQL_PORT),
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: 'db_behoririka',
-      models: [CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql,AffilieSql,AdherentSql,MedecinTravailSql], // Vous pouvez ajuster cette option en fonction de vos besoins
+      models: [OrdonnanceSql, CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql, AffilieSql, AdherentSql, MedecinTravailSql], // Vous pouvez ajuster cette option en fonction de vos besoins
     }),
     MongooseModule.forFeature([
       { name: Centre.name, schema: CentreSchema },
@@ -69,21 +72,22 @@ import { MedecinTravailController } from './controllers/medecintravail/medecintr
       { name: VisiteaffilieMongo.name, schema: VisiteaffilieSchema },
       { name: ServiceMongo.name, schema: ServiceSchema },
       { name: AffilieMongoDb.name, schema: AffilieSchema },
-      { name: AdherentMongo.name, schema: AdherentSchema},
-      { name: MedecinTravailMongo.name, schema: MedecinTravailSchema}
+      { name: AdherentMongo.name, schema: AdherentSchema },
+      { name: MedecinTravailMongo.name, schema: MedecinTravailSchema },
+      { name: OrdonnanceMongo.name, schema: OrdonnanceSchema }
     ], 'db_behoririka')],
 
   controllers: [PersonnelController,
     ServiceController,
     FonctionController,
     VisiteAffilieController,
-    CentreController,DbBehoririkaController,
-  AffilieController,AdherentController,
-  MedecinTravailController,
+    CentreController, DbBehoririkaController,
+    AffilieController, AdherentController,
+    MedecinTravailController,
   ],
-    
+
   providers: [
-    
+    OrdonnanceService,
     VisiteService,
     UtilService,
     MappingService,
@@ -124,13 +128,21 @@ import { MedecinTravailController } from './controllers/medecintravail/medecintr
       provide: 'MedecinTravailSql',
       useValue: MedecinTravailSql
     },
+    {
+      provide: 'OrdonnanceSql',
+      useValue: OrdonnanceSql
+    },
     AffilieService,
     PersonnelService,
     ServiceService,
     FonctionService,
-    CentreService,DbBehoririkaService,MedecinTravailService,
+    CentreService, DbBehoririkaService, MedecinTravailService,
   ],
-  exports: [ MedecinTravailService,MongooseModule,VisiteService,
+  exports: [
+    OrdonnanceService,
+    MedecinTravailService,
+    MongooseModule,
+    VisiteService,
     UtilService,
     MappingService,
     SyncroService,
@@ -161,10 +173,14 @@ import { MedecinTravailController } from './controllers/medecintravail/medecintr
       provide: 'MedecinTravailSql',
       useValue: MedecinTravailSql
     },
+    {
+      provide: 'OrdonnanceSql',
+      useValue: OrdonnanceSql
+    },
     PersonnelService,
     ServiceService,
     FonctionService,
-    CentreService,DbBehoririkaService]
+    CentreService, DbBehoririkaService]
 })
 export class DbBehoririka {
 

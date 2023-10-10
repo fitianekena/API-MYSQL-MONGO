@@ -37,6 +37,7 @@ import { InsertionParTableFille } from './insertionParTablefille.service';
 import { InsertionParTableFilleUpdate } from './insertionParTablefilleUpdate.service';
 import { MigrateTableFille } from './migrateTableFille.service';
 import { MedecinTravail } from 'src/test-mongo/schema/medecintravail.schema';
+import { Ordonnance } from 'src/test-mongo/schema/ordonnance.schema';
 
 
 @Module({
@@ -112,6 +113,10 @@ import { MedecinTravail } from 'src/test-mongo/schema/medecintravail.schema';
           {
             provide: 'MedecinTravail',
             useValue: MedecinTravail,
+          },
+          {
+            provide: 'Ordonnance',
+            useValue: Ordonnance,
           },
     ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
     exports:[MigrateTableFille,InsertionParTableFille,
