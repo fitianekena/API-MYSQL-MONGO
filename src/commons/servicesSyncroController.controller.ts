@@ -6,7 +6,7 @@ import { Model as SequelizeModel } from 'sequelize';
 import { Model as MongooseModel, Document } from 'mongoose';
 
 
-export class ServicesSyncroController<P extends ServicesSyncro<any,any>> {
+export class ServicesSyncroController<P extends ServicesSyncro<any,any,any>> {
     constructor(
         private readonly servicesSyncro:P,
     ){
@@ -44,13 +44,22 @@ export class ServicesSyncroController<P extends ServicesSyncro<any,any>> {
   async updateDeleteMongoToSql(): Promise<any> {
     return this.servicesSyncro.updatedeleteMongo();
   }
-  @Get('/migrateTableFille')
+  @Get('/migrateTableFille/toGlobal')
   async migrateTableFilleToGlobalFunction(){
     return await  this.servicesSyncro.migrateTableFilleToGlobalFunction();
   }
-  @Put('/migrateTableFille')
+  @Get('/migrateTableFille')
+  async migrateTableFille(){
+    return await  this.servicesSyncro.migrateTableFilleNormalFunction();
+  }
+
+  @Put('/migrateTableFille/toGlobal')
   async updateTableFilleToGlobalFunction(){
     return await  this.servicesSyncro.updateTableFilleToGlobalFunction();
+  }
+  @Put('/migrateTableFille')
+  async updateTableFille(){
+    return await  this.servicesSyncro.updateTableFilleNormalFunction();
   }
   @Post('/toGlobal')
   async toGlobal(){

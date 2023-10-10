@@ -67,6 +67,12 @@ export class ServicesSyncro<N extends MongooseModel<any>, M extends  SequelizeMo
         
         return await this.syncroService.updatedelete(this.sequelizeModel as any, this.mongooseModel, 'mongoose');
     }
+    async migrateTableFilleNormalFunction(){
+        return  await this.syncroService.migrateTableFilleFunction(this.sequelizeModel as any,this.mongooseModel,this.mongooseconnection);
+    }
+    async updateTableFilleNormalFunction(){
+        return  await this.syncroService.updateTableFilleFunction(this.sequelizeModel as any,this.mongooseModel,this.mongooseconnection);
+    }
     async migrateTableFilleToGlobalFunction(){
         return  await this.syncroService.migrateTableFilleToGlobalFunction(this.sequelizeModel as any,this.mongooseModel);
     }

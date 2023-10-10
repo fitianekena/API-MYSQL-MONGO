@@ -13,7 +13,7 @@ export class InsertionParTableFilleUpdate{
      ){
 
      }
-    async insertionParTableFilleUpdate(dynamicModel:any,modelMongoose:any,result:any,data:any){
+    async insertionParTableFilleUpdate(dynamicModel:any,modelMongoose:any,result:any,data:any,connection:any){
     
         const alldata: { tablefille: any, data: any[] }[] = [];
         let nombredemiseajour=0;
@@ -21,7 +21,7 @@ export class InsertionParTableFilleUpdate{
         for (let index = 0; index < result.length; index++) {
           //Creer les donnees qui s'apparente a la tableMere 
           //l'ajouter au tableau
-          const idlist=await  this.extractionService.extraireDonneesIdIhany(dynamicModel, modelMongoose, result[index].metadata, data, result[index].tablefille, (dynamicModel as any).name,this.connection) ;
+          const idlist=await  this.extractionService.extraireDonneesIdIhany(dynamicModel, modelMongoose, result[index].metadata, data, result[index].tablefille, (dynamicModel as any).name,connection) ;
           //Recuperer le nom du primary key de l'objet sequelize 
           const primaryKeyField = Object.keys((dynamicModel as any).rawAttributes).find(
             (key) => (dynamicModel as any).rawAttributes[key].primaryKey
@@ -35,17 +35,20 @@ export class InsertionParTableFilleUpdate{
           },
         });
           console.log(data2)
-          const donnees=await this.extractionService.extraireDonnees(dynamicModel, modelMongoose, result[index].metadata, data2, result[index].tablefille, (dynamicModel as any).name,this.connection) ;
+          const donnees=await this.extractionService.extraireDonnees(dynamicModel, modelMongoose, result[index].metadata, data2, result[index].tablefille, (dynamicModel as any).name,connection) ;
          
           alldata.push({ tablefille: result[index].tablefille, data: await donnees });
            
             for (let y = 0; y < donnees.length; y++) {
               //Sauvegarder avec la fonction de saving 
               nombredemiseajour++;
-              this.savingOnMongo.savingOnMongo(result[index].tablefille,donnees[y],this.connection)
+              this.savingOnMongo.savingOnMongo(result[index].tablefille,donnees[y],connection)
             }
                       
         }
         return 'nombre d element mis a jour '+nombredemiseajour;
+      }
+      async insertionParTableFilleUpdateGlobal(dynamicModel:any,modelMongoose:any,result:any,data:any){
+        return await this.insertionParTableFilleUpdate(dynamicModel,modelMongoose,result,data,this.connection);
       }
 }

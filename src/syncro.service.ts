@@ -1,6 +1,6 @@
 // sync.service.ts
 import { Injectable } from '@nestjs/common';
-import mongoose, { Connection, Model as MongooseModel } from 'mongoose';
+import mongoose, { Connection, Model as MongooseModel, connection } from 'mongoose';
 import {  Model as SequelizeModel } from 'sequelize';
 import { MappingService } from './mapping.service';
 import { UtilService } from './util.service';
@@ -78,10 +78,16 @@ export class SyncroService {
         return this.updateDeleteService.updatedelete(sequelizeModel,mongooseModel,priority)
     }
     async migrateTableFilleToGlobalFunction(sequelizeModel: SequelizeModel, mongooseModel: MongooseModel<any>){
-        return await  this.migrateTableFilleToGlobal.migrateToGlobalTableFille(sequelizeModel,mongooseModel);
+        return await  this.migrateTableFilleToGlobal.migrateToGlobalTableFilleGlobal(sequelizeModel,mongooseModel);
     }
     async updateTableFilleToGlobalFunction(sequelizeModel: SequelizeModel, mongooseModel: MongooseModel<any>){
-        return await  this.migrateTableFilleToGlobal.updateToGlobalTableFille(sequelizeModel,mongooseModel);
+        return await  this.migrateTableFilleToGlobal.updateToGlobalTableFilleGlobal(sequelizeModel,mongooseModel);
+    }
+    async migrateTableFilleFunction(sequelizeModel: SequelizeModel, mongooseModel: MongooseModel<any>,connection){
+        return await  this.migrateTableFilleToGlobal.migrateToGlobalTableFille(sequelizeModel,mongooseModel,connection);
+    }
+    async updateTableFilleFunction(sequelizeModel: SequelizeModel, mongooseModel: MongooseModel<any>,connection){
+        return await  this.migrateTableFilleToGlobal.updateToGlobalTableFille(sequelizeModel,mongooseModel,connection);
     }
     async migrateToDbGlobal(sequelizeModel:Model){
         
