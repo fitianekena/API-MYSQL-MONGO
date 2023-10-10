@@ -10,7 +10,7 @@ import { Model as MongooseModel, Document } from 'mongoose';
 import { ServicesSyncro } from 'src/commons/servicesSyncro.service';
 
 @Injectable()
-export class EcritureService extends ServicesSyncro<MongooseModel<any>,SequelizeModel>{
+export class EcritureService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection>{
     constructor(
         @InjectModel(EcritureMongo.name,'ostie') private readonly mongooseEcriture: Model<EcritureMongo>,
         
@@ -20,7 +20,7 @@ export class EcritureService extends ServicesSyncro<MongooseModel<any>,Sequelize
         private readonly syncservicebase:SyncroService,
         @InjectConnection('ostie') private readonly connexion: Connection,
       ) {
-        super(syncservicebase,mysqlEcriture as any,mongooseEcriture as any);
+        super(syncservicebase,mysqlEcriture as any,mongooseEcriture as any,connexion);
       }
    
 }

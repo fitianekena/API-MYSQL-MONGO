@@ -9,7 +9,7 @@ import { Model as SequelizeModel } from 'sequelize';
 import { Model as MongooseModel, Document } from 'mongoose';
 import { ServicesSyncro } from 'src/commons/servicesSyncro.service';
 @Injectable()
-export class FonctionService extends ServicesSyncro<MongooseModel<any>,SequelizeModel> {
+export class FonctionService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection> {
     constructor(
        
         @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
@@ -18,7 +18,7 @@ export class FonctionService extends ServicesSyncro<MongooseModel<any>,Sequelize
         private readonly syncservicebase:SyncroService,
         @InjectConnection('db_tanjombato') private readonly connexion: Connection,
       ) {
-        super(syncservicebase,mysqlFonction as any,mongooseFonction as any);
+        super(syncservicebase,mysqlFonction as any,mongooseFonction as any,connexion);
       }
       
 

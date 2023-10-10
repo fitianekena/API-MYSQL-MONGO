@@ -10,7 +10,7 @@ import { Model as SequelizeModel } from 'sequelize';
 import { Model as MongooseModel, Document } from 'mongoose';
 
 @Injectable()
-export class ReglemtService extends ServicesSyncro<MongooseModel<any>,SequelizeModel>{
+export class ReglemtService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection>{
     constructor(
         @InjectModel(ReglemtMongo.name,'ostie') private readonly mongooseReglemt: Model<ReglemtMongo>,
         
@@ -20,7 +20,7 @@ export class ReglemtService extends ServicesSyncro<MongooseModel<any>,SequelizeM
         private readonly syncservicebase:SyncroService,
         @InjectConnection('ostie') private readonly connexion: Connection,
       ) {
-        super(syncservicebase,mysqlReglemt as any,mongooseReglemt as any);
+        super(syncservicebase,mysqlReglemt as any,mongooseReglemt as any,connexion);
       }
     
 }

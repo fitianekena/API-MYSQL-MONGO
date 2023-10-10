@@ -9,7 +9,7 @@ import { SyncroService } from 'src/syncro.service';
 import { Model as SequelizeModel } from 'sequelize';
 import { Model as MongooseModel, Document } from 'mongoose';
 @Injectable()
-export class AffilieService extends ServicesSyncro<MongooseModel<any>,SequelizeModel>{
+export class AffilieService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection>{
     constructor(
         @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
         @InjectModel(AffilieMongo.name,'db_ostie') private readonly mongooseAffilie: Model<AffilieMongo>,
@@ -17,7 +17,7 @@ export class AffilieService extends ServicesSyncro<MongooseModel<any>,SequelizeM
         private readonly syncservicebase:SyncroService,
         @InjectConnection('db_ostie') private readonly connexion: Connection,
       ) {
-        super(syncservicebase,mysqlAffilie as any,mongooseAffilie as any)
+        super(syncservicebase,mysqlAffilie as any,mongooseAffilie as any,connexion)
       }
       
 }

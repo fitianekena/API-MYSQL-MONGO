@@ -5,12 +5,13 @@ import { SyncroService } from "src/syncro.service";
 import { InjectConnection } from "@nestjs/mongoose";
 
 @Injectable()
-export class ServicesSyncro<N extends MongooseModel<any>, M extends  SequelizeModel> {
+export class ServicesSyncro<N extends MongooseModel<any>, M extends  SequelizeModel,P extends Connection> {
     
     constructor(
         private readonly syncroService: SyncroService,
         public readonly sequelizeModel: M,
         public readonly mongooseModel: N,
+        public readonly mongooseconnection:P,
     ) {
         
     }

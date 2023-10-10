@@ -9,7 +9,7 @@ import { SyncroService } from 'src/syncro.service';
 import { Model as SequelizeModel } from 'sequelize';
 import { Model as MongooseModel, Document } from 'mongoose';
 @Injectable()
-export class RecepdecService extends ServicesSyncro<MongooseModel<any>,SequelizeModel>{
+export class RecepdecService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection>{
     constructor(
         @InjectModel(RecepdecMongo.name,'ostie') private readonly mongooseRecepdec: Model<RecepdecMongo>,
         
@@ -19,7 +19,7 @@ export class RecepdecService extends ServicesSyncro<MongooseModel<any>,Sequelize
         private readonly syncservicebase:SyncroService,
         @InjectConnection('ostie') private readonly connexion: Connection,
       ) {
-        super(syncservicebase,mysqlRecepdec as any,mongooseRecepdec as any);
+        super(syncservicebase,mysqlRecepdec as any,mongooseRecepdec as any,connexion);
       }
    
 }

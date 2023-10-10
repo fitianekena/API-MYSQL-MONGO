@@ -10,7 +10,7 @@ import { Model as SequelizeModel } from 'sequelize';
 import { Model as MongooseModel, Document } from 'mongoose';
 
 @Injectable()
-export class AdherentService extends ServicesSyncro<MongooseModel<any>,SequelizeModel> {
+export class AdherentService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection> {
     constructor(
        
         @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
@@ -19,7 +19,7 @@ export class AdherentService extends ServicesSyncro<MongooseModel<any>,Sequelize
         private readonly syncservicebase:SyncroService,
         @InjectConnection('db_ostie') private readonly connexion: Connection,
       ) {
-        super(syncservicebase,mysqlAdherent as any,mongooseAdherent as any)
+        super(syncservicebase,mysqlAdherent as any,mongooseAdherent as any,connexion)
       }
       
       

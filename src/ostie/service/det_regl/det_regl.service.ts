@@ -11,7 +11,7 @@ import { Model as MongooseModel, Document } from 'mongoose';
 
 
 @Injectable()
-export class DetReglService extends ServicesSyncro<MongooseModel<any>,SequelizeModel>{
+export class DetReglService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection>{
     constructor(
         @InjectModel(DetReglMongo.name,'ostie') private readonly mongooseDetRegl: Model<DetReglMongo>,
         
@@ -21,7 +21,7 @@ export class DetReglService extends ServicesSyncro<MongooseModel<any>,SequelizeM
         private readonly syncservicebase:SyncroService,
         @InjectConnection('ostie') private readonly connexion: Connection,
       ) {
-        super(syncservicebase,mysqlDetRegl as any,mongooseDetRegl as any);
+        super(syncservicebase,mysqlDetRegl as any,mongooseDetRegl as any,connexion);
       }
   
 

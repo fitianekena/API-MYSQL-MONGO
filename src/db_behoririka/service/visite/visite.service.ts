@@ -10,7 +10,7 @@ import { ServicesSyncro } from 'src/commons/servicesSyncro.service';
 import { Model as SequelizeModel } from 'sequelize';
 import { Model as MongooseModel, Document } from 'mongoose';
 @Injectable()
-export class VisiteService extends ServicesSyncro<MongooseModel<any>,SequelizeModel>{
+export class VisiteService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection>{
     constructor(
        
         @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
@@ -19,7 +19,7 @@ export class VisiteService extends ServicesSyncro<MongooseModel<any>,SequelizeMo
         private readonly syncservicebase:SyncroService,
         @InjectConnection('db_behoririka') private readonly connexion: Connection,
       ) {
-        super(syncservicebase,mysqlVisiteaffilie as any, mongooseVisiteaffilie as any)
+        super(syncservicebase,mysqlVisiteaffilie as any, mongooseVisiteaffilie as any,connexion)
       }
       
 }

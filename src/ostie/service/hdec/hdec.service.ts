@@ -11,7 +11,7 @@ import { ServicesSyncro } from 'src/commons/servicesSyncro.service';
 
 
 @Injectable()
-export class HdecService extends ServicesSyncro<MongooseModel<any>,SequelizeModel>{
+export class HdecService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection>{
     constructor(
         @InjectModel(HdecMongo.name,'ostie') private readonly mongooseHdec: Model<HdecMongo>,
         
@@ -21,7 +21,7 @@ export class HdecService extends ServicesSyncro<MongooseModel<any>,SequelizeMode
         private readonly syncservicebase:SyncroService,
         @InjectConnection('ostie') private readonly connexion: Connection,
       ) {
-        super(syncservicebase,mysqlHdec as any,mongooseHdec as any);
+        super(syncservicebase,mysqlHdec as any,mongooseHdec as any,connexion);
       }
     
 }
