@@ -38,6 +38,9 @@ import { InsertionParTableFilleUpdate } from './insertionParTablefilleUpdate.ser
 import { MigrateTableFille } from './migrateTableFille.service';
 import { MedecinTravail } from 'src/test-mongo/schema/medecintravail.schema';
 import { Ordonnance } from 'src/test-mongo/schema/ordonnance.schema';
+import { Service } from 'src/test-mongo/schema/service.schema';
+import { Personnel } from 'src/test-mongo/schema/personnel.schema';
+import { Visiteaffilie } from 'src/test-mongo/schema/visiteaffilie.schema';
 
 
 @Module({
@@ -117,6 +120,18 @@ import { Ordonnance } from 'src/test-mongo/schema/ordonnance.schema';
           {
             provide: 'Ordonnance',
             useValue: Ordonnance,
+          },
+          {
+            provide: 'Service',
+            useValue: Service,
+          },
+          {
+            provide: 'Personnel',
+            useValue: Personnel,
+          },
+          {
+            provide: 'Visiteaffilie',
+            useValue: Visiteaffilie,
           },
     ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
     exports:[MigrateTableFille,InsertionParTableFille,

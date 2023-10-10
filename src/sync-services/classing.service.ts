@@ -14,9 +14,12 @@ import { GAdherent } from 'src/test-mongo/schema/g-adherent.schema';
 import { Hdec } from 'src/test-mongo/schema/hdec.schema';
 import { MedecinTravail } from 'src/test-mongo/schema/medecintravail.schema';
 import { Ordonnance } from 'src/test-mongo/schema/ordonnance.schema';
+import { Personnel } from 'src/test-mongo/schema/personnel.schema';
 import { Recepdec } from 'src/test-mongo/schema/recepdec.schema';
 import { Reglemt } from 'src/test-mongo/schema/reglemt.schema';
+import { Service } from 'src/test-mongo/schema/service.schema';
 import { Statut } from 'src/test-mongo/schema/statut.schema';
+import { Visiteaffilie } from 'src/test-mongo/schema/visiteaffilie.schema';
 
 @Injectable()
 export class ClassingService {
@@ -35,6 +38,9 @@ export class ClassingService {
         @Inject('Hdec')private readonly hdec:Hdec,
         @Inject('MedecinTravail')private readonly medecintravail:MedecinTravail,
         @Inject('Ordonnance')private readonly ordonnance:Ordonnance,
+        @Inject('Service')private readonly service:Service,
+        @Inject('Personnel')private readonly personnel:Personnel,
+        @Inject('Visiteaffilie')private readonly visiteaffilie:Visiteaffilie,
        
     ){
         this.addClass('DnsAffilie',DnsAffilie);
@@ -55,7 +61,9 @@ export class ClassingService {
         this.addClass('BoAffilie',BoAffilie);
         this.addClass('MedecinTravail',MedecinTravail);
         this.addClass('Ordonnance',Ordonnance);
-
+        this.addClass('Service',Service);
+        this.addClass('Personnel',Personnel);
+        this.addClass('Visiteaffilie',Visiteaffilie);
     }
    public classMap: Record<string, any> = {};
 

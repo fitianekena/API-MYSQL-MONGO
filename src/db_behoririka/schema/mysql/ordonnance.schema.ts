@@ -17,7 +17,7 @@ export class Ordonnance extends Model {
   @Column({ type: DataTypes.STRING(50), allowNull: false })
   ordonnance_id: string;
 
-  @ChampMere(Ordonnance.name,'ordonnance_num','STRING','ordonnance_num')
+  @ChampMere(Ordonnance.name,'num','STRING','ordonnance_num')
   @Column({ type: DataTypes.STRING(50), defaultValue: null })
   ordonnance_num: string | null;
 
@@ -30,7 +30,6 @@ export class Ordonnance extends Model {
   ordonnance_date: Date | null;
 
   @Column({ type: DataTypes.BIGINT,defaultValue: null })
-  @ChampMere(Ordonnance.name, 'ordonnance_affId', 'STRING', 'ordonnance_affId')
   ordonnance_affId: number | null;
 
   @Column({ type: DataTypes.BIGINT({ length: 20 }), allowNull: false })
@@ -42,11 +41,11 @@ export class Ordonnance extends Model {
   ordonnance_ages: number;
 
   @Column({ type: DataTypes.INTEGER({ length: 4 }), allowNull: false })
-  @ChampMere(Ordonnance.name, 'ordonnance_traceAgeId', 'STRING', 'ordonnance_traceAgeId')
+  @ChampMere(Ordonnance.name, 'traceAgeId', 'STRING', 'ordonnance_traceAgeId')
   ordonnance_traceAgeId: number;
 
   @Column({ type: DataTypes.STRING(10), allowNull: false })
-  @ChampMere(Ordonnance.name, 'ordonnance_sexe', 'STRING', 'ordonnance_sexe')
+  @ChampMere(Ordonnance.name, 'sexe', 'STRING', 'ordonnance_sexe')
   ordonnance_sexe: string;
 
   @Column({ type: DataTypes.INTEGER({ length: 11 }), allowNull: false })
@@ -66,7 +65,6 @@ export class Ordonnance extends Model {
   ordonnance_affType: number;
 
   @Column({ type: DataTypes.INTEGER, defaultValue: null })
-  @ChampMere(Ordonnance.name, 'ordonnance_centreId', 'STRING', 'ordonnance_centreId')
   ordonnance_centreId: number | null;
 
   @Column({ type: DataTypes.INTEGER, defaultValue: null })
@@ -98,7 +96,7 @@ export class Ordonnance extends Model {
   ordonnance_reposDuree: string | null;
 
   @Column({ type: DataTypes.STRING(50), allowNull: false })
-  @ChampMere(Ordonnance.name, 'ordonnance_reposValide', 'STRING', 'ordonnance_reposValide')
+  @ChampMere(Ordonnance.name, 'reposValid', 'STRING', 'ordonnance_reposValide')
   ordonnance_reposValide: string;
 
   @Column({ type: DataTypes.STRING(50), allowNull: false })
@@ -110,19 +108,19 @@ export class Ordonnance extends Model {
   ordonnance_reposAT: string;
 
   @Column({ type: DataTypes.STRING(250), allowNull: false })
-  @ChampMere(Ordonnance.name, 'ordonnance_referer', 'STRING', 'ordonnance_referer')
+  @ChampMere(Ordonnance.name, 'referer', 'STRING', 'ordonnance_referer')
   ordonnance_referer: string;
 
   @Column({ type: DataTypes.STRING(250), allowNull: false })
-  @ChampMere(Ordonnance.name, 'ordonnance_arevoir', 'STRING', 'ordonnance_arevoir')
+  @ChampMere(Ordonnance.name, 'arevoir', 'STRING', 'ordonnance_arevoir')
   ordonnance_arevoir: string;
 
   @Column({ type: DataTypes.FLOAT, defaultValue: null })
-  @ChampMere(Ordonnance.name, 'ordonnance_affTemperature', 'STRING', 'ordonnance_affTemperature')
+  @ChampMere(Ordonnance.name, 'affTemperature', 'STRING', 'ordonnance_affTemperature')
   ordonnance_affTemperature: number | null;
 
   @Column({ type: DataTypes.FLOAT, defaultValue: null })
-  @ChampMere(Ordonnance.name, 'ordonnance_affPoids', 'STRING', 'ordonnance_affPoids')
+  @ChampMere(Ordonnance.name, 'affPoids', 'STRING', 'ordonnance_affPoids')
   ordonnance_affPoids: number | null;
 
   @Column({ type: DataTypes.STRING(50), defaultValue: null })
@@ -138,11 +136,11 @@ export class Ordonnance extends Model {
   ordonnance_type: number | null;
 
   @Column({ type: DataTypes.TINYINT({ length: 1 }), defaultValue: null })
-  @ChampMere(Ordonnance.name, 'ordonnance_accidentTravail', 'STRING', 'ordonnance_accidentTravail')
+  @ChampMere(Ordonnance.name, 'accidentTravail', 'STRING', 'ordonnance_accidentTravail')
   ordonnance_accidentTravail: number | null;
 
   @Column({ type: DataTypes.TINYINT({ length: 1 }), allowNull: false, defaultValue: '0' })
-  @ChampMere(Ordonnance.name, 'ordonnance_soinAFaire', 'STRING', 'ordonnance_soinAFaire')
+  @ChampMere(Ordonnance.name, 'soinAFaire', 'STRING', 'ordonnance_soinAFaire')
   ordonnance_soinAFaire: number;
 
   @Column({ type: DataTypes.STRING(10), allowNull: false })
@@ -166,7 +164,7 @@ export class Ordonnance extends Model {
   ordonnance_maladieId: string | null;
 
   @Column({ type: DataTypes.STRING(250), allowNull: false })
-  @ChampMere(Ordonnance.name, 'ordonnance_maladieCode', 'STRING', 'ordonnance_maladieCode')
+  @ChampMere(Ordonnance.name, 'maladieCode', 'STRING', 'ordonnance_maladieCode')
   ordonnance_maladieCode: string;
 
   @Column({ type: DataTypes.TINYINT({ length: 4 }), allowNull: false, defaultValue: '34' })
@@ -182,7 +180,7 @@ export class Ordonnance extends Model {
   ordonnance_maladieCodeSimCle: number;
 
   @Column({ type: DataTypes.TINYINT({ length: 4 }), allowNull: false })
-  @ChampMere(Ordonnance.name, 'ordonnance_porte', 'STRING', 'ordonnance_porte')
+  @ChampMere(Ordonnance.name,'porte','STRING','ordonnance_porte')
   ordonnance_porte: number;
 
   @Column({ type: DataTypes.INTEGER({ length: 4 }), allowNull: false })
@@ -194,7 +192,7 @@ export class Ordonnance extends Model {
   ordonnance_impEtat: number;
 
   @Column({ type: DataTypes.TINYINT({ length: 1 }), allowNull: false })
-  @ChampMere(Ordonnance.name, 'ordonnance_validerPharmacie', 'STRING', 'ordonnance_validerPharmacie')
+  @ChampMere(Ordonnance.name, 'validerPharmacie', 'STRING', 'ordonnance_validerPharmacie')
   ordonnance_validerPharmacie: number;
 
   @Column({ type: DataTypes.INTEGER({ length: 4 }), allowNull: false })

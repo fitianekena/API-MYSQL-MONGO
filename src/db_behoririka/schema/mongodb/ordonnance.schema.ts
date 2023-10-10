@@ -15,8 +15,8 @@ export class Ordonnance extends Document {
   @Prop({ type: String, default: null })
   ordonnance_numTmp: string | null;
 
-  @Prop({ type: Date, default: null })
-  ordonnance_date: Date | null;
+  @Prop({ type: String, default: null })
+  ordonnance_date: String | null;
 
   @Prop({ type: Number, default: null })
   ordonnance_affId: number | null;
@@ -177,8 +177,8 @@ export class Ordonnance extends Document {
   @Prop({ type: String })
   aff_prenom: string;
 
-  @Prop({ type: Date })
-  aff_naissDate: Date;
+  @Prop({ type: String })
+  aff_naissString: String;
 
   @Prop({ type: String })
   iAge: string;

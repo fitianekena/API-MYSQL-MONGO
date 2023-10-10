@@ -7,12 +7,9 @@ import { Personnel as PersonnelSql } from './schema/mysql/personnel.schema';
 import { Personnel as PersonnelMongo, PersonnelSchema } from './schema/mongodb/personnel.schema';
 import { Fonction as FonctionSql } from './schema/mysql/fonction.schema';
 import { Fonction as FonctionMongo, FonctionSchema } from './schema/mongodb/fonction.schema';
-
 import sequelize from 'sequelize';
-
 import { SyncroService } from 'src/syncro.service';
 import { MappingService } from 'src/mapping.service';
-
 import { UtilService } from 'src/util.service';
 import { Visiteaffilie as VisiteaffilieSql } from './schema/mysql/visiteaffilie.schema';
 import { Visiteaffilie as VisiteaffilieMongo, VisiteaffilieSchema } from './schema/mongodb/visiteaffilie.schema';
@@ -22,7 +19,6 @@ import { SyncServicesModule } from 'src/sync-services/sync-services.module';
 import { PersonnelService } from './service/personnel/personnel.service';
 import { ServiceService } from './service/service/service.service';
 import { FonctionService } from './service/fonction/fonction.service';
-
 import { CentreService } from './service/centre/centre.service';
 import { CentreController } from './controllers/centre/centre.controller';
 import { FonctionController } from './controllers/fonction/fonction.controller';
@@ -48,6 +44,7 @@ import { MedecinTravailController } from './controllers/medecintravail/medecintr
 import { Ordonnance as OrdonnanceSql } from './schema/mysql/ordonnance.schema';
 import { Ordonnance as OrdonnanceMongo, OrdonnanceSchema } from './schema/mongodb/ordonnance.schema';
 import { OrdonnanceService } from './service/ordonnance/ordonnance.service';
+import { OrdonnanceController } from './controllers/ordonnance/ordonnance.controller';
 
 
 @Module({
@@ -77,7 +74,8 @@ import { OrdonnanceService } from './service/ordonnance/ordonnance.service';
       { name: OrdonnanceMongo.name, schema: OrdonnanceSchema }
     ], 'db_behoririka')],
 
-  controllers: [PersonnelController,
+  controllers: [
+    OrdonnanceController,PersonnelController,
     ServiceController,
     FonctionController,
     VisiteAffilieController,

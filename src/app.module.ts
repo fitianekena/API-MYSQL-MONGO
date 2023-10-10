@@ -49,6 +49,9 @@ import { InsertionParTableFilleUpdate } from './sync-services/insertionParTablef
 import { MigrateTableFille } from './sync-services/migrateTableFille.service';
 import { MedecinTravail, MedecinTravailSchema } from './test-mongo/schema/medecintravail.schema';
 import { Ordonnance, OrdonnanceSchema } from './test-mongo/schema/ordonnance.schema';
+import { Service, ServiceSchema } from './test-mongo/schema/service.schema';
+import { Personnel, PersonnelSchema } from './test-mongo/schema/personnel.schema';
+import { Visiteaffilie, VisiteaffilieSchema } from './test-mongo/schema/visiteaffilie.schema';
 
 
 
@@ -81,7 +84,10 @@ import { Ordonnance, OrdonnanceSchema } from './test-mongo/schema/ordonnance.sch
       { name: Statut.name, schema: StatutSchema },
       { name: BoAffilie.name, schema: BoAffilieSchema },
       { name: MedecinTravail.name, schema: MedecinTravailSchema },
-      { name: Ordonnance.name, schema: OrdonnanceSchema }
+      { name: Ordonnance.name, schema: OrdonnanceSchema },
+      { name: Service.name, schema: ServiceSchema },
+      { name: Personnel.name, schema: PersonnelSchema },
+      { name: Visiteaffilie.name, schema: VisiteaffilieSchema }
     ], 'test'),
 
   ],

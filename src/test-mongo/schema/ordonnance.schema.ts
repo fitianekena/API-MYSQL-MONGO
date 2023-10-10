@@ -1,5 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { AdAffilie } from './ad-affilie.schema';
+import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
+import { Adherent } from './adherent.schema';
+import { Centre } from './centre.schema';
+import { Service } from './service.schema';
+import { Personnel } from './personnel.schema';
+
 
 @Schema()
 export class Ordonnance extends Document {
@@ -10,17 +17,17 @@ export class Ordonnance extends Document {
   ordonnance_id: string;
 
   @Prop({ type: String, default: null })
-  ordonnance_num: string | null;
+  num: string | null;
 
   @Prop({ type: String, default: null })
   ordonnance_numTmp: string | null;
 
   @Prop({ type: Date, default: null })
-  ordonnance_date: Date | null;
+  date: Date | null;
 
-  @Prop({ type: Number, default: null })
-  ordonnance_affId: number | null;
-
+  @ForeignKey(AdAffilie.name,'affilie','aff_id','ordonnance_affId')
+  @Prop({ type: 'ObjectId', ref: 'AdAffilie' }) 
+  affilie: string;
   @Prop({ type: Number })
   ordonnance_affIdLast: number;
 
@@ -28,31 +35,33 @@ export class Ordonnance extends Document {
   ordonnance_ages: number;
 
   @Prop({ type: Number })
-  ordonnance_traceAgeId: number;
+  traceAgeId: number;
 
   @Prop({ type: String })
-  ordonnance_sexe: string;
+  sexe: string;
 
-  @Prop({ type: Number })
-  ordonnance_adhIdIndex: number;
+  @ForeignKey(Adherent.name,'adherent','code_adherent','ordonnance_adhIdIndex')
+  @Prop({ type: 'ObjectId', ref: 'Adherent' }) 
+  adherent: number;
 
-  @Prop({ type: String })
-  ordonnance_adhId: string;
+  @ForeignKey(Centre.name,'centre','centre_id','ordonnance_centreId')
+  @Prop({ type: 'ObjectId', ref: 'Centre' }) 
+  centre: number;
 
-  @Prop({ type: String })
-  ordonnance_adhNum: string;
+  @ForeignKey(Service.name,'service','code','ordonnance_serviceId')
+  @Prop({ type: 'ObjectId', ref: 'Service' }) 
+  service: number;
+  
 
   @Prop({ type: Number })
   ordonnance_affType: number;
 
-  @Prop({ type: Number, default: null })
-  ordonnance_centreId: number | null;
+ 
 
-  @Prop({ type: Number, default: null })
-  ordonnance_serviceId: number | null;
-
-  @Prop({ type: Number, default: null })
-  ordonnance_persnlMedecinId: number | null;
+  @ForeignKey(Personnel.name,'ordonnance_persnlMedecinId','matricule','ordonnance_persnlMedecinId')
+  @Prop({ type: 'ObjectId', ref: 'Personnel' }) 
+  ordonnance_persnlMedecinId: number;
+  
 
   @Prop({ type: String })
   ordonnance_persnlMedecinObs: string;
@@ -63,6 +72,9 @@ export class Ordonnance extends Document {
   @Prop({ type: String, default: null })
   ordonnance_persnlMedecinAvis: string | null;
 
+  // @ForeignKey(Personnel.name,'ordonnance_persnlSpecialisteId','matricule','ordonnance_persnlSpecialisteId')
+  // @Prop({ type: 'ObjectId', ref: 'Personnel' }) 
+  // ordonnance_persnlSpecialisteId: number;
   @Prop({ type: Number, default: null })
   ordonnance_persnlSpecialisteId: number | null;
 
@@ -70,7 +82,7 @@ export class Ordonnance extends Document {
   ordonnance_reposDuree: string | null;
 
   @Prop({ type: String })
-  ordonnance_reposValide: string;
+  reposValid: string;
 
   @Prop({ type: String })
   ordonnance_reposAMaternel: string;
@@ -79,16 +91,16 @@ export class Ordonnance extends Document {
   ordonnance_reposAT: string;
 
   @Prop({ type: String })
-  ordonnance_referer: string;
+  referer: string;
 
   @Prop({ type: String })
-  ordonnance_arevoir: string;
+  arevoir: string;
 
   @Prop({ type: Number, default: null })
-  ordonnance_affTemperature: number | null;
+  affTemperature: number | null;
 
   @Prop({ type: Number, default: null })
-  ordonnance_affPoids: number | null;
+  affPoids: number | null;
 
   @Prop({ type: String, default: null })
   ordonnance_affTADroite: string | null;
@@ -100,10 +112,10 @@ export class Ordonnance extends Document {
   ordonnance_type: number | null;
 
   @Prop({ type: Number, default: null })
-  ordonnance_accidentTravail: number | null;
+  accidentTravail: number | null;
 
   @Prop({ type: Number })
-  ordonnance_soinAFaire: number;
+  soinAFaire: number;
 
   @Prop({ type: String })
   ordonnance_hospital: string;
@@ -121,7 +133,7 @@ export class Ordonnance extends Document {
   ordonnance_maladieId: string | null;
 
   @Prop({ type: String })
-  ordonnance_maladieCode: string;
+  maladieCode: string;
 
   @Prop({ type: Number })
   ordonnance_compartimentId: number;
@@ -133,7 +145,7 @@ export class Ordonnance extends Document {
   ordonnance_maladieCodeSimCle: number;
 
   @Prop({ type: Number })
-  ordonnance_porte: number;
+  porte: number;
 
   @Prop({ type: Number })
   ordonnance_arevoirEtat: number;
@@ -142,7 +154,7 @@ export class Ordonnance extends Document {
   ordonnance_impEtat: number;
 
   @Prop({ type: Number })
-  ordonnance_validerPharmacie: number;
+  validerPharmacie: number;
 
   @Prop({ type: Number })
   ordonnance_ajouter: number;
