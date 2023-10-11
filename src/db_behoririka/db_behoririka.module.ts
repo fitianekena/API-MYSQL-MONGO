@@ -33,8 +33,8 @@ import { Affilie, Affilie as AffilieSql } from './schema/mysql/affilie.schema';
 import { Affilie as AffilieMongoDb, AffilieSchema } from './schema/mongodb/affilie.schema';
 import { AffilieService } from './service/affilie/affilie.service';
 import { AffilieController } from './controllers/affilie/affilie.controller';
-import { Adherent, Adherent as AdherentSql } from './schema/mysql/adherent.schema';
-import { Adherent as AdherentMongo, AdherentSchema } from './schema/mongodb/adherent.schema';
+import {  Adherent as AdherentSql } from './schema/mysql/adherent.schema';
+import { Adherent as AdherentMongo } from './schema/mongodb/adherent.schema';
 import { AdherentController } from './controllers/adherent/adherent.controller';
 import { AdherentService } from './service/adherent/adherent.service';
 import { MedecinTravail, MedecinTravail as MedecinTravailSql } from './schema/mysql/medecintravail.schema';
@@ -48,13 +48,14 @@ import { OrdonnanceController } from './controllers/ordonnance/ordonnance.contro
 import { AdAffilie, AdAffilieSchema } from 'src/test-mongo/schema/ad-affilie.schema';
 import { BoAffilie, BoAffilieSchema } from 'src/test-mongo/schema/bo-affilie.schema';
 import { DnsAffilie, DnsAffilieSchema } from 'src/test-mongo/schema/dns-affilie.schema';
+import { Adherent, AdherentSchema } from 'src/test-mongo/schema/adherent.schema';
 
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     SyncServicesModule,
-    MongooseModule.forRoot(process.env.MONGODB_URL + 'test', { connectionName: 'db_behoririka' }),
+    MongooseModule.forRoot(process.env.MONGODB_URL + 'db_behoririka', { connectionName: 'db_behoririka' }),
     SequelizeModule.forRoot({
       name: 'db_behoririka',
       dialect: 'mysql',

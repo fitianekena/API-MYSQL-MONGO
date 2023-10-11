@@ -11,8 +11,8 @@ export class InsertionParTableFille {
         private readonly savingOnMongo: SavingOnMongoService,
         @InjectConnection('test') private readonly connection: Connection,
     ) {}
-    async insertionParTableFille(dynamicModel:any,modelMongoose:any,result:any,data:any,connection:any){
-    
+    async insertionParTableFille(dynamicModel:any,modelMongoose:any,result:any,data:any,connection2:any){
+        
         const alldata: { tablefille: any, data: any[] }[] = [];
         //boucler les tables filles 
         for (let index = 0; index < result.length; index++) {
@@ -20,13 +20,13 @@ export class InsertionParTableFille {
           //l'ajouter au tableau
           //const idlist=await  this.extractionService.extraireDonneesIdIhany(dynamicModel, modelMongoose, result[index].metadata, data, result[index].tablefille, (dynamicModel as any).name,connection) ;
           
-          const donnees=await this.extractionService.extraireDonnees(dynamicModel, modelMongoose, result[index].metadata, data, result[index].tablefille, (dynamicModel as any).name,connection) ;
+          const donnees=await this.extractionService.extraireDonnees(dynamicModel, modelMongoose, result[index].metadata, data, result[index].tablefille, (dynamicModel as any).name,connection2) ;
           
           alldata.push({ tablefille: result[index].tablefille, data: await donnees });
             
             for (let y = 0; y < donnees.length; y++) {
               //Sauvegarder avec la fonction de saving 
-              this.savingOnMongo.savingOnMongo(result[index].tablefille,donnees[y],connection)
+              this.savingOnMongo.savingOnMongo(result[index].tablefille,donnees[y],connection2)
             }
         }
         
