@@ -9,11 +9,7 @@ import { Service } from './service.schema';
 @Schema()
 export class Personnel extends Document {
   @Prop({ type: Number })
-  persnl_id : number;
-
-  
-  
-
+  id : number;
   @Prop({ type: String, default: null })
   matricule	: string | null;
 

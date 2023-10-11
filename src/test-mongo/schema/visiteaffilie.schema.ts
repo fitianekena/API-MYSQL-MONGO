@@ -1,14 +1,18 @@
 
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Adherent } from './adherent.schema';
+import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
+import { BoAffilie } from './bo-affilie.schema';
 
 @Schema()
 export class Visiteaffilie extends Document {
   @Prop({ type: Number })
   vsiteAff_id : number;
 
-  @Prop({ type: Number })
-  vsiteAff_adhId : number;
+  @ForeignKey(Adherent.name,'vsiteAff_adhId','code_adherent','vsiteAff_adhId')
+  @Prop({ type: 'ObjectId', ref: 'Adherent' }) 
+  vsiteAff_adhId: number;
 
   @Prop({ type: String })
   vsiteAff_adhNom	: string;
@@ -16,8 +20,10 @@ export class Visiteaffilie extends Document {
   @Prop({ type: Number })
   vsiteAff_dispansaireId: number ;
 
-  @Prop({ type: Number })
-  vsiteAff_affId: number;
+  @ForeignKey(BoAffilie.name,'vsiteAff_affId','aff_id','vsiteAff_affId')
+  @Prop({ type: 'ObjectId', ref: 'BoAffilie' }) 
+  vsiteAff_affId: string;
+  
 
   @Prop({ type: String })
   vsiteAff_affNom : string;
@@ -31,20 +37,20 @@ export class Visiteaffilie extends Document {
   @Prop({ type: String })
   vsiteAff_sexe : string ;
 
-  @Prop({ type: Date })
-  vsiteAff_dateDerVisite : Date | '0000-00-00';
+  @Prop({ type: String })
+  vsiteAff_dateDerVisite : String | '0000-00-00';
 
-  @Prop({ type: Date })
-  vsiteAff_dateRdv :Date | '0000-00-00';
+  @Prop({ type: String })
+  vsiteAff_dateRdv :String | '0000-00-00';
 
   @Prop({ type: String })
   vsiteAff_heureRdv: string | '00:00:00';
 
-  @Prop({ type: Date })
-  vsiteAff_modifRdv: Date | '0000-00-00' ;
+  @Prop({ type: String })
+  vsiteAff_modifRdv: String | '0000-00-00' ;
 
-  @Prop({ type: Date })
-  vsiteAff_dateAccReception:Date | '0000-00-00';
+  @Prop({ type: String })
+  vsiteAff_dateAccReception:String | '0000-00-00';
 
   @Prop({ type: String })
   vsiteAff_typeVisite: string;
@@ -76,8 +82,8 @@ export class Visiteaffilie extends Document {
   @Prop({ type: String })
   vsiteAff_medNom : string;
 
-  @Prop({ type: Date })
-  vsiteAff_editConv : Date | '0000-00-00';
+  @Prop({ type: String })
+  vsiteAff_editConv : String | '0000-00-00';
 
   @Prop({ type: String })
   vsiteAff_lieuDevisite : string;
@@ -85,8 +91,8 @@ export class Visiteaffilie extends Document {
   @Prop({ type: String })
   vsiteAff_accRecpConv : string;
 
-  @Prop({ type: Date })
-  vsiteAff_dateRelance : Date | '0000-00-00';
+  @Prop({ type: String })
+  vsiteAff_dateRelance : String | '0000-00-00';
 
   @Prop({ type: String })
   vsiteAff_accRecpRelance : string;

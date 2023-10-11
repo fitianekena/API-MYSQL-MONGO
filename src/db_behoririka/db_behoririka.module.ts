@@ -3,18 +3,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Centre as CentreSql } from './schema/mysql/centre.schema';
 import { Centre, CentreSchema } from './schema/mongodb/centre.schema';
-import { Personnel, Personnel as PersonnelSql } from './schema/mysql/personnel.schema';
-import { Personnel as PersonnelMongo, PersonnelSchema } from './schema/mongodb/personnel.schema';
+import { Personnel as PersonnelSql } from './schema/mysql/personnel.schema';
 import { Fonction as FonctionSql } from './schema/mysql/fonction.schema';
 import { Fonction, Fonction as FonctionMongo, FonctionSchema } from './schema/mongodb/fonction.schema';
 import sequelize from 'sequelize';
 import { SyncroService } from 'src/syncro.service';
 import { MappingService } from 'src/mapping.service';
 import { UtilService } from 'src/util.service';
-import { Visiteaffilie, Visiteaffilie as VisiteaffilieSql } from './schema/mysql/visiteaffilie.schema';
-import { Visiteaffilie as VisiteaffilieMongo, VisiteaffilieSchema } from './schema/mongodb/visiteaffilie.schema';
-import { Service, Service as ServiceSql } from './schema/mysql/service.schema';
-import { Service as ServiceMongo, ServiceSchema } from './schema/mongodb/service.schema';
+import {  Visiteaffilie as VisiteaffilieSql } from './schema/mysql/visiteaffilie.schema';
+import { Service as ServiceSql } from './schema/mysql/service.schema';
 import { SyncServicesModule } from 'src/sync-services/sync-services.module';
 import { PersonnelService } from './service/personnel/personnel.service';
 import { ServiceService } from './service/service/service.service';
@@ -37,18 +34,22 @@ import {  Adherent as AdherentSql } from './schema/mysql/adherent.schema';
 import { Adherent as AdherentMongo } from './schema/mongodb/adherent.schema';
 import { AdherentController } from './controllers/adherent/adherent.controller';
 import { AdherentService } from './service/adherent/adherent.service';
-import { MedecinTravail, MedecinTravail as MedecinTravailSql } from './schema/mysql/medecintravail.schema';
-import { MedecinTravail as MedecinTravailMongo, MedecinTravailSchema } from './schema/mongodb/medecintravail.schema';
+import {  MedecinTravail as MedecinTravailSql } from './schema/mysql/medecintravail.schema';
+import { MedecinTravail as MedecinTravailMongo} from './schema/mongodb/medecintravail.schema';
 import { MedecinTravailService } from './service/medecintravail/medecintravail.service';
 import { MedecinTravailController } from './controllers/medecintravail/medecintravail.controller';
-import { Ordonnance, Ordonnance as OrdonnanceSql } from './schema/mysql/ordonnance.schema';
-import { Ordonnance as OrdonnanceMongo, OrdonnanceSchema } from './schema/mongodb/ordonnance.schema';
+import {  Ordonnance as OrdonnanceSql } from './schema/mysql/ordonnance.schema';
 import { OrdonnanceService } from './service/ordonnance/ordonnance.service';
 import { OrdonnanceController } from './controllers/ordonnance/ordonnance.controller';
 import { AdAffilie, AdAffilieSchema } from 'src/test-mongo/schema/ad-affilie.schema';
 import { BoAffilie, BoAffilieSchema } from 'src/test-mongo/schema/bo-affilie.schema';
 import { DnsAffilie, DnsAffilieSchema } from 'src/test-mongo/schema/dns-affilie.schema';
 import { Adherent, AdherentSchema } from 'src/test-mongo/schema/adherent.schema';
+import { MedecinTravail, MedecinTravailSchema } from 'src/test-mongo/schema/medecintravail.schema';
+import { Ordonnance, OrdonnanceSchema } from 'src/test-mongo/schema/ordonnance.schema';
+import { Service, ServiceSchema } from 'src/test-mongo/schema/service.schema';
+import { Personnel, PersonnelSchema } from 'src/test-mongo/schema/personnel.schema';
+import { Visiteaffilie, VisiteaffilieSchema } from 'src/test-mongo/schema/visiteaffilie.schema';
 
 
 @Module({
@@ -79,7 +80,6 @@ import { Adherent, AdherentSchema } from 'src/test-mongo/schema/adherent.schema'
       { name: Personnel.name, schema: PersonnelSchema },
       { name: Visiteaffilie.name, schema: VisiteaffilieSchema },
       { name: Fonction.name, schema: FonctionSchema },
-      
     ], 'db_behoririka')],
 
   controllers: [

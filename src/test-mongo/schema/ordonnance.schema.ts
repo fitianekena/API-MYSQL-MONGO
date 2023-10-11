@@ -43,26 +43,17 @@ export class Ordonnance extends Document {
   @ForeignKey(Adherent.name,'adherent','code_adherent','ordonnance_adhIdIndex')
   @Prop({ type: 'ObjectId', ref: 'Adherent' }) 
   adherent: number;
-
   @ForeignKey(Centre.name,'centre','centre_id','ordonnance_centreId')
   @Prop({ type: 'ObjectId', ref: 'Centre' }) 
   centre: number;
-
   @ForeignKey(Service.name,'service','code','ordonnance_serviceId')
   @Prop({ type: 'ObjectId', ref: 'Service' }) 
   service: number;
-  
-
   @Prop({ type: Number })
   ordonnance_affType: number;
-
- 
-
-  @ForeignKey(Personnel.name,'ordonnance_persnlMedecinId','matricule','ordonnance_persnlMedecinId')
+  @ForeignKey(Personnel.name,'ordonnance_persnlMedecinId','id','ordonnance_persnlMedecinId')
   @Prop({ type: 'ObjectId', ref: 'Personnel' }) 
   ordonnance_persnlMedecinId: number;
-  
-
   @Prop({ type: String })
   ordonnance_persnlMedecinObs: string;
 

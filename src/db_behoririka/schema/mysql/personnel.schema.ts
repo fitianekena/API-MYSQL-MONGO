@@ -4,6 +4,7 @@ import { ChampMere } from 'src/decorators/champ-mere/champ-mere.decorator';
 @Table({ tableName: 'personnel', timestamps: false })
 export class Personnel extends Model {
   @PrimaryKey
+  @ChampMere(Personnel.name,'id','STRING','persnl_id')
   @Column({ type: DataType.BIGINT.UNSIGNED })
   persnl_id: number;
 

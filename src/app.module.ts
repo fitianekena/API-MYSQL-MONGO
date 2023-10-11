@@ -69,8 +69,14 @@ import { Visiteaffilie, VisiteaffilieSchema } from './test-mongo/schema/visiteaf
     MongooseModule.forFeature([
       { name: DnsAffilie.name, schema: DnsAffilieSchema },
       { name: AdAffilie.name, schema: AdAffilieSchema },
+      { name: BoAffilie.name, schema: BoAffilieSchema },
       { name: Centre.name, schema: CentreSchema },
       { name: Adherent.name, schema: AdherentSchema },
+      { name: MedecinTravail.name, schema: MedecinTravailSchema },
+      { name: Ordonnance.name, schema: OrdonnanceSchema },
+      { name: Service.name, schema: ServiceSchema },
+      { name: Personnel.name, schema: PersonnelSchema },
+      { name: Visiteaffilie.name, schema: VisiteaffilieSchema },
       { name: Fonction.name, schema: FonctionSchema },
       { name: GAdherent.name, schema: GAdherentSchema },
       { name: Activite.name, schema: ActiviteSchema },
@@ -82,12 +88,8 @@ import { Visiteaffilie, VisiteaffilieSchema } from './test-mongo/schema/visiteaf
       { name: Recepdec.name, schema: RecepdecSchema },
       { name: Reglemt.name, schema: ReglemtSchema },
       { name: Statut.name, schema: StatutSchema },
-      { name: BoAffilie.name, schema: BoAffilieSchema },
-      { name: MedecinTravail.name, schema: MedecinTravailSchema },
-      { name: Ordonnance.name, schema: OrdonnanceSchema },
-      { name: Service.name, schema: ServiceSchema },
-      { name: Personnel.name, schema: PersonnelSchema },
-      { name: Visiteaffilie.name, schema: VisiteaffilieSchema }
+      
+      
     ], 'test'),
 
   ],
