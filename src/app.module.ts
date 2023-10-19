@@ -52,6 +52,11 @@ import { Ordonnance, OrdonnanceSchema } from './test-mongo/schema/ordonnance.sch
 import { Service, ServiceSchema } from './test-mongo/schema/service.schema';
 import { Personnel, PersonnelSchema } from './test-mongo/schema/personnel.schema';
 import { Visiteaffilie, VisiteaffilieSchema } from './test-mongo/schema/visiteaffilie.schema';
+import { MongoToSqlModule } from './sync-services/mongo-to-sql/mongo-to-sql.module';
+import { MongoToSqlController } from './commons/mongo-to-sql/mongo-to-sql.controller';
+import { ToSqlService } from './commons/toSqlService.service';
+import { DatabaseModule } from './database-module/database-module.module';
+
 
 
 
@@ -59,6 +64,8 @@ import { Visiteaffilie, VisiteaffilieSchema } from './test-mongo/schema/visiteaf
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     DbOstieModule,
+    DatabaseModule,
+    MongoToSqlModule,
     DbAmpasamadinikaModule,
     SyncServicesModule,
     DbTanjombato,
@@ -88,14 +95,13 @@ import { Visiteaffilie, VisiteaffilieSchema } from './test-mongo/schema/visiteaf
       { name: Recepdec.name, schema: RecepdecSchema },
       { name: Reglemt.name, schema: ReglemtSchema },
       { name: Statut.name, schema: StatutSchema },
-      
-      
+
+
     ], 'test'),
+    
 
   ],
-  controllers: [AppController],
-  providers: [
-    MigrateTableFille,ChampMereService,InsertionParTableFille,
-    InsertionParTableFilleUpdate,ForeignKeyService, ClassLoaderService, AppService, MappingService, SyncroService, UtilService, ServicesSyncro, Object, ServicesSyncroController, ChampMereService],
+  controllers: [AppController,MongoToSqlController],
+  providers: [ToSqlService,MigrateTableFille, ChampMereService, InsertionParTableFille,InsertionParTableFilleUpdate, ForeignKeyService, ClassLoaderService, AppService, MappingService, SyncroService, UtilService, ServicesSyncro, Object, ServicesSyncroController, ChampMereService],
 })
 export class AppModule { }

@@ -19,11 +19,13 @@ import { DbOstieController } from './db_ostie.controller';
 import { DbOstieService } from './db_ostie.service';
 import { AffilieController } from './controllers/affilie/affilie.controller';
 import { AffilieService } from './service/affilie/affilie.service';
+import { MongoToSqlModule } from 'src/sync-services/mongo-to-sql/mongo-to-sql.module';
 
 @Module({
     imports:[
       ConfigModule.forRoot(),
       SyncServicesModule,
+      MongoToSqlModule,
         MongooseModule.forRoot(process.env.MONGODB_URL+'db_ostie',{connectionName:'db_ostie'}),
         MongooseModule.forFeature([{name:Adherent.name,schema:AdherentSchema},{name:AffilieMongo.name,schema:AffilieSchema}],'db_ostie'),
         SequelizeModule.forRoot({
@@ -38,10 +40,36 @@ import { AffilieService } from './service/affilie/affilie.service';
            }),],
         
       controllers: [ AdherentController, DbOstieController, AffilieController],
+      
       providers: [
         UtilService,
         MappingService,
         SyncroService,
+        {
+          provide: 'db_ostie',
+          useValue: sequelize, // Your Sequelize instance
+        },
+        {
+        provide: 'SEQUELIZE',
+        useValue: sequelize, // Your Sequelize instance
+        },{
+        provide: 'AdherentSql',
+        useValue: AdherentSql // Your Sequelize model
+      },
+      {
+        provide: 'AffilieSql',
+        useValue: AffilieSql // Your Sequelize model
+      },
+      AdherentService,
+      DbOstieService,
+      AffilieService],
+      exports:[ UtilService,
+        MappingService,
+        SyncroService,
+        {
+          provide: 'db_ostie',
+          useValue: sequelize, // Your Sequelize instance
+        },
         {
         provide: 'SEQUELIZE',
         useValue: sequelize, // Your Sequelize instance

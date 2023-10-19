@@ -5,6 +5,8 @@ import { Centre } from 'src/db_behoririka/schema/mongodb/centre.schema';
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
 import { Adherent } from './adherent.schema';
 import { Fonction } from './fonction.schema';
+import { ChampFille } from 'src/decorators/champ-mere/champ-fille.decorator';
+import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
 
 
 
@@ -16,7 +18,7 @@ export class AdAffilie extends Document{
 
   @Prop()
   email: string;
-
+  @ChampFille(Affilie.name,'aff_nom','String')
   @Prop()
   nom: string;
 

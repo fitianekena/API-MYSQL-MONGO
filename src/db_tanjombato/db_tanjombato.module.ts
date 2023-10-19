@@ -33,11 +33,13 @@ import { VisiteService } from './service/visite/visite.service';
 import { DbTanjombatoService } from './db_tanjombato.service';
 import { DbTanjombatoController } from './db_tanjombato.controller';
 import { ConfigModule } from '@nestjs/config';
+import { MongoToSqlModule } from 'src/sync-services/mongo-to-sql/mongo-to-sql.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     SyncServicesModule,
+    MongoToSqlModule,
     MongooseModule.forRoot(process.env.MONGODB_URL+'db_tanjombato', { connectionName: 'db_tanjombato' }),
     SequelizeModule.forRoot({
       name:'db_tanjombato',
@@ -72,7 +74,12 @@ import { ConfigModule } from '@nestjs/config';
     {
       provide: 'SEQUELIZE',
       useValue: sequelize,
-    }, {
+    },
+    {
+      provide: 'db_tanjombato',
+      useValue: sequelize,
+    },
+     {
       provide: 'CentreSql',
       useValue: CentreSql
     },
@@ -97,7 +104,15 @@ import { ConfigModule } from '@nestjs/config';
     FonctionService,
     CentreService,
   ],
-  exports: [MongooseModule, DbTanjombatoService,]
+  exports: [{
+    provide: 'db_tanjombato',
+    useValue: sequelize,
+  },
+  {
+    provide: 'SEQUELIZE',
+    useValue: sequelize,
+  },
+  MongooseModule, DbTanjombatoService,]
 })
 export class DbTanjombato {
 

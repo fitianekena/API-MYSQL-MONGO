@@ -33,11 +33,13 @@ import { VisiteService } from './service/visite/visite.service';
 import { DbAmpasamadinikaController } from './db_ampasamadinika.controller';
 import { DbAmpasamadinikaService } from './db_ampasamadinika.service';
 import { ConfigModule } from '@nestjs/config';
+import { MongoToSqlModule } from 'src/sync-services/mongo-to-sql/mongo-to-sql.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     SyncServicesModule,
+    MongoToSqlModule,
     MongooseModule.forRoot(process.env.MONGODB_URL+'db_ampasamadinika', { connectionName: 'db_ampasamadinika' }),
     SequelizeModule.forRoot({
       name:'db_ampasamadinika',
@@ -72,7 +74,12 @@ import { ConfigModule } from '@nestjs/config';
     {
       provide: 'SEQUELIZE',
       useValue: sequelize,
-    }, {
+    }
+    ,{
+      provide: 'db_ampasamadinika',
+      useValue: sequelize,
+    }
+    , {
       provide: 'CentreSql',
       useValue: CentreSql
     },
@@ -105,7 +112,10 @@ import { ConfigModule } from '@nestjs/config';
     {
       provide: 'SEQUELIZE',
       useValue: sequelize,
-    }, {
+    } ,{
+      provide: 'db_ampasamadinika',
+      useValue: sequelize,
+    },{
       provide: 'CentreSql',
       useValue: CentreSql
     },

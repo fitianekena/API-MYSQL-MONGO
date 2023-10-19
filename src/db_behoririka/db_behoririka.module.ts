@@ -50,12 +50,14 @@ import { Ordonnance, OrdonnanceSchema } from 'src/test-mongo/schema/ordonnance.s
 import { Service, ServiceSchema } from 'src/test-mongo/schema/service.schema';
 import { Personnel, PersonnelSchema } from 'src/test-mongo/schema/personnel.schema';
 import { Visiteaffilie, VisiteaffilieSchema } from 'src/test-mongo/schema/visiteaffilie.schema';
+import { MongoToSqlModule } from 'src/sync-services/mongo-to-sql/mongo-to-sql.module';
 
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     SyncServicesModule,
+    MongoToSqlModule,
     MongooseModule.forRoot(process.env.MONGODB_URL + 'db_behoririka', { connectionName: 'db_behoririka' }),
     SequelizeModule.forRoot({
       name: 'db_behoririka',
@@ -101,6 +103,10 @@ import { Visiteaffilie, VisiteaffilieSchema } from 'src/test-mongo/schema/visite
     AdherentService,
     {
       provide: 'SEQUELIZE',
+      useValue: sequelize,
+    },
+    {
+      provide: 'db_behoririka',
       useValue: sequelize,
     }, {
       provide: 'CentreSql',
@@ -153,6 +159,10 @@ import { Visiteaffilie, VisiteaffilieSchema } from 'src/test-mongo/schema/visite
     UtilService,
     MappingService,
     SyncroService,
+    {
+      provide: 'db_behoririka',
+      useValue: sequelize,
+    },
     {
       provide: 'SEQUELIZE',
       useValue: sequelize,

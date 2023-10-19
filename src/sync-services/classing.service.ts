@@ -71,7 +71,10 @@ export class ClassingService {
   addClass(className: string, classInstance: any) {
     this.classMap[className] = classInstance;
   }
-
+  getClassNames(): string[] {
+    const classNamesArray: string[] = [...Object.keys(this.classMap)];
+    return classNamesArray;
+  }
   // Méthode pour obtenir une classe à partir du nom de la classe (string)
   getClass(className: string) {
     return this.classMap[className];

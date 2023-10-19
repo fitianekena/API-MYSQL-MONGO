@@ -41,9 +41,12 @@ import { Ordonnance } from 'src/test-mongo/schema/ordonnance.schema';
 import { Service } from 'src/test-mongo/schema/service.schema';
 import { Personnel } from 'src/test-mongo/schema/personnel.schema';
 import { Visiteaffilie } from 'src/test-mongo/schema/visiteaffilie.schema';
+import { SqlToMongoModule } from './sql_to_mongo/sql_to_mongo.module';
+import { MongoToSqlModule } from './mongo-to-sql/mongo-to-sql.module';
 
 
 @Module({
+    
     providers:[
       MigrateToDbGlobalService,
       InsertionParTableFille,
@@ -134,8 +137,93 @@ import { Visiteaffilie } from 'src/test-mongo/schema/visiteaffilie.schema';
             useValue: Visiteaffilie,
           },
     ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
-    exports:[MigrateTableFille,InsertionParTableFille,
-      InsertionParTableFilleUpdate,MigrateToDbGlobalService,ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete]
+    exports:[
+      {
+        provide: 'DnsAffilie',
+        useValue: DnsAffilie,
+      },
+      {
+        provide: 'AdAffilie',
+        useValue: AdAffilie,
+      },
+      {
+        provide: 'Centre',
+        useValue: Centre,
+      },
+      {
+        provide: 'Adherent',
+        useValue: Adherent,
+      },
+      {
+        provide: 'Fonction',
+        useValue: Fonction,
+      },
+      {
+        provide: 'GAdherent',
+        useValue: GAdherent,
+      },
+      {
+        provide: 'Activite',
+        useValue: Activite,
+      }, 
+      {
+        provide: 'Carnet',
+        useValue: Carnet,
+      },  
+      {
+        provide: 'DetRegl',
+        useValue: DetRegl,
+      }, 
+      {
+        provide: 'Echeance',
+        useValue: Echeance,
+      }, 
+      {
+        provide: 'Ecriture',
+        useValue: Ecriture,
+      }, 
+      {
+        provide: 'Hdec',
+        useValue: Hdec,
+      }, 
+      {
+        provide: 'Recepdec',
+        useValue: Recepdec,
+      }, 
+      {
+        provide: 'Reglemt',
+        useValue: Reglemt,
+      }, 
+      {
+        provide: 'Statut',
+        useValue: Statut,
+      },
+      {
+        provide: 'BoAffilie',
+        useValue: BoAffilie,
+      },
+      {
+        provide: 'MedecinTravail',
+        useValue: MedecinTravail,
+      },
+      {
+        provide: 'Ordonnance',
+        useValue: Ordonnance,
+      },
+      {
+        provide: 'Service',
+        useValue: Service,
+      },
+      {
+        provide: 'Personnel',
+        useValue: Personnel,
+      },
+      {
+        provide: 'Visiteaffilie',
+        useValue: Visiteaffilie,
+      },MigrateTableFille,InsertionParTableFille,
+      InsertionParTableFilleUpdate,MigrateToDbGlobalService,ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
+    imports: [SqlToMongoModule,MongoToSqlModule]
 })
 export class SyncServicesModule {
     

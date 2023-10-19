@@ -59,6 +59,7 @@ import { ReglemtController } from './controllers/reglemt/reglemt.controller';
         MongooseModule.forRoot(process.env.MONGODB_URL+'ostie', { connectionName: 'ostie' }),
         SequelizeModule.forRoot({
           dialect: 'mysql',
+          name:'ostie',
           host: process.env.MYSQL_HOST,
           port: parseInt(process.env.MYSQL_PORT),
           username: process.env.MYSQL_USERNAME,
@@ -86,6 +87,10 @@ import { ReglemtController } from './controllers/reglemt/reglemt.controller';
         OstieService,ActiviteService,AdherentService,CentreService,CarnetService,DetReglService,EcheanceService,EcritureService,HdecService,RecepdecService,StatutService,ReglemtService
         ,{
           provide: 'SEQUELIZE',
+          useValue: sequelize,
+        }
+        ,{
+          provide: 'ostie',
           useValue: sequelize,
         }, 
         {
@@ -133,7 +138,11 @@ import { ReglemtController } from './controllers/reglemt/reglemt.controller';
           useValue: StatutSql,
         },
       ],
-      exports: [MongooseModule,OstieService,]
+      exports: [
+        {
+          provide: 'ostie',
+          useValue: sequelize,
+        }, MongooseModule,OstieService,]
 })
 export class OstieModule {
 

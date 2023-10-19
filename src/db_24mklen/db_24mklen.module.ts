@@ -30,12 +30,14 @@ import { ServiceController } from './controllers/service/service.controller';
 import { Db24mklenService } from './db_24mklen.service';
 import { Db24mklenController } from './db_24mklen.controller';
 import { ConfigModule } from '@nestjs/config';
+import { MongoToSqlModule } from 'src/sync-services/mongo-to-sql/mongo-to-sql.module';
 
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     SyncServicesModule,
+    MongoToSqlModule,
     MongooseModule.forRoot(process.env.MONGODB_URL+'db_24mklen', { connectionName: 'db_24mklen' }),
     SequelizeModule.forRoot({
       name:'db_24mklen',
@@ -66,9 +68,14 @@ import { ConfigModule } from '@nestjs/config';
     SyncroService,
     Db24mklenService,
     {
+      provide: 'db_24mklen',
+      useValue: sequelize,
+    }, 
+    {
       provide: 'SEQUELIZE',
       useValue: sequelize,
-    }, {
+    },
+    {
       provide: 'CentreSql',
       useValue: CentreSql
     },
@@ -93,6 +100,10 @@ import { ConfigModule } from '@nestjs/config';
     MappingService,
     SyncroService,
     Db24mklenService,
+    {
+      provide: 'db_24mklen',
+      useValue: sequelize,
+    },
     {
       provide: 'SEQUELIZE',
       useValue: sequelize,

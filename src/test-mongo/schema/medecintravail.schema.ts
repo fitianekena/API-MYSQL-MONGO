@@ -153,7 +153,7 @@ export class MedecinTravail extends Document {
   visiteEmbch_EtatGynecoObsSolitaire: string;
 
   @Prop({ type: String })
-  visiteEmbch_ParametrePoids: string;
+  visiteEmbch_ParametrePoids: number;
 
   @Prop({ type: String })
   visiteEmbch_ParametreTaille: string;
@@ -433,7 +433,7 @@ export class MedecinTravail extends Document {
 
   @Prop({ type: String })
   visiteEmbch_persMat: string;
-
+s
   @Prop({ type: String })
   visiteEmbch_persNom: string;
 
