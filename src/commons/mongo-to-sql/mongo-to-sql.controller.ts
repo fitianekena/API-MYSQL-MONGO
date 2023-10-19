@@ -10,6 +10,6 @@ export class MongoToSqlController {
     }
     @Get('/:dbname/:tablename')
     async migrateToSql(@Param('tablename') tablename:any,@Param('dbname') dbname:any){
-        console.log(await this.tosqlService.synctoMySql(dbname,tablename));
+        return await this.tosqlService.synctoMySql(dbname,tablename);
     }
 }

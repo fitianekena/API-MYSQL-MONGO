@@ -6,7 +6,8 @@ import { CHAMP_FILLE_METADATA_KEY, ChampFilleMetadata } from 'src/decorators/cha
 export class ChampFilleService {
     async getMetadatachampfille(modelMongoose:any)
     {
-        const metadata: any = await Reflect.getMetadataKeys(modelMongoose);
+        const metadata: ChampFilleMetadata[] = await Reflect.getMetadata(CHAMP_FILLE_METADATA_KEY,modelMongoose);
+
         return metadata;
     }
 }

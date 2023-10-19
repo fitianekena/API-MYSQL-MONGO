@@ -5,9 +5,8 @@ import { FOREIGNKEYDATA, ForeignKeydata } from 'src/decorators/champ-mere/foreig
 export class ForeignKeyService {
 
      async getAllForeignKeysInAModel(model:any){
-        
-      
         const metadata: ForeignKeydata[] = await Reflect.getMetadata(FOREIGNKEYDATA,model);
+        
         return metadata;
      }
      

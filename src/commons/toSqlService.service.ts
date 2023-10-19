@@ -19,7 +19,7 @@ export class ToSqlService  {
     async synctoMySql(nomdedatabase:string,nomtableprioritaire:string){
          const connection=await this.sequelizeconnectionmodule.getConnection(nomdedatabase);
          const model=await this.utilservice.findMostSimilarString(nomtableprioritaire,this.classingService.getClassNames());
-         console.log(await this.champfilleservice.getMetadatachampfille(model as any));
+         console.log(await this.champfilleservice.getMetadatachampfille(this.classingService.getClass(model)));
          return this.classingService.getClass(model);
     }
 
