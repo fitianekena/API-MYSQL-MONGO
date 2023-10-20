@@ -4,6 +4,8 @@ import { Document } from 'mongoose';
 import { Adherent } from './adherent.schema';
 import { Centre } from './centre.schema';
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
+import { ChampFille } from 'src/decorators/champ-mere/champ-fille.decorator';
+import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
 
 @Schema({ collection: 'bo-affilie' })
 export class BoAffilie extends Document {
@@ -57,22 +59,24 @@ export class BoAffilie extends Document {
 
     @Prop()
     matricule: string;
-
+    
+    @ChampFille(Affilie.name,'aff_nom','String','nom')
     @Prop()
     nom: string;
-
+   
     @Prop()
     nombre_enfant_charge: number;
 
     @Prop()
     photo: string | null;
-
+    @ChampFille(Affilie.name,'aff_prenom','String','prenom')
     @Prop()
     prenom: string;
 
     @Prop()
     salaire_brut: number;
 
+    @ChampFille(Affilie.name,'aff_salaire_brut_initial','String','salaire_brut_initial')
     @Prop()
     salaire_brut_initial: number;
 

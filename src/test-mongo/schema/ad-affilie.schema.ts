@@ -18,7 +18,7 @@ export class AdAffilie extends Document{
 
   @Prop()
   email: string;
-  @ChampFille(Affilie.name,'aff_nom','String')
+  @ChampFille(Affilie.name,'aff_nom','String','nom')
   @Prop()
   nom: string;
 

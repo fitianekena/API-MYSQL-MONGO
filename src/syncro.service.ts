@@ -16,7 +16,7 @@ import { InjectConnection } from '@nestjs/mongoose';
 import { Model } from 'sequelize-typescript';
 import { MigrateToDbGlobalService } from './sync-services/migrateToDbGlobalService.service';
 import { MigrateTableFille } from './sync-services/migrateTableFille.service';
-import { MigrationService } from './sync-services/mongo-to-sql/migration/migration.service';
+
 
 @Injectable()
 export class SyncroService {
@@ -33,7 +33,7 @@ export class SyncroService {
         private readonly updateDeleteService:UpdateDelete,
         private readonly synctoGlobalService:MigrateToDbGlobalService,
         private readonly migrateTableFilleToGlobal:MigrateTableFille,
-        private readonly migrationToMongoService:MigrationService) { }
+    ) { }
 
     async synchronizeToMongoose(
         sequelizeModel: SequelizeModel,
@@ -99,9 +99,7 @@ export class SyncroService {
         
         return this.synctoGlobalService.migrateToDbGlobalMere(sequelizeModel)
     } 
-    async migrationToSql(mongooseModel:Model){
-        return this.migrationToMongoService.getMongooseConnectionAndModelNames(mongooseModel)
-    }
+    
 
 
 }

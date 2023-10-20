@@ -42,7 +42,10 @@ import { Service } from 'src/test-mongo/schema/service.schema';
 import { Personnel } from 'src/test-mongo/schema/personnel.schema';
 import { Visiteaffilie } from 'src/test-mongo/schema/visiteaffilie.schema';
 import { SqlToMongoModule } from './sql_to_mongo/sql_to_mongo.module';
-import { MongoToSqlModule } from './mongo-to-sql/mongo-to-sql.module';
+import { ChampFilleService } from 'src/decoratorServices/champ-fille/champ-fille.service';
+import { ToSqlService } from 'src/commons/toSqlService.service';
+import { DatabaseModule } from 'src/database-module/database-module.module';
+import { SequelizeConnectionService } from 'src/database-module/sequelize-connection-service/sequelize-connection-service.service';
 
 
 @Module({
@@ -52,6 +55,7 @@ import { MongoToSqlModule } from './mongo-to-sql/mongo-to-sql.module';
       InsertionParTableFille,
       InsertionParTableFilleUpdate,
       MigrateTableFille,
+      
         {
             provide: 'DnsAffilie',
             useValue: DnsAffilie,
@@ -136,8 +140,10 @@ import { MongoToSqlModule } from './mongo-to-sql/mongo-to-sql.module';
             provide: 'Visiteaffilie',
             useValue: Visiteaffilie,
           },
+          SequelizeConnectionService,ToSqlService, ChampFilleService,ClassingService,
     ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
     exports:[
+      ClassingService,
       {
         provide: 'DnsAffilie',
         useValue: DnsAffilie,
@@ -221,10 +227,10 @@ import { MongoToSqlModule } from './mongo-to-sql/mongo-to-sql.module';
       {
         provide: 'Visiteaffilie',
         useValue: Visiteaffilie,
-      },MigrateTableFille,InsertionParTableFille,
-      InsertionParTableFilleUpdate,MigrateToDbGlobalService,ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
-    imports: [SqlToMongoModule,MongoToSqlModule]
+      },
+      SequelizeConnectionService,ChampFilleService,MigrateTableFille,InsertionParTableFille,
+      ToSqlService,InsertionParTableFilleUpdate,MigrateToDbGlobalService,ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
+    imports: [SqlToMongoModule]
 })
-export class SyncServicesModule {
-    
-}
+
+export class SyncServicesModule {}

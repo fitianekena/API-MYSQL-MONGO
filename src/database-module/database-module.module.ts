@@ -12,12 +12,13 @@ import { AppModule } from 'src/app.module';
 import { UtilService } from 'src/util.service';
 import { ClassingService } from 'src/sync-services/classing.service';
 import { SyncServicesModule } from 'src/sync-services/sync-services.module';
+import { ToSqlService } from 'src/commons/toSqlService.service';
  // Import your custom service
 
 @Module({
   imports:[Db24mklen,DbAmpasamadinikaModule,DbBehoririka,DbOstieModule,DbTanjombato,OstieModule,SyncServicesModule],
-  providers: [SequelizeConnectionService,UtilService,ClassingService],
-  exports: [SequelizeConnectionService],
+  providers: [SequelizeConnectionService,UtilService,ClassingService,ToSqlService],
+  exports: [SequelizeConnectionService,ToSqlService],
 })
 export class DatabaseModule {
   constructor(private sequelizeConnectionService: SequelizeConnectionService,
@@ -30,7 +31,6 @@ export class DatabaseModule {
     ) {
     // Create and configure your Sequelize connections here
     const connection1 = mklen_24;
-
     const connection2 = ampasamadinika;
     const connection3=behoririka;
   

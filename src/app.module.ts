@@ -52,7 +52,6 @@ import { Ordonnance, OrdonnanceSchema } from './test-mongo/schema/ordonnance.sch
 import { Service, ServiceSchema } from './test-mongo/schema/service.schema';
 import { Personnel, PersonnelSchema } from './test-mongo/schema/personnel.schema';
 import { Visiteaffilie, VisiteaffilieSchema } from './test-mongo/schema/visiteaffilie.schema';
-import { MongoToSqlModule } from './sync-services/mongo-to-sql/mongo-to-sql.module';
 import { MongoToSqlController } from './commons/mongo-to-sql/mongo-to-sql.controller';
 import { ToSqlService } from './commons/toSqlService.service';
 import { DatabaseModule } from './database-module/database-module.module';
@@ -65,7 +64,6 @@ import { DatabaseModule } from './database-module/database-module.module';
     ConfigModule.forRoot({ isGlobal: true }),
     DbOstieModule,
     DatabaseModule,
-    MongoToSqlModule,
     DbAmpasamadinikaModule,
     SyncServicesModule,
     DbTanjombato,

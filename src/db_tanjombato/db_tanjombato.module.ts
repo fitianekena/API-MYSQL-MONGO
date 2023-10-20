@@ -33,13 +33,12 @@ import { VisiteService } from './service/visite/visite.service';
 import { DbTanjombatoService } from './db_tanjombato.service';
 import { DbTanjombatoController } from './db_tanjombato.controller';
 import { ConfigModule } from '@nestjs/config';
-import { MongoToSqlModule } from 'src/sync-services/mongo-to-sql/mongo-to-sql.module';
+
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     SyncServicesModule,
-    MongoToSqlModule,
     MongooseModule.forRoot(process.env.MONGODB_URL+'db_tanjombato', { connectionName: 'db_tanjombato' }),
     SequelizeModule.forRoot({
       name:'db_tanjombato',

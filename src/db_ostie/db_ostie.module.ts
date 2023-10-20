@@ -19,13 +19,12 @@ import { DbOstieController } from './db_ostie.controller';
 import { DbOstieService } from './db_ostie.service';
 import { AffilieController } from './controllers/affilie/affilie.controller';
 import { AffilieService } from './service/affilie/affilie.service';
-import { MongoToSqlModule } from 'src/sync-services/mongo-to-sql/mongo-to-sql.module';
+
 
 @Module({
     imports:[
       ConfigModule.forRoot(),
       SyncServicesModule,
-      MongoToSqlModule,
         MongooseModule.forRoot(process.env.MONGODB_URL+'db_ostie',{connectionName:'db_ostie'}),
         MongooseModule.forFeature([{name:Adherent.name,schema:AdherentSchema},{name:AffilieMongo.name,schema:AffilieSchema}],'db_ostie'),
         SequelizeModule.forRoot({
