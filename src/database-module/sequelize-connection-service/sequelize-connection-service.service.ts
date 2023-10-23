@@ -5,7 +5,7 @@ import { Sequelize } from 'sequelize';
 export class SequelizeConnectionService {
   private connections: { [key: string]: Sequelize } = {};
 
-  addConnection(name: string, sequelize: Sequelize) {
+  addConnection(name: string, sequelize: any) {
     this.connections[name] = sequelize;
   }
 
