@@ -13,7 +13,7 @@ export class AffilieService extends ServicesSyncro<MongooseModel<any>,SequelizeM
     constructor(
         @InjectModel(MongoDBAffilie.name,'db_behoririka') private readonly mongooseAffilie: Model<MongoDBAffilie>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('AffilieSql') private readonly mysqlAffilie: typeof MySQLAffilie,
         
         private readonly syncservicebase:SyncroService,

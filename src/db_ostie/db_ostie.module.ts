@@ -49,9 +49,6 @@ import { AffilieService } from './service/affilie/affilie.service';
           useValue: sequelize, // Your Sequelize instance
         },
         {
-        provide: 'SEQUELIZE',
-        useValue: sequelize, // Your Sequelize instance
-        },{
         provide: 'AdherentSql',
         useValue: AdherentSql // Your Sequelize model
       },
@@ -70,9 +67,6 @@ import { AffilieService } from './service/affilie/affilie.service';
           useValue: sequelize, // Your Sequelize instance
         },
         {
-        provide: 'SEQUELIZE',
-        useValue: sequelize, // Your Sequelize instance
-        },{
         provide: 'AdherentSql',
         useValue: AdherentSql // Your Sequelize model
       },

@@ -71,10 +71,6 @@ import { ConfigModule } from '@nestjs/config';
     SyncroService,
     DbTanjombatoService,
     {
-      provide: 'SEQUELIZE',
-      useValue: sequelize,
-    },
-    {
       provide: 'db_tanjombato',
       useValue: sequelize,
     },
@@ -105,10 +101,6 @@ import { ConfigModule } from '@nestjs/config';
   ],
   exports: [{
     provide: 'db_tanjombato',
-    useValue: sequelize,
-  },
-  {
-    provide: 'SEQUELIZE',
     useValue: sequelize,
   },
   MongooseModule, DbTanjombatoService,]

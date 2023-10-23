@@ -13,7 +13,7 @@ import { Model as MongooseModel, Document } from 'mongoose';
 export class VisiteService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection>{
     constructor(
        
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @InjectModel(VisiteaffilieMongo.name,'db_tanjombato') private readonly mongooseVisiteaffilie: Model<VisiteaffilieMongo>,
         @Inject('VisiteaffilieSql') private readonly mysqlVisiteaffilie: typeof VisiteaffilieSql,
         private readonly syncservicebase:SyncroService,

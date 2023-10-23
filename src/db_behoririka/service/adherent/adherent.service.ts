@@ -13,7 +13,7 @@ export class AdherentService extends ServicesSyncro<MongooseModel<any>,Sequelize
     constructor(
         @InjectModel(MongoDBAdherent.name,'db_behoririka') private readonly mongooseAdherent: Model<MongoDBAdherent>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('AdherentSql') private readonly mysqlAdherent: typeof MySQLAdherent,
         
         private readonly syncservicebase:SyncroService,

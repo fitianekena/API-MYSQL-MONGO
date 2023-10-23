@@ -15,7 +15,7 @@ export class DetReglService extends ServicesSyncro<MongooseModel<any>,SequelizeM
     constructor(
         @InjectModel(DetReglMongo.name,'ostie') private readonly mongooseDetRegl: Model<DetReglMongo>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('DetReglSql') private readonly mysqlDetRegl: typeof DetReglSql,
         
         private readonly syncservicebase:SyncroService,

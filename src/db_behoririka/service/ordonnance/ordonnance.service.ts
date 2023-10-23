@@ -13,7 +13,7 @@ export class OrdonnanceService extends ServicesSyncro<MongooseModel<any>,Sequeli
     constructor(
         @InjectModel(MongoDBOrdonnance.name,'db_behoririka') private readonly mongooseOrdonnance: Model<MongoDBOrdonnance>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('OrdonnanceSql') private readonly mysqlOrdonnance: typeof MySQLOrdonnance,
         
         private readonly syncservicebase:SyncroService,

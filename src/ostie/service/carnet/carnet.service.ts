@@ -14,7 +14,7 @@ export class CarnetService  extends ServicesSyncro<MongooseModel<any>,SequelizeM
     constructor(
         @InjectModel(CarnetMongo.name,'ostie') private readonly mongooseCarnet: Model<CarnetMongo>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('CarnetSql') private readonly mysqlCarnet: typeof CarnetSql,
         
         private readonly syncservicebase:SyncroService,

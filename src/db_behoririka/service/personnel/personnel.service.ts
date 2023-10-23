@@ -12,7 +12,7 @@ import { Model as MongooseModel, Document } from 'mongoose';
 export class PersonnelService  extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection>{
     constructor(
        
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('PersonnelSql') private readonly mysqlPersonnel: typeof PersonnelSql,
         @InjectModel(PersonnelMongo.name,'db_behoririka') private readonly mongoosePersonnel: Model<PersonnelMongo>,
         private readonly syncservicebase:SyncroService,

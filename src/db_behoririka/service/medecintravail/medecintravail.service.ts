@@ -13,7 +13,7 @@ export class MedecinTravailService extends ServicesSyncro<MongooseModel<any>,Seq
     constructor(
         @InjectModel(MongoDBMedecinTravail.name,'db_behoririka') private readonly mongooseMedecinTravail: Model<MongoDBMedecinTravail>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('MedecinTravailSql') private readonly mysqlMedecinTravail: typeof MySQLMedecinTravail,
         
         private readonly syncservicebase:SyncroService,

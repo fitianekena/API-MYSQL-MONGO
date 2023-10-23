@@ -14,7 +14,7 @@ export class ReglemtService extends ServicesSyncro<MongooseModel<any>,SequelizeM
     constructor(
         @InjectModel(ReglemtMongo.name,'ostie') private readonly mongooseReglemt: Model<ReglemtMongo>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('ReglemtSql') private readonly mysqlReglemt: typeof ReglemtSql,
         
         private readonly syncservicebase:SyncroService,

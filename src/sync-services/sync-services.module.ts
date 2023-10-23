@@ -46,6 +46,8 @@ import { ChampFilleService } from 'src/decoratorServices/champ-fille/champ-fille
 import { ToSqlService } from 'src/commons/toSqlService.service';
 import { DatabaseModule } from 'src/database-module/database-module.module';
 import { SequelizeConnectionService } from 'src/database-module/sequelize-connection-service/sequelize-connection-service.service';
+import { MongoConnectionService } from 'src/database-module/mongo-connection/mongo-connection.service';
+import { DbBehoririka } from 'src/db_behoririka/db_behoririka.module';
 
 
 @Module({
@@ -55,7 +57,8 @@ import { SequelizeConnectionService } from 'src/database-module/sequelize-connec
       InsertionParTableFille,
       InsertionParTableFilleUpdate,
       MigrateTableFille,
-      
+      MongoConnectionService,
+     
         {
             provide: 'DnsAffilie',
             useValue: DnsAffilie,

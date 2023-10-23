@@ -14,7 +14,7 @@ export class StatutService extends ServicesSyncro<MongooseModel<any>,SequelizeMo
     constructor(
         @InjectModel(StatutMongo.name,'ostie') private readonly mongooseStatut: Model<StatutMongo>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('StatutSql') private readonly mysqlStatut: typeof StatutSql,
         
         private readonly syncservicebase:SyncroService,

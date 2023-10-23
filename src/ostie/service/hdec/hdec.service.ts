@@ -15,7 +15,7 @@ export class HdecService extends ServicesSyncro<MongooseModel<any>,SequelizeMode
     constructor(
         @InjectModel(HdecMongo.name,'ostie') private readonly mongooseHdec: Model<HdecMongo>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('HdecSql') private readonly mysqlHdec: typeof HdecSql,
         
         private readonly syncservicebase:SyncroService,

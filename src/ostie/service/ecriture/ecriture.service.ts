@@ -14,7 +14,7 @@ export class EcritureService extends ServicesSyncro<MongooseModel<any>,Sequelize
     constructor(
         @InjectModel(EcritureMongo.name,'ostie') private readonly mongooseEcriture: Model<EcritureMongo>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('EcritureSql') private readonly mysqlEcriture: typeof EcritureSql,
         
         private readonly syncservicebase:SyncroService,

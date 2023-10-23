@@ -55,6 +55,7 @@ import { Visiteaffilie, VisiteaffilieSchema } from './test-mongo/schema/visiteaf
 import { MongoToSqlController } from './commons/mongo-to-sql/mongo-to-sql.controller';
 import { ToSqlService } from './commons/toSqlService.service';
 import { DatabaseModule } from './database-module/database-module.module';
+import { MongoConnectionService } from './database-module/mongo-connection/mongo-connection.service';
 
 
 

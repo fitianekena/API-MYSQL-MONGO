@@ -12,7 +12,7 @@ import { ServicesSyncro } from 'src/commons/servicesSyncro.service';
 export class FonctionService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection> {
     constructor(
        
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @InjectModel(FonctionMongo.name,'db_behoririka') private readonly mongooseFonction: Model<FonctionMongo>,
         @Inject('FonctionSql') private readonly mysqlFonction: typeof FonctionSql,
         private readonly syncservicebase:SyncroService,

@@ -60,7 +60,7 @@ export class BoAffilie extends Document {
     @Prop()
     matricule: string;
     
-    @ChampFille(Affilie.name,'aff_nom','String','nom')
+    @ChampFille(Affilie.name,'aff_nom','String','nom','aff_id')
     @Prop()
     nom: string;
    
@@ -69,14 +69,14 @@ export class BoAffilie extends Document {
 
     @Prop()
     photo: string | null;
-    @ChampFille(Affilie.name,'aff_prenom','String','prenom')
+    @ChampFille(Affilie.name,'aff_prenom','String','prenom','aff_id')
     @Prop()
     prenom: string;
 
     @Prop()
     salaire_brut: number;
 
-    @ChampFille(Affilie.name,'aff_salaire_brut_initial','String','salaire_brut_initial')
+    @ChampFille(Affilie.name,'aff_salaire_brut_initial','String','salaire_brut_initial','aff_id')
     @Prop()
     salaire_brut_initial: number;
 

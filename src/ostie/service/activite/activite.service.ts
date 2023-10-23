@@ -13,7 +13,7 @@ import { Model as MongooseModel, Document } from 'mongoose';
 export class ActiviteService extends ServicesSyncro<MongooseModel<any>,SequelizeModel,Connection>{
     constructor(
         @InjectModel(ActiviteMongo.name,'ostie') private readonly mongooseActivite: Model<ActiviteMongo>,
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('ActiviteSql') private readonly mysqlActivite: typeof ActiviteSql,
         
         private readonly syncservicebase:SyncroService,

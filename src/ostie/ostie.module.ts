@@ -85,10 +85,7 @@ import { ReglemtController } from './controllers/reglemt/reglemt.controller';
       controllers: [OstieController,ActiviteController,AdherentController,CentreController,CarnetController,DetReglController,EcheanceController,EcritureController,HdecController,RecepdecController,StatusController,ReglemtController],
       providers: [
         OstieService,ActiviteService,AdherentService,CentreService,CarnetService,DetReglService,EcheanceService,EcritureService,HdecService,RecepdecService,StatutService,ReglemtService
-        ,{
-          provide: 'SEQUELIZE',
-          useValue: sequelize,
-        }
+        
         ,{
           provide: 'ostie',
           useValue: sequelize,

@@ -69,10 +69,7 @@ import { ConfigModule } from '@nestjs/config';
       provide: 'db_24mklen',
       useValue: sequelize,
     }, 
-    {
-      provide: 'SEQUELIZE',
-      useValue: sequelize,
-    },
+    
     {
       provide: 'CentreSql',
       useValue: CentreSql
@@ -102,10 +99,7 @@ import { ConfigModule } from '@nestjs/config';
       provide: 'db_24mklen',
       useValue: sequelize,
     },
-    {
-      provide: 'SEQUELIZE',
-      useValue: sequelize,
-    }, {
+     {
       provide: 'CentreSql',
       useValue: CentreSql
     },

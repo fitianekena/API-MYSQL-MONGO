@@ -13,7 +13,7 @@ export class RecepdecService extends ServicesSyncro<MongooseModel<any>,Sequelize
     constructor(
         @InjectModel(RecepdecMongo.name,'ostie') private readonly mongooseRecepdec: Model<RecepdecMongo>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('RecepdecSql') private readonly mysqlRecepdec: typeof RecepdecSql,
         
         private readonly syncservicebase:SyncroService,

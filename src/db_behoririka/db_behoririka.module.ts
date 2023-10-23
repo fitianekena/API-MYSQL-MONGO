@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { SequelizeModule } from '@nestjs/sequelize';
 import { Centre as CentreSql } from './schema/mysql/centre.schema';
 import { Centre, CentreSchema } from './schema/mongodb/centre.schema';
 import { Personnel as PersonnelSql } from './schema/mysql/personnel.schema';
@@ -50,6 +49,8 @@ import { Ordonnance, OrdonnanceSchema } from 'src/test-mongo/schema/ordonnance.s
 import { Service, ServiceSchema } from 'src/test-mongo/schema/service.schema';
 import { Personnel, PersonnelSchema } from 'src/test-mongo/schema/personnel.schema';
 import { Visiteaffilie, VisiteaffilieSchema } from 'src/test-mongo/schema/visiteaffilie.schema';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { SuperAffilieController } from './controllers/affilie/superaffilie.controller';
 
 
 
@@ -66,8 +67,10 @@ import { Visiteaffilie, VisiteaffilieSchema } from 'src/test-mongo/schema/visite
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: 'db_behoririka',
+      logging: console.log,
       models: [OrdonnanceSql, CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql, AffilieSql, AdherentSql, MedecinTravailSql], // Vous pouvez ajuster cette option en fonction de vos besoins
     }),
+    SequelizeModule.forFeature([AffilieSql],'db_behoririka'),
     MongooseModule.forFeature([
       { name: DnsAffilie.name, schema: DnsAffilieSchema },
       { name: AdAffilie.name, schema: AdAffilieSchema },
@@ -90,7 +93,7 @@ import { Visiteaffilie, VisiteaffilieSchema } from 'src/test-mongo/schema/visite
     VisiteAffilieController,
     CentreController, DbBehoririkaController,
     AffilieController, AdherentController,
-    MedecinTravailController,
+    MedecinTravailController,SuperAffilieController
   ],
 
   providers: [
@@ -102,10 +105,6 @@ import { Visiteaffilie, VisiteaffilieSchema } from 'src/test-mongo/schema/visite
     AdherentService,
     {
       provide: 'SEQUELIZE',
-      useValue: sequelize,
-    },
-    {
-      provide: 'db_behoririka',
       useValue: sequelize,
     }, {
       provide: 'CentreSql',
@@ -159,13 +158,10 @@ import { Visiteaffilie, VisiteaffilieSchema } from 'src/test-mongo/schema/visite
     MappingService,
     SyncroService,
     {
-      provide: 'db_behoririka',
-      useValue: sequelize,
-    },
-    {
       provide: 'SEQUELIZE',
       useValue: sequelize,
-    }, {
+    },
+     {
       provide: 'CentreSql',
       useValue: CentreSql
     },

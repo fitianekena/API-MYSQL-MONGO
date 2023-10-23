@@ -13,7 +13,7 @@ export class CentreService extends ServicesSyncro<MongooseModel<any>,SequelizeMo
     constructor(
         @InjectModel(MongoDBCentre.name,'db_24mklen') private readonly mongooseCentre: Model<MongoDBCentre>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('CentreSql') private readonly mysqlCentre: typeof MySQLCentre,
         
         private readonly syncservicebase:SyncroService,

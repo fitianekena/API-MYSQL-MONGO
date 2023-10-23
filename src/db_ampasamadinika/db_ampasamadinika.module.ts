@@ -71,10 +71,6 @@ import { ConfigModule } from '@nestjs/config';
     MappingService,
     SyncroService,
     {
-      provide: 'SEQUELIZE',
-      useValue: sequelize,
-    }
-    ,{
       provide: 'db_ampasamadinika',
       useValue: sequelize,
     }
@@ -109,9 +105,6 @@ import { ConfigModule } from '@nestjs/config';
     MappingService,
     SyncroService,
     {
-      provide: 'SEQUELIZE',
-      useValue: sequelize,
-    } ,{
       provide: 'db_ampasamadinika',
       useValue: sequelize,
     },{

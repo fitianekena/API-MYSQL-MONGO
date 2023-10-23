@@ -14,7 +14,7 @@ export class EcheanceService extends ServicesSyncro<MongooseModel<any>,Sequelize
     constructor(
         @InjectModel(EcheanceMongo.name,'ostie') private readonly mongooseEcheance: Model<EcheanceMongo>,
         
-        @Inject('SEQUELIZE')private readonly sequelize: Sequelize,
+        
         @Inject('EcheanceSql') private readonly mysqlEcheance: typeof EcheanceSql,
         
         private readonly syncservicebase:SyncroService,
