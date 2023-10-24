@@ -17,23 +17,38 @@ export class ToSqlService {
         private readonly utilservice: UtilService,
         private readonly classingService: ClassingService,
         private readonly champfilleservice: ChampFilleService,
-        private readonly mongoconnectionservice: MongoConnectionService,
+        private readonly mongoconnectionservice:MongoConnectionService,
         private readonly reflector: Reflector,
-       
+        @InjectConnection('db_24mklen') private readonly db_24mklen: Connection,
+        @InjectConnection('db_ampasamadinika') private readonly db_ampasamadinika: Connection,
+        @InjectConnection('db_ostie') private readonly db_ostie: Connection,
+        @InjectConnection('db_tanjombato') private readonly db_tanjombato: Connection,
+        @InjectConnection('ostie') private readonly ostiemongo: Connection,
+        @InjectConnection('db_behoririka') private readonly db_behoririka: Connection,
+        @InjectConnection('test') private readonly test: Connection,
 
 
-    ) { }
-    async synctoMySql(nomdedatabase: string, nomtableprioritaire: string, nomdedatabasemongo: string, id: string,sequelizeModel:any) {
+    ) { 
+        this.mongoconnectionservice.addConnection('db_24mklen',db_24mklen);
+        this.mongoconnectionservice.addConnection('db_ampasamadinika',db_ampasamadinika);
+        this.mongoconnectionservice.addConnection('db_behoririka',db_behoririka);
+        this.mongoconnectionservice.addConnection('db_ostie',db_ostie);
+        this.mongoconnectionservice.addConnection('db_tanjombato',db_tanjombato);
+        this.mongoconnectionservice.addConnection('ostie',ostiemongo);
+        this.mongoconnectionservice.addConnection('global_test',test);
+    }
+    
+    async synctoMySql( nomtableprioritaire: string, nomdedatabasemongo: string, id: string,sequelizeModel:any) {
         //Recuperation de la connexion mongo recommande
+        
         const dbmongo = await this.mongoconnectionservice.getConnection(nomdedatabasemongo);
         //Recuperation de la connexion sequelize recommande
-        const connection = await this.sequelizeconnectionmodule.getConnection(nomdedatabase);
+        
         //Recuperation de la classe corresponand a la table donnee par lutilisateur
         const model = await this.utilservice.findMostSimilarString(nomtableprioritaire, this.classingService.getClassNames());
         //recuperation des annotations internes et des autres table disposant de la meme table mere 
         const groupedMetadata: any = await this.champfilleservice.getAllModelsWithTheSameMere(this.classingService.getClass(model));
 
-        // console.log(groupedMetadata);
         let tabdonneemisajour: any;
         let reference: string;
         let champ_fille;
@@ -46,16 +61,17 @@ export class ToSqlService {
         }
         const filtercible = {};
         filtercible[reference] = [id];
+        
         const mongociblemodel = dbmongo.model(model);
         tabdonneemisajour = await mongociblemodel.find(filtercible).exec();
-        const sqlciblemodel = connection;
+        
         const conditions = {
             [reference]: {
                 [Op.eq]: id, // Utilisez l'opérateur d'égalité (ou un autre opérateur selon vos besoins)
             },
         };
-        //const tabdonneesqlamettreajour=await sqlciblemodel.findOne({where:conditions});
-        console.log(sqlciblemodel)
+        const tabdonneesqlamettreajour=await sequelizeModel.findOne({where:conditions});
+        
         //Mettre a jour les clonnes
         for (let i = 0; i < tabdonneemisajour.length; i++) {
             const elementmisajour = tabdonneemisajour[i];
@@ -82,35 +98,21 @@ export class ToSqlService {
                             }
                         }
                         modelget.findByIdAndUpdate(elementtabclone._id, elementtabclone, { new: true }).exec();
-
+                        
                     }
 
                 }
             }
-            let updateQuery = 'UPDATE '+champ_fille[0].tableMere+ ' SET ';
+            
+            
             for (let u = 0; u < champ_fille.length; u++) {
                 const champ_fillemodel = champ_fille[u];
                 
-                if (u==0) {
-                    updateQuery=updateQuery+"" +champ_fillemodel.nomduchamp+"='"+elementmisajour[champ_fillemodel.identifiant]+"'";
-                }else{
-                    updateQuery=updateQuery+"," +champ_fillemodel.nomduchamp+"='"+elementmisajour[champ_fillemodel.identifiant]+"'";
-
-                }
-                
-                
-                 
-                
-                
-
+                tabdonneesqlamettreajour[champ_fillemodel.nomduchamp]=elementmisajour[champ_fillemodel.identifiant];
+                console.log(champ_fillemodel.nomduchamp+'-'+tabdonneesqlamettreajour[champ_fillemodel.nomduchamp])
             }
-            const vodiny=updateQuery+' WHERE '+ reference+'=' +id;
-            console.log(vodiny);
-            connection.query(updateQuery).then(([results]) => {
-                console.log(`Rows affected: ${results[0]}`);
-              })
             
-            // console.log(tabdonneesqlamettreajour)
+            console.log(await tabdonneesqlamettreajour.save());
         }
 
         return this.classingService.getClass(model);

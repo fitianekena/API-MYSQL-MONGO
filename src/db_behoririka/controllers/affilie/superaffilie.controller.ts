@@ -6,7 +6,7 @@ import { AffilieService } from 'src/db_behoririka/service/affilie/affilie.servic
 import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
 
 
-@Controller('affilie/db_behoririka/')
+@Controller('db_behoririka/affilie')
 export class SuperAffilieController extends MongoToSqlController<any>{
     constructor(
         

@@ -2,7 +2,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { ToSqlService } from '../toSqlService.service';
 import { Model as SequelizeModel } from 'sequelize-typescript';
 
-@Controller('mongo-to-sql')
+@Controller('')
 export class MongoToSqlController < M extends  SequelizeModel>{
     constructor(
         private readonly tosqlService:ToSqlService,
@@ -10,8 +10,8 @@ export class MongoToSqlController < M extends  SequelizeModel>{
     ){
 
     }
-    @Get('/:dbname/:dbmongo/:tablename/:id')
-    async migrateToSql(@Param('tablename') tablename:any,@Param('dbname') dbname:any,@Param('dbmongo') dbmongo:any,@Param('id') id:any){
-        return await this.tosqlService.synctoMySql(dbname,tablename,dbmongo,id,this.sequelizeModel);
+    @Get('/:dbmongo/:tablename/:id')
+    async migrateToSql(@Param('tablename') tablename:any,@Param('dbmongo') dbmongo:any,@Param('id') id:any){
+        return await this.tosqlService.synctoMySql(tablename,dbmongo,id,this.sequelizeModel);
     }
 }

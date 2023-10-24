@@ -58,7 +58,6 @@ import { DbBehoririka } from 'src/db_behoririka/db_behoririka.module';
       InsertionParTableFilleUpdate,
       MigrateTableFille,
       MongoConnectionService,
-     
         {
             provide: 'DnsAffilie',
             useValue: DnsAffilie,
@@ -231,6 +230,7 @@ import { DbBehoririka } from 'src/db_behoririka/db_behoririka.module';
         provide: 'Visiteaffilie',
         useValue: Visiteaffilie,
       },
+      MongoConnectionService,
       SequelizeConnectionService,ChampFilleService,MigrateTableFille,InsertionParTableFille,
       ToSqlService,InsertionParTableFilleUpdate,MigrateToDbGlobalService,ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
     imports: [SqlToMongoModule]

@@ -20,18 +20,13 @@ import { SequelizeModuleOptions } from '@nestjs/sequelize';
 
 @Module({
   imports:[Db24mklen,DbAmpasamadinikaModule,DbBehoririka,DbOstieModule,DbTanjombato,OstieModule,SyncServicesModule],
-  providers: [SequelizeConnectionService,UtilService,ClassingService,ToSqlService, MongoConnectionService],
-  exports: [SequelizeConnectionService,ToSqlService,MongoConnectionService],
+  providers: [SequelizeConnectionService,UtilService,ClassingService, MongoConnectionService,ToSqlService,],
+  exports: [SequelizeConnectionService,MongoConnectionService,ToSqlService,],
 })
 export class DatabaseModule {
   constructor(private sequelizeConnectionService: SequelizeConnectionService,
     private readonly mongoconnectionservice:MongoConnectionService,
-    @Inject('db_24mklen')private readonly mklen_24:Sequelize,
-    @Inject('db_ampasamadinika')private readonly ampasamadinika:Sequelize,
-    @Inject('SEQUELIZE')private readonly behoririka:Sequelize,
-    @Inject('db_ostie')private readonly dbostie:Sequelize,
-    @Inject('db_tanjombato')private readonly tanjombato:Sequelize,
-    @Inject('ostie')private readonly ostie:Sequelize,
+    
     @InjectConnection('db_24mklen') private readonly db_24mklen: Connection,
     @InjectConnection('db_ampasamadinika') private readonly db_ampasamadinika: Connection,
     @InjectConnection('db_ostie') private readonly db_ostie: Connection,
@@ -41,32 +36,9 @@ export class DatabaseModule {
     @InjectConnection('test') private readonly test: Connection,
     ) {
     // Create and configure your Sequelize connections here
-    const connection1 = mklen_24;
-    const connection2 = ampasamadinika;
-    const connection3=behoririka;
+   
       
-    // Add connections to the service with their names
-    this.sequelizeConnectionService.addConnection('db_24mklen',connection1);
-    this.sequelizeConnectionService.addConnection('db_ampasamadinika',connection2);
-    // const newLocal : SequelizeModuleOptions = {
-    //   dialect: 'mysql' as Dialect,
-    //   host: 'localhost',
-    //   port: 3306,
-    //   username: 'root',
-    //   password: '',
-    //   database: 'db_behoririka',
-    // };
-    this.sequelizeConnectionService.addConnection('db_behoririka',connection3);
-    this.sequelizeConnectionService.addConnection('db_ostie',dbostie);
-    this.sequelizeConnectionService.addConnection('db_tanjombato',tanjombato);
-    this.sequelizeConnectionService.addConnection('ostie',ostie);
-    this.mongoconnectionservice.addConnection('db_24mklen',db_24mklen);
-    this.mongoconnectionservice.addConnection('db_ampasamadinika',db_ampasamadinika);
-    this.mongoconnectionservice.addConnection('db_behoririka',db_behoririka);
-    this.mongoconnectionservice.addConnection('db_ostie',db_ostie);
-    this.mongoconnectionservice.addConnection('db_tanjombato',db_tanjombato);
-    this.mongoconnectionservice.addConnection('ostie',ostiemongo);
-    this.mongoconnectionservice.addConnection('global_test',test);
-    // console.log(behoririka.models)
+    
+   
   }
 }
