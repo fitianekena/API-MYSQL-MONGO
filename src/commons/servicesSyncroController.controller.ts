@@ -69,5 +69,9 @@ export class ServicesSyncroController<P extends ServicesSyncro<any,any,any>> {
   async toGlobalMere(){
     return await  this.servicesSyncro.migrateToGlobalMere();
   }
+  @Post('/toGlobal/Sql')
+  async toGlobalSql(){
+    return await  this.servicesSyncro.updatefromGlobalToSql();
+  }
   
 }

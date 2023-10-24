@@ -27,13 +27,7 @@ export class DatabaseModule {
   constructor(private sequelizeConnectionService: SequelizeConnectionService,
     private readonly mongoconnectionservice:MongoConnectionService,
     
-    @InjectConnection('db_24mklen') private readonly db_24mklen: Connection,
-    @InjectConnection('db_ampasamadinika') private readonly db_ampasamadinika: Connection,
-    @InjectConnection('db_ostie') private readonly db_ostie: Connection,
-    @InjectConnection('db_tanjombato') private readonly db_tanjombato: Connection,
-    @InjectConnection('ostie') private readonly ostiemongo: Connection,
-    @InjectConnection('db_behoririka') private readonly db_behoririka: Connection,
-    @InjectConnection('test') private readonly test: Connection,
+    
     ) {
     // Create and configure your Sequelize connections here
    

@@ -19,25 +19,36 @@ export class ToSqlService {
         private readonly champfilleservice: ChampFilleService,
         private readonly mongoconnectionservice:MongoConnectionService,
         private readonly reflector: Reflector,
-        @InjectConnection('db_24mklen') private readonly db_24mklen: Connection,
-        @InjectConnection('db_ampasamadinika') private readonly db_ampasamadinika: Connection,
-        @InjectConnection('db_ostie') private readonly db_ostie: Connection,
-        @InjectConnection('db_tanjombato') private readonly db_tanjombato: Connection,
-        @InjectConnection('ostie') private readonly ostiemongo: Connection,
-        @InjectConnection('db_behoririka') private readonly db_behoririka: Connection,
-        @InjectConnection('test') private readonly test: Connection,
+        
 
 
     ) { 
-        this.mongoconnectionservice.addConnection('db_24mklen',db_24mklen);
-        this.mongoconnectionservice.addConnection('db_ampasamadinika',db_ampasamadinika);
-        this.mongoconnectionservice.addConnection('db_behoririka',db_behoririka);
-        this.mongoconnectionservice.addConnection('db_ostie',db_ostie);
-        this.mongoconnectionservice.addConnection('db_tanjombato',db_tanjombato);
-        this.mongoconnectionservice.addConnection('ostie',ostiemongo);
-        this.mongoconnectionservice.addConnection('global_test',test);
+        
     }
-    
+    async syncToMysqlGlobal(nomtableprioritaire: string, nomdedatabasemongo: string,sequelizeModel:any){
+        const dbmongo = await this.mongoconnectionservice.getConnection(nomdedatabasemongo);
+        const model = await this.utilservice.findMostSimilarString(nomtableprioritaire, this.classingService.getClassNames());
+        
+        const groupedMetadata: any = await this.champfilleservice.getAllModelsWithTheSameMere(this.classingService.getClass(model));
+
+       
+        let reference: string;
+        let champ_fille;
+        for (const [clé, valeur] of groupedMetadata) {
+            if (clé.name == model) {
+                reference = valeur[0].reference;
+                champ_fille = valeur;
+
+            }
+        }
+        
+        const mongociblemodel = dbmongo.model(model);
+        const tabdonneemisajour = await mongociblemodel.find().exec();
+        for (let index = 0; index < tabdonneemisajour.length; index++) {
+            const element = tabdonneemisajour[index];
+            this.synctoMySql(nomtableprioritaire,nomdedatabasemongo,element[reference],sequelizeModel);
+        }
+    }
     async synctoMySql( nomtableprioritaire: string, nomdedatabasemongo: string, id: string,sequelizeModel:any) {
         //Recuperation de la connexion mongo recommande
         
@@ -104,7 +115,7 @@ export class ToSqlService {
                 }
             }
             
-            
+            //effectuer les chqngements par rapport aux champs updatabale
             for (let u = 0; u < champ_fille.length; u++) {
                 const champ_fillemodel = champ_fille[u];
                 

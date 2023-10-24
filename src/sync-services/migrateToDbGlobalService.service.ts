@@ -2,11 +2,14 @@ import { InjectConnection } from "@nestjs/mongoose"
 import { Connection } from "mongoose"
 import { Model } from "sequelize-typescript"
 import { SynchronizeToMongoose } from "./synchronizeToMongoose.service"
+import { synchronizeToSequelize } from "./synchronizeToSequelize.service"
+import { Update } from "./update.service"
 
 export class MigrateToDbGlobalService{
     constructor(
         @InjectConnection('test') private readonly connection: Connection,
-        private readonly synchrotoMongooseService:SynchronizeToMongoose
+        private readonly synchrotoMongooseService:SynchronizeToMongoose,
+        private readonly synchrotoSequelize:Update
     ){
        
     }
@@ -24,6 +27,14 @@ export class MigrateToDbGlobalService{
         
 
     } 
+    async updatefromGlobalToSequelize(sequelizeModel:Model){
+        
+        const mongomodel=await this.connection.model((sequelizeModel as any).name)
+        return this.synchrotoSequelize.update(sequelizeModel,mongomodel,'mongoose');
+        
+
+    } 
+    
     async migrateToDbGlobalMere(sequelizeModel:Model){
         try {
             const mongomodel=await this.connection.model('G'+(sequelizeModel as any).name)
