@@ -7,7 +7,7 @@ import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
 import { ChampFille } from 'src/decorators/champ-mere/champ-fille.decorator';
 import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
 
-@Schema({ collection: 'bo-affilie' })
+@Schema({ collection: 'bo_affilies' })
 export class BoAffilie extends Document {
 
 
@@ -86,8 +86,8 @@ export class BoAffilie extends Document {
     @Prop()
     situation_matrimoniale: string;
 
-    @Prop()
-    statut: string;
+    @Prop({type:Number, default: 1})
+    statut: number;
 
     @Prop()
     updatedAt: string;

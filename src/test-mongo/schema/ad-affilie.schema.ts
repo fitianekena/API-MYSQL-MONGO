@@ -11,7 +11,7 @@ import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
 
 
 
-@Schema({ collection: 'ad-affilie' })
+@Schema({ collection: 'ad_affilies' })
 export class AdAffilie extends Document{
   @Prop()
   matricule: string;
@@ -68,7 +68,7 @@ export class AdAffilie extends Document{
   @Prop()
   motif_debauche: string;
 
-  @Prop()
+  @Prop({type:Number, default: 1})
   statut: number;
 
   @ForeignKey(Centre.name,'centre','centre_id','aff_centreId')
@@ -88,6 +88,7 @@ export class AdAffilie extends Document{
 
   @Prop()
   date_debauche: Date;
+  
 }
 
 export const AdAffilieSchema = SchemaFactory.createForClass(AdAffilie);

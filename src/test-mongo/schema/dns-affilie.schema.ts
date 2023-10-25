@@ -8,7 +8,7 @@ import { Affilie } from 'src/db_ostie/schema/mysql/affilie.schema';
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
 import { BoAffilie } from './bo-affilie.schema';
 
-@Schema()
+@Schema({ collection: 'dns_affilies' })
 export class DnsAffilie extends Document {
   constructor(){
     super();
