@@ -8,44 +8,44 @@ import { ChampMere } from 'src/decorators/champ-mere/champ-mere.decorator';
 @Schema()
 export class Centre {
   @Prop({ type: Number })
-  centre_id : number;
+  id : number;
 
   
   @Prop({ type: String,  default: null })
-  centre_code : string | null;
+  code : string | null;
 
   @Prop({ type: String, default: null })
-  centre_nom	: string | null;
+  nom	: string | null;
 
   @Prop({ type: String,  default: null})
-  centre_localisation: string | null;
+  localisation: string | null;
 
   @Prop({ type: String, default: null })
-  centre_tel: string | null;
+  tel: string | null;
 
   @Prop({ type: String, default: null })
-  centre_type : string | null;
+  type : string | null;
 
   @Prop({ type: Number, default: null })
-  centre_perslRespId : number | null;
+  perslRespId : number | null;
 
   @Prop({ type: Number, default: null })
-  centre_prsnlCBA : number | null;
+  prsnlCBA : number | null;
 
   @Prop({ type: Number, default: null })
-  centre_prsnlPharmacie : number | null;
+  prsnlPharmacie : number | null;
 
   @Prop({ type: Date, default: null })
-  centre_creationDate : Date | null | '0000-00-00';
+  creationDate : Date | null | '0000-00-00';
 
   @Prop({ type: Number })
-  centre_etatId : number;
+  etat: number;
 
   @Prop({ type: Number })
-  centre_ilaharana: number ;
+  ilaharana: number ;
 
   @Prop({ type: String })
-  centre_database: string ;
+  database: string ;
 }
 
 export const CentreSchema = SchemaFactory.createForClass(Centre);

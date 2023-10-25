@@ -71,7 +71,7 @@ export class AdAffilie extends Document{
   @Prop({type:Number, default: 1})
   statut: number;
 
-  @ForeignKey(Centre.name,'centre','centre_id','aff_centreId')
+  @ForeignKey(Centre.name,'centre','id','aff_centreId')
   @Prop({ type: 'ObjectId', ref: 'Centre' }) 
   centre: string; 
 

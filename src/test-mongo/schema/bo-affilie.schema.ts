@@ -18,7 +18,7 @@ export class BoAffilie extends Document {
     @Prop()
     adresse: string;
 
-    @ForeignKey(Centre.name, 'centre', 'centre_id', 'aff_centreId')
+    @ForeignKey(Centre.name, 'centre', 'id', 'aff_centreId')
     @Prop({ type: 'ObjectId', ref: 'Centre' })
     centre: string;
     @Prop()
