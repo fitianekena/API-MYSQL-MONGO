@@ -164,7 +164,7 @@ export class Affilie extends Model<Affilie> {
 
   @Column({ type: DataType.STRING(50),  })
   aff_persIpAdress: string;
-
+  @ChampMere(BoAffilie.name,'salaire_brut','STRING','affEmbauche_salaireBrut')
   @Column({ type: DataType.DATE, allowNull: true })
   affEmbauche_embauchedate: Date | null;
 

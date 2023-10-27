@@ -389,8 +389,23 @@ export class MedecinTravail extends Document {
   @Prop({ type: String })
   visiteEmbch_ConseilMedecin: string;
 
-  @Prop({ type: String })
-  visiteEmbch_Conseildate: String;
+  @Prop({
+    get: function() {
+      return this._datecreation;
+    },
+    set: function(value) {
+      // Vérifie si la valeur peut être traduite en un type Date de MongoDB
+      const dateValue = new Date(value);
+      if (isNaN(dateValue.getTime())) {
+        // Si la conversion échoue, la valeur est null
+        this._datecreation = null;
+      } else {
+        this._datecreation = dateValue;
+      }
+    }
+  })
+  visiteEmbch_Conseildate: Date;
+  
 
   @Prop({ type: String })
   visiteEmbch_Revisitedate: String;

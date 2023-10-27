@@ -56,6 +56,7 @@ import { MongoToSqlController } from './commons/mongo-to-sql/mongo-to-sql.contro
 import { ToSqlService } from './commons/toSqlService.service';
 import { DatabaseModule } from './database-module/database-module.module';
 import { MongoConnectionService } from './database-module/mongo-connection/mongo-connection.service';
+import { AdUsers, AdUsersSchema } from './test-mongo/schema/ad-user.schema';
 
 
 
@@ -94,7 +95,7 @@ import { MongoConnectionService } from './database-module/mongo-connection/mongo
       { name: Recepdec.name, schema: RecepdecSchema },
       { name: Reglemt.name, schema: ReglemtSchema },
       { name: Statut.name, schema: StatutSchema },
-
+      { name:AdUsers.name, schema: AdUsersSchema },
 
     ], 'test'),
     

@@ -48,6 +48,7 @@ import { DatabaseModule } from 'src/database-module/database-module.module';
 import { SequelizeConnectionService } from 'src/database-module/sequelize-connection-service/sequelize-connection-service.service';
 import { MongoConnectionService } from 'src/database-module/mongo-connection/mongo-connection.service';
 import { DbBehoririka } from 'src/db_behoririka/db_behoririka.module';
+import { AdUsers } from 'src/test-mongo/schema/ad-user.schema';
 
 
 @Module({
@@ -142,6 +143,10 @@ import { DbBehoririka } from 'src/db_behoririka/db_behoririka.module';
             provide: 'Visiteaffilie',
             useValue: Visiteaffilie,
           },
+          {
+            provide: 'AdUsers',
+            useValue: AdUsers,
+          },
           SequelizeConnectionService,ToSqlService, ChampFilleService,ClassingService,
     ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
     exports:[
@@ -229,6 +234,10 @@ import { DbBehoririka } from 'src/db_behoririka/db_behoririka.module';
       {
         provide: 'Visiteaffilie',
         useValue: Visiteaffilie,
+      },
+      {
+        provide: 'AdUsers',
+        useValue: AdUsers,
       },
       MongoConnectionService,
       SequelizeConnectionService,ChampFilleService,MigrateTableFille,InsertionParTableFille,

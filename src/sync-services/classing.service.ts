@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Activite } from 'src/test-mongo/schema/activite.schema';
 import { AdAffilie } from 'src/test-mongo/schema/ad-affilie.schema';
+import { AdUsers } from 'src/test-mongo/schema/ad-user.schema';
 import { Adherent } from 'src/test-mongo/schema/adherent.schema';
 import { BoAffilie } from 'src/test-mongo/schema/bo-affilie.schema';
 import { Carnet } from 'src/test-mongo/schema/carnet.schema';
@@ -41,7 +42,7 @@ export class ClassingService {
         @Inject('Service')private readonly service:Service,
         @Inject('Personnel')private readonly personnel:Personnel,
         @Inject('Visiteaffilie')private readonly visiteaffilie:Visiteaffilie,
-       
+        @Inject('AdUsers')private readonly adusers:AdUsers,
     ){
         this.addClass('DnsAffilie',DnsAffilie);
         this.addClass('AdAffilie',AdAffilie);
@@ -64,6 +65,7 @@ export class ClassingService {
         this.addClass('Service',Service);
         this.addClass('Personnel',Personnel);
         this.addClass('Visiteaffilie',Visiteaffilie);
+        this.addClass('AdUsers',AdUsers);
     }
    public classMap: Record<string, any> = {};
 

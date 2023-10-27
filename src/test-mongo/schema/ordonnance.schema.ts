@@ -22,8 +22,24 @@ export class Ordonnance extends Document {
   @Prop({ type: String, default: null })
   ordonnance_numTmp: string | null;
 
-  @Prop({ type: Date, default: null })
-  date: Date | null;
+  
+  @Prop({type: Date,
+    get: function() {
+      return this.date;
+    },
+    set: function(value) {
+      // Vérifie si la valeur peut être traduite en un type Date de MongoDB
+      const dateValue = new Date(value);
+      if (isNaN(dateValue.getTime())) {
+        // Si la conversion échoue, la valeur est null
+        this.date = null;
+      } else {
+        this.date = dateValue;
+      }
+    }
+  })
+  date: Date;
+  
 
   @ForeignKey(AdAffilie.name,'affilie','aff_id','ordonnance_affId')
   @Prop({ type: 'ObjectId', ref: 'AdAffilie' }) 

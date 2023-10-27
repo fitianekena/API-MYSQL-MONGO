@@ -19,7 +19,8 @@ async getTheIdOfADocumentInTheMongoDatabase(sequelizeModel:SequelizeModel,mongoo
     const filter = {};
     filter[primaryKeyField] = primaryKeyValue;
     const documents = await mongooseModel.find(filter).exec();
-    
+    console.log(primaryKeyValue)
+    // console.log(primaryKeyField+"mongooseModel:"+mongooseModel.name)
     const objectId = documents[0]._id;
     
     return  objectId;

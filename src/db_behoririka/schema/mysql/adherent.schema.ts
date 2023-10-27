@@ -1,5 +1,6 @@
 import { Table, Model, Column, DataType, PrimaryKey } from 'sequelize-typescript';
 import { ChampMere } from 'src/decorators/champ-mere/champ-mere.decorator';
+import { AdUsers } from 'src/test-mongo/schema/ad-user.schema';
 
 @Table({
   tableName: 'adherent',
@@ -8,10 +9,12 @@ import { ChampMere } from 'src/decorators/champ-mere/champ-mere.decorator';
 })
 export class Adherent extends Model<Adherent> {
 
-  @PrimaryKey
+  
   @Column({ type: DataType.BIGINT, field: 'adh_idIndex' })
   adh_idIndex: number;
 
+  @PrimaryKey
+  @ChampMere(AdUsers.name,'matricule','STRING','adh_id')
   @ChampMere(Adherent.name,'code_adherent','STRING','adh_id')
   @Column({ type: DataType.BIGINT, field: 'adh_id' })
   adh_id: number;
@@ -34,6 +37,7 @@ export class Adherent extends Model<Adherent> {
   @Column({ type: DataType.BIGINT, field: 'adh_adhTypeId', allowNull: true })
   adh_adhTypeId: number | null;
 
+  @ChampMere(AdUsers.name,'adresse','STRING','adh_adresse')
   @ChampMere(Adherent.name,'adresse','STRING','adh_adresse')
   @Column({ type: DataType.STRING(255), field: 'adh_adresse', allowNull: true })
   adh_adresse: string | null;
@@ -124,6 +128,7 @@ export class Adherent extends Model<Adherent> {
   @Column({ type: DataType.BIGINT, field: 'adh_persId' })
   adh_persId: number;
 
+  @ChampMere(AdUsers.name,'nom','STRING','adh_persNom')
   @Column({ type: DataType.STRING(250), field: 'adh_persNom' })
   adh_persNom: string;
 
@@ -133,6 +138,7 @@ export class Adherent extends Model<Adherent> {
   @Column({ type: DataType.DATE, field: 'adh_dateSaisie' })
   adh_dateSaisie: Date;
 
+  @ChampMere(AdUsers.name,'email','STRING','adh_email')
   @ChampMere(Adherent.name,'email','STRING','adh_email')
   @Column({ type: DataType.STRING(255), field: 'adh_email' })
   adh_email: string;
