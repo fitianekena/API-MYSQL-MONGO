@@ -42,7 +42,20 @@ export class ExtractionService{
         const identifiant = item.identifiant;
         const valeur = itemdata[identifiant];
         // Inserer le champ et recuperer la valeur du champ dans le data
-        nouvelObjet[item.nomduchamp] = valeur;
+        if (item.type=="DATE") {
+          console.log(valeur)
+          const dateValue = new Date(valeur);
+      
+            if (!isNaN(dateValue.getTime())) {
+        // Si la conversion réussit, stockez la date au format BSON
+        nouvelObjet[item.nomduchamp]= dateValue.toISOString();
+      } else{
+        nouvelObjet[item.nomduchamp]= null;
+      }
+        }else{
+          nouvelObjet[item.nomduchamp] = valeur;
+        }
+       
       }));
       if (metadata) {
         

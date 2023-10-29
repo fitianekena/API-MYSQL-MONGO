@@ -26,7 +26,7 @@ export class Ordonnance extends Model {
   ordonnance_numTmp: string;
 
   @Column({ type: DataTypes.DATE, defaultValue: null })
-  @ChampMere(Ordonnance.name, 'date', 'DATE', 'ordonnance_date')
+  @ChampMere(Ordonnance.name, 'date','DATE', 'ordonnance_date')
   ordonnance_date: Date | null;
 
   @Column({ type: DataTypes.BIGINT,defaultValue: null })
