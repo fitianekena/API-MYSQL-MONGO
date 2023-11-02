@@ -57,6 +57,8 @@ import { ToSqlService } from './commons/toSqlService.service';
 import { DatabaseModule } from './database-module/database-module.module';
 import { MongoConnectionService } from './database-module/mongo-connection/mongo-connection.service';
 import { AdUsers, AdUsersSchema } from './test-mongo/schema/ad-user.schema';
+import { TypeAdherent, TypeAdherentSchema } from './test-mongo/schema/type_adherent.schema';
+import { VaccinCovid, VaccinCovidSchema } from './test-mongo/schema/vaccinCovid.schema';
 
 
 
@@ -72,7 +74,7 @@ import { AdUsers, AdUsersSchema } from './test-mongo/schema/ad-user.schema';
     DbBehoririka,
     Db24mklen,
     OstieModule,
-    MongooseModule.forRoot(process.env.MONGODB_URL + 'global_test', { connectionName: 'test' }),
+    MongooseModule.forRoot(process.env.MONGODB_URL + 'test_final', { connectionName: 'test' }),
     MongooseModule.forFeature([
       { name: DnsAffilie.name, schema: DnsAffilieSchema },
       { name: AdAffilie.name, schema: AdAffilieSchema },
@@ -96,7 +98,8 @@ import { AdUsers, AdUsersSchema } from './test-mongo/schema/ad-user.schema';
       { name: Reglemt.name, schema: ReglemtSchema },
       { name: Statut.name, schema: StatutSchema },
       { name:AdUsers.name, schema: AdUsersSchema },
-
+      { name: TypeAdherent.name, schema: TypeAdherentSchema },
+      { name: VaccinCovid.name, schema: VaccinCovidSchema },
     ], 'test'),
     
 

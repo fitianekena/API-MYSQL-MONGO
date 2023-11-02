@@ -69,8 +69,8 @@ export class Affilie extends Model<Affilie> {
   @Column({ type: DataType.STRING(255), allowNull: true, })
   aff_adresse: string | null;
 
-  @ChampMere(BoAffilie.name,'date_de_naissance','STRING','aff_naissDate')
-  @ChampMere(AdAffilie.name,'date_de_naissance','STRING','aff_naissDate')
+  @ChampMere(BoAffilie.name,'date_de_naissance','DATE','aff_naissDate')
+  @ChampMere(AdAffilie.name,'date_de_naissance','DATE','aff_naissDate')
   @Column({ type: DataType.DATE, allowNull: true })
   aff_naissDate: Date | null;
 
@@ -85,6 +85,8 @@ export class Affilie extends Model<Affilie> {
   aff_cinNum: string | null;
 
  
+  @ChampMere(AdAffilie.name,'cin_date_delivrance','DATE','aff_cinDate')
+  @ChampMere(AdAffilie.name,'cin_date_delivrance','DATE','aff_cinDate')
   @Column({ type: DataType.DATE })
   aff_cinDate: Date | null;
 
@@ -119,7 +121,8 @@ export class Affilie extends Model<Affilie> {
 
   @Column({ type: DataType.STRING(50), allowNull: true, })
   aff_classification: string | null;
-
+  @ChampMere(AdAffilie.name,'cnaps_num','STRING','aff_cnapsNum')
+  @ChampMere(BoAffilie.name,'cnaps_num','STRING','aff_cnapsNum')
   @Column({ type: DataType.STRING(50), allowNull: true, })
   aff_cnapsNum: string | null;
 
@@ -138,6 +141,8 @@ export class Affilie extends Model<Affilie> {
   @Column({ type: DataType.TINYINT,  })
   aff_doublon: number;
 
+  @ChampMere(AdAffilie.name,'createdAt','DATE','aff_dateCreation')
+  @ChampMere(BoAffilie.name,'createdAt','DATE','aff_dateCreation')
   @Column({ type: DataType.DATE,  })
   aff_dateCreation: Date;
 
@@ -164,12 +169,17 @@ export class Affilie extends Model<Affilie> {
 
   @Column({ type: DataType.STRING(50),  })
   aff_persIpAdress: string;
-  @ChampMere(BoAffilie.name,'salaire_brut','STRING','affEmbauche_salaireBrut')
+  @ChampMere(AdAffilie.name,'date_embauche','DATE','affEmbauche_embauchedate')
+  @ChampMere(BoAffilie.name,'date_embauche','DATE','affEmbauche_embauchedate')
   @Column({ type: DataType.DATE, allowNull: true })
   affEmbauche_embauchedate: Date | null;
 
+  @ChampMere(AdAffilie.name,'date_debauche','DATE','affEmbauche_debaucheDate')
+  @ChampMere(BoAffilie.name,'date_debauche','DATE','affEmbauche_debaucheDate')
   @Column({ type: DataType.DATE, allowNull: true })
   affEmbauche_debaucheDate: Date | null;
+
+
   @ChampMere(BoAffilie.name,'salaire_brut','STRING','affEmbauche_salaireBrut')
   @ChampMere(AdAffilie.name,'salaire_brut','STRING','affEmbauche_salaireBrut')
   @Column({ type: DataType.DECIMAL(10, 2), allowNull: true })

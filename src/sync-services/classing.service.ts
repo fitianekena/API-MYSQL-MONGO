@@ -20,6 +20,8 @@ import { Recepdec } from 'src/test-mongo/schema/recepdec.schema';
 import { Reglemt } from 'src/test-mongo/schema/reglemt.schema';
 import { Service } from 'src/test-mongo/schema/service.schema';
 import { Statut } from 'src/test-mongo/schema/statut.schema';
+import { TypeAdherent } from 'src/test-mongo/schema/type_adherent.schema';
+import { VaccinCovid } from 'src/test-mongo/schema/vaccinCovid.schema';
 import { Visiteaffilie } from 'src/test-mongo/schema/visiteaffilie.schema';
 
 @Injectable()
@@ -43,6 +45,8 @@ export class ClassingService {
         @Inject('Personnel')private readonly personnel:Personnel,
         @Inject('Visiteaffilie')private readonly visiteaffilie:Visiteaffilie,
         @Inject('AdUsers')private readonly adusers:AdUsers,
+        @Inject('TypeAdherent')private readonly typeusers:TypeAdherent,
+        @Inject('VaccinCovid')private readonly vaccin:VaccinCovid,
     ){
         this.addClass('DnsAffilie',DnsAffilie);
         this.addClass('AdAffilie',AdAffilie);
@@ -66,6 +70,8 @@ export class ClassingService {
         this.addClass('Personnel',Personnel);
         this.addClass('Visiteaffilie',Visiteaffilie);
         this.addClass('AdUsers',AdUsers);
+        this.addClass('TypeAdherent',TypeAdherent);
+        this.addClass('VaccinCovid',VaccinCovid);
     }
    public classMap: Record<string, any> = {};
 

@@ -25,7 +25,7 @@ export class BoAffilie extends Document {
     aff_id: string;
 
     @Prop()
-    cin_date_delivrance: string;
+    cin_date_delivrance: Date;
 
     @Prop()
     cin_lieu_delivrance: string;
@@ -33,18 +33,20 @@ export class BoAffilie extends Document {
     @Prop()
     cin_num: string;
 
-    @Prop()
+    @Prop({ default: "0"})
     cnaps_num: string;
 
     @Prop()
     createdAt: string;
 
     @Prop()
-    date_de_naissance: string;
+    date_de_naissance: Date;
 
     @Prop()
-    date_embauche: string;
+    date_embauche: Date;
 
+    @Prop()
+    date_debauche: Date;
     @Prop()
     email: string;
 

@@ -49,6 +49,8 @@ import { SequelizeConnectionService } from 'src/database-module/sequelize-connec
 import { MongoConnectionService } from 'src/database-module/mongo-connection/mongo-connection.service';
 import { DbBehoririka } from 'src/db_behoririka/db_behoririka.module';
 import { AdUsers } from 'src/test-mongo/schema/ad-user.schema';
+import { TypeAdherent } from 'src/test-mongo/schema/type_adherent.schema';
+import { VaccinCovid } from 'src/test-mongo/schema/vaccinCovid.schema';
 
 
 @Module({
@@ -147,10 +149,28 @@ import { AdUsers } from 'src/test-mongo/schema/ad-user.schema';
             provide: 'AdUsers',
             useValue: AdUsers,
           },
+          {
+            provide: 'TypeAdherent',
+            useValue: TypeAdherent,
+          },
+          
+          {
+            provide: 'VaccinCovid',
+            useValue: VaccinCovid,
+          },
           SequelizeConnectionService,ToSqlService, ChampFilleService,ClassingService,
     ClassingService,ForeignKeyService,ClassLoaderService,SavingOnMongoService,ExtractionService,GettingIdMongoService,ClassLoaderService,ForeignKeyService,ChampMereService,UtilService,MappingService,SyncroService, synchronizeToSequelize, SynchronizeToMongoose, SynchronizeModelsMongooseToSql, SynchronizeModelsSqlToMongoose, Update, UpdateDelete],
     exports:[
       ClassingService,
+      
+      {
+        provide: 'VaccinCovid',
+        useValue: VaccinCovid,
+      },
+      {
+        provide: 'TypeAdherent',
+        useValue: TypeAdherent,
+      },
       {
         provide: 'DnsAffilie',
         useValue: DnsAffilie,

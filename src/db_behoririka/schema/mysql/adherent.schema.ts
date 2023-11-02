@@ -82,8 +82,9 @@ export class Adherent extends Model<Adherent> {
   @Column({ type: DataType.STRING(50), field: 'adh_activiteSecdr', allowNull: true })
   adh_activiteSecdr: string | null;
 
+  @ChampMere(Adherent.name,'activite_date_debut','DATE','adh_activiteDateDeb')
   @Column({ type: DataType.DATE, field: 'adh_activiteDateDeb', allowNull: true })
-  adh_activiteDateDeb: Date | null;
+  adh_activiteDateDeb: Date;
 
   @ChampMere(Adherent.name,'travailleur_lieu','STRING','adh_travailLieu')
   @Column({ type: DataType.STRING(160), field: 'adh_travailLieu', allowNull: true })
@@ -105,7 +106,7 @@ export class Adherent extends Model<Adherent> {
   @Column({ type: DataType.BIGINT, field: 'adh_familleMbrNbr', allowNull: true })
   adh_familleMbrNbr: number | null;
 
-
+  @ChampMere(Adherent.name,'adhesion_date_debut','DATE','adh_adhesionDateDeb')
   @Column({ type: DataType.DATE, field: 'adh_adhesionDateDeb', allowNull: true })
   adh_adhesionDateDeb: Date | null;
 
@@ -154,7 +155,7 @@ export class Adherent extends Model<Adherent> {
 
   @Column({ type: DataType.TINYINT, field: 'adhSitHist_situationId', allowNull: true })
   adhSitHist_situationId: number | null;
-
+  @ChampMere(Adherent.name,'email','STRING','adh_email')
   @Column({ type: DataType.DATE, field: 'adhSitHist_date', allowNull: true })
   adhSitHist_date: Date | null;
 

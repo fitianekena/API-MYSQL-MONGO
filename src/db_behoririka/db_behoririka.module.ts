@@ -51,6 +51,10 @@ import { Personnel, PersonnelSchema } from 'src/test-mongo/schema/personnel.sche
 import { Visiteaffilie, VisiteaffilieSchema } from 'src/test-mongo/schema/visiteaffilie.schema';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { SuperAffilieController } from './controllers/affilie/superaffilie.controller';
+import { VaccinCovid as  VaccinCovidSql} from './schema/mysql/vaccinCovid.schema';
+import { VaccinCovid, VaccinCovidSchema } from './schema/mongodb/vaccinCovid.schema';
+import { VaccinCovidController } from './controllers/vaccin-covid/vaccin-covid.controller';
+import { VaccinCovidService } from './service/vaccin-covid/vaccin-covid.service';
 
 
 
@@ -68,7 +72,7 @@ import { SuperAffilieController } from './controllers/affilie/superaffilie.contr
       password: process.env.MYSQL_PASSWORD,
       database: 'db_behoririka',
       logging: console.log,
-      models: [OrdonnanceSql, CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql, AffilieSql, AdherentSql, MedecinTravailSql], // Vous pouvez ajuster cette option en fonction de vos besoins
+      models: [OrdonnanceSql, CentreSql, PersonnelSql, FonctionSql, VisiteaffilieSql, ServiceSql, AffilieSql, AdherentSql, MedecinTravailSql,VaccinCovidSql], // Vous pouvez ajuster cette option en fonction de vos besoins
     }),
     SequelizeModule.forFeature([AffilieSql],'db_behoririka'),
     MongooseModule.forFeature([
@@ -84,6 +88,7 @@ import { SuperAffilieController } from './controllers/affilie/superaffilie.contr
       { name: Personnel.name, schema: PersonnelSchema },
       { name: Visiteaffilie.name, schema: VisiteaffilieSchema },
       { name: Fonction.name, schema: FonctionSchema },
+      { name: VaccinCovid.name, schema: VaccinCovidSchema },
     ], 'db_behoririka')],
 
   controllers: [
@@ -93,10 +98,12 @@ import { SuperAffilieController } from './controllers/affilie/superaffilie.contr
     VisiteAffilieController,
     CentreController, DbBehoririkaController,
     AffilieController, AdherentController,
-    MedecinTravailController,SuperAffilieController
+    MedecinTravailController,SuperAffilieController,
+    VaccinCovidController
   ],
 
   providers: [
+    VaccinCovidService,
     OrdonnanceService,
     VisiteService,
     UtilService,
@@ -109,6 +116,10 @@ import { SuperAffilieController } from './controllers/affilie/superaffilie.contr
     }, {
       provide: 'CentreSql',
       useValue: CentreSql
+    },
+    {
+      provide: 'VaccinCovidSql',
+      useValue: VaccinCovidSql
     },
     {
       provide: 'PersonnelSql',
@@ -157,6 +168,7 @@ import { SuperAffilieController } from './controllers/affilie/superaffilie.contr
     UtilService,
     MappingService,
     SyncroService,
+    VaccinCovidService,
     {
       provide: 'SEQUELIZE',
       useValue: sequelize,
@@ -164,6 +176,11 @@ import { SuperAffilieController } from './controllers/affilie/superaffilie.contr
      {
       provide: 'CentreSql',
       useValue: CentreSql
+    },
+    
+    {
+      provide: 'VaccinCovidSql',
+      useValue: VaccinCovidSql
     },
     {
       provide: 'PersonnelSql',

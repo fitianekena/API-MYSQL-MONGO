@@ -38,12 +38,12 @@ export class AdAffilie extends Document{
   adresse: string;
 
   @Prop()
-  date_de_naissance: String;
+  date_de_naissance: Date;
 
   @Prop()
   lieu_de_naissance: string;
 
-  @Prop()
+  @Prop({ default: "0"}) 
   cnaps_num: string;
 
   @Prop()

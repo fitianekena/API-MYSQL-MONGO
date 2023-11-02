@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
 import { ForeignKey } from 'src/decorators/champ-mere/foreign-key.decorator';
 import { Centre } from './centre.schema';
+import { TypeAdherent } from './type_adherent.schema';
 
 @Schema({collection:'adherents'})
 export class Adherent extends Document {
@@ -14,7 +15,8 @@ export class Adherent extends Document {
   @Prop()
   raison_sociale: string;
 
-  @Prop({ type: 'ObjectId',default:new mongoose.Types.ObjectId('6495719ae1bf3013c68e7cbe') })
+  @ForeignKey(TypeAdherent.name,'type','typeProspect','adh_adhTypeId')
+  @Prop({ type: 'ObjectId' })
   type: string; 
 
   @Prop()

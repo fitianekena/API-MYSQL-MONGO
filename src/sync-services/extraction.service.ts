@@ -43,7 +43,7 @@ export class ExtractionService{
         const valeur = itemdata[identifiant];
         // Inserer le champ et recuperer la valeur du champ dans le data
         if (item.type=="DATE") {
-          console.log(valeur)
+          
           const dateValue = new Date(valeur);
       
             if (!isNaN(dateValue.getTime())) {
