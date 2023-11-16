@@ -59,6 +59,7 @@ import { MongoConnectionService } from './database-module/mongo-connection/mongo
 import { AdUsers, AdUsersSchema } from './test-mongo/schema/ad-user.schema';
 import { TypeAdherent, TypeAdherentSchema } from './test-mongo/schema/type_adherent.schema';
 import { VaccinCovid, VaccinCovidSchema } from './test-mongo/schema/vaccinCovid.schema';
+import { CaracteristiqueModule } from './caracteristique/caracteristique.module';
 
 
 
@@ -69,6 +70,7 @@ import { VaccinCovid, VaccinCovidSchema } from './test-mongo/schema/vaccinCovid.
     DbOstieModule,
     DatabaseModule,
     DbAmpasamadinikaModule,
+    CaracteristiqueModule,
     SyncServicesModule,
     DbTanjombato,
     DbBehoririka,
@@ -101,6 +103,7 @@ import { VaccinCovid, VaccinCovidSchema } from './test-mongo/schema/vaccinCovid.
       { name: TypeAdherent.name, schema: TypeAdherentSchema },
       { name: VaccinCovid.name, schema: VaccinCovidSchema },
     ], 'test'),
+    CaracteristiqueModule,
     
 
   ],

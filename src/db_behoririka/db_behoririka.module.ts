@@ -110,6 +110,7 @@ import { VaccinCovidService } from './service/vaccin-covid/vaccin-covid.service'
     MappingService,
     SyncroService,
     AdherentService,
+    SequelizeModule,
     {
       provide: 'SEQUELIZE',
       useValue: sequelize,

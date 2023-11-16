@@ -25,7 +25,7 @@ export class InsertionParTableFille {
           alldata.push({ tablefille: result[index].tablefille, data: await donnees });
             
             for (let y = 0; y < donnees.length; y++) {
-              //Sauvegarder avec la fonction de saving 
+              //Sauvegarder avec la fon
               this.savingOnMongo.savingOnMongo(result[index].tablefille,donnees[y],connection2)
             }
         }

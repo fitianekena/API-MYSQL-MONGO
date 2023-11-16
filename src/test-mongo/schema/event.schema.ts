@@ -9,7 +9,7 @@ import { BoAffilie } from './bo-affilie.schema';
 export class Visiteaffilie extends Document {
   @Prop({ type: Number })
   vsiteAff_id : number;
-
+                                                                                                                                                                                                                                                                                                                                                                                  
   @ForeignKey(Adherent.name,'adherent','code_adherent','vsiteAff_adhId')
   @Prop({ type: 'ObjectId', ref: 'Adherent' }) 
   adherent: number;

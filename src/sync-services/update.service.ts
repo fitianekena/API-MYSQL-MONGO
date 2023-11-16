@@ -44,7 +44,7 @@ export class Update {
                     }
                 }
     
-                console.log(`Nombre d'éléments migrés de Sequelize vers Mongoose : ${migratedCount}`);
+                console.log(`Nombre d'éléments migrena de Sequelize vers Mongoose : ${migratedCount}`);
             } else if (priority === 'mongoose') {
                 
                 migratedCount = 0;
@@ -71,7 +71,7 @@ export class Update {
                     }
                 }
     
-                console.log(`Nombre d'éléments migrés de Mongoose vers Sequelize : ${migratedCount}`);
+                console.log(`Nombre d'éléments migrena de Mongoose vers Sequelize : ${migratedCount}`);
             }
         }
 }
